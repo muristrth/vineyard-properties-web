@@ -45,31 +45,38 @@ export default function ContactPage() {
   };
 
   const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Visit Our Office",
-      content: "123 Vineyard Boulevard\nPalm Springs, CA 92262",
-      action: "Get Directions"
-    },
-    {
-      icon: Phone,
-      title: "Call Us",
-      content: "+1-555-VINEYARD\n+1-555-843-9273",
-      action: "Call Now"
-    },
-    {
-      icon: Mail,
-      title: "Email Us",
-      content: "info@vineyardproperties.com\nsales@vineyardproperties.com",
-      action: "Send Email"
-    },
-    {
-      icon: Clock,
-      title: "Office Hours",
-      content: "Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: By Appointment",
-      action: "Schedule Visit"
-    }
-  ];
+  {
+    icon: MapPin,
+    title: "Visit Our Office",
+    content: "Odyssey Plaza\nSouth B, Mukoma Road\nNairobi, Kenya",
+    actionText: "Get Directions", // Changed to actionText for clarity
+    actionHref: "https://www.google.com/maps/dir/?api=1&destination=Odyssey+Plaza,+South+B,+Mukoma+Road,+Nairobi,+Kenya",
+    actionType: "link"
+  },
+  {
+    icon: Phone,
+    title: "Call Us",
+    content: "VINEYARD\n+254 729 170 156",
+    actionText: "Call Now",
+    actionHref: "tel:+254729170156",
+    actionType: "link"
+  },
+  {
+    icon: Mail,
+    title: "Email Us",
+    content: "sales@vineyardproperties.co.ke\n",
+    actionText: "Send Email",
+    actionHref: "mailto:sales@vineyardproperties.co.ke",
+    actionType: "link"
+  },
+  {
+    icon: Clock,
+    title: "Office Hours",
+    content: "Monday - Friday: 8:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: By Appointment",
+    actionText: "Schedule Visit",
+    actionType: "modal" // Or "function", depending on what you want to do
+  }
+];
 
   return (
     <div className="min-h-screen">
@@ -160,7 +167,7 @@ export default function ContactPage() {
                             type="tel"
                             value={formData.phone}
                             onChange={(e) => handleInputChange("phone", e.target.value)}
-                            placeholder="+1 (555) 123-4567"
+                            placeholder="+254 729 170 156"
                           />
                         </div>
                         <div>
@@ -278,7 +285,7 @@ export default function ContactPage() {
                   Interactive Map
                 </h3>
                 <p className="text-gray-600">
-                  123 Vineyard Boulevard, Palm Springs, CA 92262
+                  Odyssey Plaza, South B, Mukoma Road, Nairobi, Kenya
                 </p>
                 <Button className="mt-4 bg-primary hover:bg-primary/90">
                   Get Directions
