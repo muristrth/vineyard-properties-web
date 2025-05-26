@@ -8,8 +8,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react";
+
+// Define an interface for ContactInfo items
+interface ContactInfoItem {
+  icon: React.ElementType; // Represents the LucideReact icon component
+  title: string;
+  content: string;
+  actionText: string;
+  actionHref?: string; // Optional for link types
+  actionType: "link" | "modal" | "function"; // Define specific action types
+}
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -24,7 +35,8 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
+    // Handle form submission here (e.g., send data to an API)
+    console.log("Form data submitted:", formData);
     setIsSubmitted(true);
     // Reset form after 3 seconds
     setTimeout(() => {
@@ -44,39 +56,44 @@ export default function ContactPage() {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const contactInfo = [
-  {
-    icon: MapPin,
-    title: "Visit Our Office",
-    content: "Odyssey Plaza\nSouth B, Mukoma Road\nNairobi, Kenya",
-    actionText: "Get Directions", // Changed to actionText for clarity
-    actionHref: "https://www.google.com/maps/dir/?api=1&destination=Odyssey+Plaza,+South+B,+Mukoma+Road,+Nairobi,+Kenya",
-    actionType: "link"
-  },
-  {
-    icon: Phone,
-    title: "Call Us",
-    content: "VINEYARD\n+254 729 170 156",
-    actionText: "Call Now",
-    actionHref: "tel:+254729170156",
-    actionType: "link"
-  },
-  {
-    icon: Mail,
-    title: "Email Us",
-    content: "sales@vineyardproperties.co.ke\n",
-    actionText: "Send Email",
-    actionHref: "mailto:sales@vineyardproperties.co.ke",
-    actionType: "link"
-  },
-  {
-    icon: Clock,
-    title: "Office Hours",
-    content: "Monday - Friday: 8:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: By Appointment",
-    actionText: "Schedule Visit",
-    actionType: "modal" // Or "function", depending on what you want to do
-  }
-];
+  // Dummy function for modal action, replace with actual modal logic
+  const handleScheduleVisit = () => {
+    alert("Opening scheduling modal! (Implement your modal logic here, e.g., setShowScheduleModal(true);)");
+  };
+
+  const contactInfo: ContactInfoItem[] = [ // Added type annotation
+    {
+      icon: MapPin,
+      title: "Visit Our Office",
+      content: "Odyssey Plaza\nSouth B, Mukoma Road\nNairobi, Kenya",
+      actionText: "Get Directions",
+      actionHref: "https://maps.app.goo.gl/cwn8XL6mS2VndSoB9", // Replace with your actual Google Maps link
+      actionType: "link"
+    },
+    {
+      icon: Phone,
+      title: "Call Us",
+      content: "Mark James",
+      actionText: "Call Now",
+      actionHref: "tel:+254729170156",
+      actionType: "link"
+    },
+    {
+      icon: Mail,
+      title: "Email Us",
+      content: "sales@vineyardproperties.co.ke\n",
+      actionText: "Send Email",
+      actionHref: "mailto:sales@vineyardproperties.co.ke",
+      actionType: "link"
+    },
+    {
+      icon: Clock,
+      title: "Office Hours",
+      content: "Monday - Friday: 8:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: By Appointment",
+      actionText: "Schedule Visit",
+      actionType: "modal" // Or "function" depending on what you want to do
+    }
+  ];
 
   return (
     <div className="min-h-screen">
@@ -233,32 +250,52 @@ export default function ContactPage() {
 
             {/* Contact Information */}
             <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <Card
-                  key={info.title}
-                  className="border-0 shadow-lg hover:shadow-xl transition-shadow animate-fade-in"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <info.icon className="w-6 h-6 text-primary" />
+              {contactInfo.map((info, index) => {
+                const Icon = info.icon; // Get the icon component
+                return (
+                  <Card
+                    key={info.title}
+                    className="border-0 shadow-lg hover:shadow-xl transition-shadow animate-fade-in"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-6 h-6 text-primary" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-radio-canada font-bold text-gray-900 mb-2">
+                            {info.title}
+                          </h3>
+                          <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line mb-3">
+                            {info.content}
+                          </p>
+                          {info.actionType === "link" && info.actionHref ? (
+                            <Button asChild variant="outline" size="sm" className="text-primary border-primary hover:bg-primary hover:text-white w-full">
+                              <a
+                                href={info.actionHref}
+                                target={info.actionHref.startsWith('http') || info.actionHref.startsWith('https') ? '_blank' : undefined}
+                                rel={info.actionHref.startsWith('http') || info.actionHref.startsWith('https') ? 'noopener noreferrer' : undefined}
+                              >
+                                {info.actionText}
+                              </a>
+                            </Button>
+                          ) : info.actionType === "modal" ? (
+                            <Button onClick={handleScheduleVisit} variant="outline" size="sm" className="text-primary border-primary hover:bg-primary hover:text-white w-full">
+                              {info.actionText}
+                            </Button>
+                          ) : (
+                            // Fallback for other action types or if actionHref is missing for a link type
+                            <Button variant="outline" size="sm" className="text-primary border-primary hover:bg-primary hover:text-white w-full" disabled>
+                              {info.actionText} (Action Not Set)
+                            </Button>
+                          )}
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <h3 className="font-radio-canada font-bold text-gray-900 mb-2">
-                          {info.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line mb-3">
-                          {info.content}
-                        </p>
-                        <Button variant="outline" size="sm" className="text-primary border-primary hover:bg-primary hover:text-white">
-                          {info.action}
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -287,8 +324,10 @@ export default function ContactPage() {
                 <p className="text-gray-600">
                   Odyssey Plaza, South B, Mukoma Road, Nairobi, Kenya
                 </p>
-                <Button className="mt-4 bg-primary hover:bg-primary/90">
-                  Get Directions
+                <Button className="mt-4 bg-primary hover:bg-primary/90" asChild>
+                  <a href="https://maps.app.goo.gl/your-office-location" target="_blank" rel="noopener noreferrer">
+                    Get Directions
+                  </a>
                 </Button>
               </div>
             </div>

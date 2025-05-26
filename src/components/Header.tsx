@@ -23,9 +23,9 @@ export default function Header() {
     <div className="flex items-center justify-between h-16">
       <Link href="/" className="flex items-center space-x-3">
         <img
-          src="https://media.licdn.com/dms/image/v2/D4D0BAQEszCcpPK3l9w/company-logo_200_200/B4DZaz1Hh_G8AI-/0/1746773768777/vineyard_properties_ltd_logo?e=2147483647&v=beta&t=8gRRwbcurWH80LIsBmRfraxr92WNQ4oT5IUlA__QafQ"
+          src="/favicon.ico"
           alt="Vineyard Properties Logo"
-          className="h-10 w-auto"
+          className="h-12 w-auto"
         />
       
       </Link>
