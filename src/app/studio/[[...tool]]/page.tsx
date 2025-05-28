@@ -1,4 +1,4 @@
-'use client' // ✅ This ensures it runs as a client component
+'use client'; // ✅ This ensures it runs as a client component
 
 /**
  * This route is responsible for the built-in authoring environment using Sanity Studio.
@@ -9,12 +9,12 @@
  * https://github.com/sanity-io/next-sanity
  */
 
-import { NextStudio } from 'next-sanity/studio'
-import config from '../../../../sanity.config'
+import { NextStudio } from 'next-sanity/studio';
+import config from '../../../../sanity.config';
 
 // Remove `export const dynamic = 'force-static'` — not needed here for client components
 // Remove RSC-only exports like `metadata`, `viewport`
 
 export default function StudioPage() {
-  return <NextStudio config={config} />
+  return <NextStudio config={config} />;
 }

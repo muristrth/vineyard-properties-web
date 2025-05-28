@@ -1,5 +1,5 @@
 // src/sanity/schemaTypes/property.ts
-import { defineType } from 'sanity'
+import { defineType } from 'sanity';
 
 export const property = defineType({
   name: 'property',
@@ -48,4 +48,4 @@ export const property = defineType({
       type: 'text',
     },
   ],
-})
+});

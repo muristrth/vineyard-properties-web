@@ -1,51 +1,59 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Users, Award, Home, TrendingUp, Phone, Mail, MapPin } from "lucide-react";
-import Link from "next/link";
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import {
+  Users,
+  Award,
+  Home,
+  TrendingUp,
+  Phone,
+  Mail,
+  MapPin,
+} from 'lucide-react';
+import Link from 'next/link';
 
 const stats = [
-  { label: "Years of Experience", value: "15+", icon: Award },
-  { label: "Properties Sold", value: "1,000+", icon: Home },
-  { label: "Happy Clients", value: "2,500+", icon: Users },
-  { label: "Market Growth", value: "25%", icon: TrendingUp },
+  { label: 'Years of Experience', value: '15+', icon: Award },
+  { label: 'Properties Sold', value: '1,000+', icon: Home },
+  { label: 'Happy Clients', value: '2,500+', icon: Users },
+  { label: 'Market Growth', value: '25%', icon: TrendingUp },
 ];
 
 const teamMembers = [
   {
-    name: "Sarah Vineyard",
-    role: "Founder & CEO",
-    image: "https://ext.same-assets.com/2009473017/3756399664.png",
-    bio: "With over 20 years in luxury real estate, Sarah founded Vineyard Properties to provide exceptional service and curated property experiences.",
-    email: "sarah@vineyardproperties.com",
-    phone: "+1-555-VINEYARD"
+    name: 'Sarah Vineyard',
+    role: 'Founder & CEO',
+    image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+    bio: 'With over 20 years in luxury real estate, Sarah founded Vineyard Properties to provide exceptional service and curated property experiences.',
+    email: 'sarah@vineyardproperties.com',
+    phone: '+1-555-VINEYARD',
   },
   {
-    name: "Michael Chen",
-    role: "Head of Sales",
-    image: "https://ext.same-assets.com/2009473017/3756399664.png",
-    bio: "Michael leads our sales team with expertise in luxury markets and investment properties, ensuring clients find their perfect match.",
-    email: "michael@vineyardproperties.com",
-    phone: "+1-555-VINEYARD"
+    name: 'Michael Chen',
+    role: 'Head of Sales',
+    image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+    bio: 'Michael leads our sales team with expertise in luxury markets and investment properties, ensuring clients find their perfect match.',
+    email: 'michael@vineyardproperties.com',
+    phone: '+1-555-VINEYARD',
   },
   {
-    name: "Emma Rodriguez",
-    role: "Investment Advisor",
-    image: "https://ext.same-assets.com/2009473017/3756399664.png",
-    bio: "Emma specializes in real estate investments and helps clients build profitable property portfolios with strategic guidance.",
-    email: "emma@vineyardproperties.com",
-    phone: "+1-555-VINEYARD"
+    name: 'Emma Rodriguez',
+    role: 'Investment Advisor',
+    image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+    bio: 'Emma specializes in real estate investments and helps clients build profitable property portfolios with strategic guidance.',
+    email: 'emma@vineyardproperties.com',
+    phone: '+1-555-VINEYARD',
   },
   {
-    name: "David Thompson",
-    role: "Property Manager",
-    image: "https://ext.same-assets.com/2009473017/3756399664.png",
-    bio: "David oversees property management services, ensuring all client investments are well-maintained and profitable.",
-    email: "david@vineyardproperties.com",
-    phone: "+1-555-VINEYARD"
-  }
+    name: 'David Thompson',
+    role: 'Property Manager',
+    image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+    bio: 'David oversees property management services, ensuring all client investments are well-maintained and profitable.',
+    email: 'david@vineyardproperties.com',
+    phone: '+1-555-VINEYARD',
+  },
 ];
 
 export default function AboutPage() {
@@ -54,39 +62,43 @@ export default function AboutPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-br from-gray-900 to-gray-800 pb-16 pt-20 text-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge variant="secondary" className="mb-4 bg-primary/20 text-primary">
+            <Badge
+              variant="secondary"
+              className="mb-4 bg-primary/20 text-primary"
+            >
               About Vineyard Properties
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-radio-canada font-bold mb-6">
+            <h1 className="mb-6 font-radio-canada text-4xl font-bold md:text-6xl">
               Redefining Luxury
               <br />
               <span className="text-primary">Real Estate</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              For over 15 years, Vineyard Properties has been the trusted name in luxury real estate,
-              delivering exceptional service and curating the finest properties for discerning clients.
+            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300">
+              For over 15 years, Vineyard Properties has been the trusted name
+              in luxury real estate, delivering exceptional service and curating
+              the finest properties for discerning clients.
             </p>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="text-center animate-fade-in"
+                className="animate-fade-in text-center"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="w-8 h-8 text-primary" />
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                  <stat.icon className="h-8 w-8 text-primary" />
                 </div>
-                <div className="text-3xl font-radio-canada font-bold text-gray-900 mb-2">
+                <div className="mb-2 font-radio-canada text-3xl font-bold text-gray-900">
                   {stat.value}
                 </div>
                 <p className="text-gray-600">{stat.label}</p>
@@ -97,38 +109,43 @@ export default function AboutPage() {
       </section>
 
       {/* Story Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="bg-gray-50 py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div className="space-y-6">
-              <h2 className="text-4xl font-radio-canada font-bold text-gray-900">
+              <h2 className="font-radio-canada text-4xl font-bold text-gray-900">
                 Our Story
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Founded in 2009 by Sarah Vineyard, Vineyard Properties began with a simple vision:
-                to revolutionize the luxury real estate experience by combining cutting-edge technology
-                with personalized service.
+              <p className="text-lg leading-relaxed text-gray-600">
+                Founded in 2009 by Sarah Vineyard, Vineyard Properties began
+                with a simple vision: to revolutionize the luxury real estate
+                experience by combining cutting-edge technology with
+                personalized service.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                What started as a boutique agency has grown into a premier real estate firm,
-                known for our integrity, innovation, and unwavering commitment to client satisfaction.
-                We specialize in luxury residential properties, investment opportunities, and
-                exclusive developments across prime locations.
+              <p className="text-lg leading-relaxed text-gray-600">
+                What started as a boutique agency has grown into a premier real
+                estate firm, known for our integrity, innovation, and unwavering
+                commitment to client satisfaction. We specialize in luxury
+                residential properties, investment opportunities, and exclusive
+                developments across prime locations.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Today, we continue to set new standards in the industry, helping clients not just
-                find properties, but discover their perfect lifestyle and investment opportunities.
+              <p className="text-lg leading-relaxed text-gray-600">
+                Today, we continue to set new standards in the industry, helping
+                clients not just find properties, but discover their perfect
+                lifestyle and investment opportunities.
               </p>
             </div>
             <div className="relative">
               <img
                 src="https://ext.same-assets.com/2009473017/4194055538.jpeg"
                 alt="Vineyard Properties Office"
-                className="w-full h-96 object-cover rounded-2xl shadow-xl"
+                className="h-96 w-full rounded-2xl object-cover shadow-xl"
               />
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-lg p-6">
-                <p className="text-sm text-gray-600 mb-1">Founded</p>
-                <p className="text-2xl font-radio-canada font-bold text-gray-900">2009</p>
+              <div className="absolute -bottom-6 -left-6 rounded-xl bg-white p-6 shadow-lg">
+                <p className="mb-1 text-sm text-gray-600">Founded</p>
+                <p className="font-radio-canada text-2xl font-bold text-gray-900">
+                  2009
+                </p>
               </div>
             </div>
           </div>
@@ -136,59 +153,63 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Values */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-radio-canada font-bold text-gray-900 mb-6">
+      <section className="bg-white py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <h2 className="mb-6 font-radio-canada text-4xl font-bold text-gray-900">
               Our Mission & Values
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're committed to delivering exceptional results through innovation, integrity, and excellence.
+            <p className="mx-auto max-w-3xl text-xl text-gray-600">
+              We're committed to delivering exceptional results through
+              innovation, integrity, and excellence.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <Card className="border-0 shadow-lg transition-shadow hover:shadow-xl">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Award className="w-8 h-8 text-primary" />
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                  <Award className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-radio-canada font-bold text-gray-900 mb-4">
+                <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900">
                   Excellence
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  We strive for excellence in every transaction, ensuring our clients receive
-                  the highest quality service and results that exceed expectations.
+                <p className="leading-relaxed text-gray-600">
+                  We strive for excellence in every transaction, ensuring our
+                  clients receive the highest quality service and results that
+                  exceed expectations.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-0 shadow-lg transition-shadow hover:shadow-xl">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Users className="w-8 h-8 text-primary" />
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                  <Users className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-radio-canada font-bold text-gray-900 mb-4">
+                <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900">
                   Client-Centric
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Our clients are at the heart of everything we do. We listen, understand,
-                  and deliver personalized solutions that align with their unique goals.
+                <p className="leading-relaxed text-gray-600">
+                  Our clients are at the heart of everything we do. We listen,
+                  understand, and deliver personalized solutions that align with
+                  their unique goals.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-0 shadow-lg transition-shadow hover:shadow-xl">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <TrendingUp className="w-8 h-8 text-primary" />
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                  <TrendingUp className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-radio-canada font-bold text-gray-900 mb-4">
+                <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900">
                   Innovation
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  We embrace cutting-edge technology and innovative approaches to provide
-                  our clients with competitive advantages in the market.
+                <p className="leading-relaxed text-gray-600">
+                  We embrace cutting-edge technology and innovative approaches
+                  to provide our clients with competitive advantages in the
+                  market.
                 </p>
               </CardContent>
             </Card>
@@ -197,22 +218,23 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-radio-canada font-bold text-gray-900 mb-6">
+      <section className="bg-gray-50 py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <h2 className="mb-6 font-radio-canada text-4xl font-bold text-gray-900">
               Meet Our Team
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our experienced professionals are dedicated to helping you achieve your real estate goals.
+            <p className="mx-auto max-w-3xl text-xl text-gray-600">
+              Our experienced professionals are dedicated to helping you achieve
+              your real estate goals.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {teamMembers.map((member, index) => (
               <Card
                 key={member.name}
-                className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-in"
+                className="transform animate-fade-in border-0 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-6 text-center">
@@ -220,26 +242,26 @@ export default function AboutPage() {
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-24 h-24 rounded-full mx-auto object-cover"
+                      className="mx-auto h-24 w-24 rounded-full object-cover"
                     />
-                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                      <span className="text-white text-xs font-bold">VP</span>
+                    <div className="absolute -bottom-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary">
+                      <span className="text-xs font-bold text-white">VP</span>
                     </div>
                   </div>
-                  <h3 className="text-xl font-radio-canada font-bold text-gray-900 mb-1">
+                  <h3 className="mb-1 font-radio-canada text-xl font-bold text-gray-900">
                     {member.name}
                   </h3>
-                  <p className="text-primary font-medium mb-4">{member.role}</p>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6">
+                  <p className="mb-4 font-medium text-primary">{member.role}</p>
+                  <p className="mb-6 text-sm leading-relaxed text-gray-600">
                     {member.bio}
                   </p>
                   <div className="space-y-2">
                     <div className="flex items-center justify-center text-sm text-gray-600">
-                      <Mail className="w-4 h-4 mr-2" />
+                      <Mail className="mr-2 h-4 w-4" />
                       <span>{member.email}</span>
                     </div>
                     <div className="flex items-center justify-center text-sm text-gray-600">
-                      <Phone className="w-4 h-4 mr-2" />
+                      <Phone className="mr-2 h-4 w-4" />
                       <span>{member.phone}</span>
                     </div>
                   </div>
@@ -251,19 +273,25 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-radio-canada font-bold mb-6">
+      <section className="bg-primary py-20 text-white">
+        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="mb-6 font-radio-canada text-4xl font-bold">
             Ready to Work with Us?
           </h2>
-          <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-8">
-            Let our experienced team help you find your dream property or achieve your investment goals.
+          <p className="mx-auto mb-8 max-w-2xl text-xl text-primary-foreground/80">
+            Let our experienced team help you find your dream property or
+            achieve your investment goals.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Button asChild variant="secondary" size="lg" className="px-8">
               <Link href="/contact">Contact Us Today</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="px-8 border-white text-white hover:bg-white hover:text-primary">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="border-white px-8 text-white hover:bg-white hover:text-primary"
+            >
               <Link href="/properties">View Properties</Link>
             </Button>
           </div>

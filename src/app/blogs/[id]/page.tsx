@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useParams } from "next/navigation";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { useParams } from 'next/navigation';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import {
   Calendar,
   Clock,
@@ -17,9 +17,9 @@ import {
   Facebook,
   Twitter,
   Linkedin,
-  ArrowRight
-} from "lucide-react";
-import Link from "next/link";
+  ArrowRight,
+} from 'lucide-react';
+import Link from 'next/link';
 
 // Define an interface for a single blog post
 interface BlogPost {
@@ -45,16 +45,18 @@ interface RelatedPost {
 }
 
 // Mock blog data - in a real app, this would come from an API
-const blogData: Record<string, BlogPost> = { // Changed `any` to `BlogPost`
-  "home-buying-tips": {
-    id: "home-buying-tips",
-    title: "Essential Home Buying Tips for First-Time Buyers",
-    excerpt: "Navigate the home buying process with confidence using these expert tips and strategies for first-time buyers.",
-    author: "Sarah Vineyard",
-    category: "Tips",
-    date: "2025-02-05",
-    readTime: "8 min read",
-    image: "https://ext.same-assets.com/2009473017/2828581621.jpeg",
+const blogData: Record<string, BlogPost> = {
+  // Changed `any` to `BlogPost`
+  'home-buying-tips': {
+    id: 'home-buying-tips',
+    title: 'Essential Home Buying Tips for First-Time Buyers',
+    excerpt:
+      'Navigate the home buying process with confidence using these expert tips and strategies for first-time buyers.',
+    author: 'Sarah Vineyard',
+    category: 'Tips',
+    date: '2025-02-05',
+    readTime: '8 min read',
+    image: 'https://ext.same-assets.com/2009473017/2828581621.jpeg',
     content: `
       <p>Buying your first home is an exciting milestone, but it can also feel overwhelming. With proper preparation and knowledge, you can navigate the process with confidence and make informed decisions that will benefit you for years to come.</p>
 
@@ -87,18 +89,19 @@ const blogData: Record<string, BlogPost> = { // Changed `any` to `BlogPost`
       <h2>Final Thoughts</h2>
       <p>Take your time and don't let emotions drive your decisions. The right home for you is out there, and with patience and preparation, you'll find it. Remember, buying a home is not just a financial investment—it's an investment in your future and lifestyle.</p>
     `,
-    tags: ["First-time buyers", "Home buying", "Real estate tips", "Mortgage"],
-    featured: true
+    tags: ['First-time buyers', 'Home buying', 'Real estate tips', 'Mortgage'],
+    featured: true,
   },
-  "serviced-apartments-vs-hotels": {
-    id: "serviced-apartments-vs-hotels",
-    title: "What Should I Invest in? A Serviced Apartment or a Hotel?",
-    excerpt: "Investing in serviced apartments is a fairly new concept, especially in the Kenyan real estate market.",
-    author: "Michael Chen",
-    category: "Investment",
-    date: "2024-05-13",
-    readTime: "10 min read",
-    image: "https://ext.same-assets.com/616702439/3627029914.png",
+  'serviced-apartments-vs-hotels': {
+    id: 'serviced-apartments-vs-hotels',
+    title: 'What Should I Invest in? A Serviced Apartment or a Hotel?',
+    excerpt:
+      'Investing in serviced apartments is a fairly new concept, especially in the Kenyan real estate market.',
+    author: 'Michael Chen',
+    category: 'Investment',
+    date: '2024-05-13',
+    readTime: '10 min read',
+    image: 'https://ext.same-assets.com/616702439/3627029914.png',
     content: `
       <p>Investing in serviced apartments is a fairly new concept, especially in the Kenyan real estate market. As an investor looking to diversify your portfolio, you might be wondering whether to invest in serviced apartments or traditional hotels. Both options have their merits, but understanding the key differences can help you make an informed decision.</p>
 
@@ -155,19 +158,25 @@ const blogData: Record<string, BlogPost> = { // Changed `any` to `BlogPost`
       <h2>Conclusion</h2>
       <p>Both serviced apartments and hotels offer viable investment opportunities in Kenya's growing hospitality sector. Consider your financial situation, investment timeline, and management preferences when making your decision. Regardless of your choice, thorough market research and professional consultation are essential for success.</p>
     `,
-    tags: ["Serviced Apartments", "Hotel Investment", "Real Estate Investment", "Kenya Property"],
-    featured: false
+    tags: [
+      'Serviced Apartments',
+      'Hotel Investment',
+      'Real Estate Investment',
+      'Kenya Property',
+    ],
+    featured: false,
   },
 
-  "real-estate-investment-amount-kenya": {
-    id: "real-estate-investment-amount-kenya",
-    title: "How Much Do You Need to Invest in Real Estate in Kenya",
-    excerpt: "Investing in real estate in Kenya has become a popular option for many investors looking to diversify their portfolios and build long-term wealth.",
-    author: "David Kimani",
-    category: "Investment",
-    date: "2023-07-19",
-    readTime: "12 min read",
-    image: "https://ext.same-assets.com/616702439/4224781709.jpeg",
+  'real-estate-investment-amount-kenya': {
+    id: 'real-estate-investment-amount-kenya',
+    title: 'How Much Do You Need to Invest in Real Estate in Kenya',
+    excerpt:
+      'Investing in real estate in Kenya has become a popular option for many investors looking to diversify their portfolios and build long-term wealth.',
+    author: 'Mark Muriithi',
+    category: 'Investment',
+    date: '2023-07-19',
+    readTime: '12 min read',
+    image: 'https://ext.same-assets.com/616702439/4224781709.jpeg',
     content: `
       <p>Investing in real estate in Kenya has become a popular option for many investors looking to diversify their portfolios and build long-term wealth. However, one of the most common questions is: "How much money do I actually need to get started?" The answer varies significantly depending on your investment strategy, location, and type of property.</p>
 
@@ -275,19 +284,25 @@ const blogData: Record<string, BlogPost> = { // Changed `any` to `BlogPost`
       <h2>Conclusion</h2>
       <p>Real estate investment in Kenya is accessible to investors with various budget levels. Whether you have KSh 500,000 or KSh 50 million, there are viable investment opportunities. The key is to start with thorough research, realistic budgeting, and professional guidance. Remember that real estate is a long-term investment, and patience combined with strategic planning will yield the best returns.</p>
     `,
-    tags: ["Investment Amount", "Kenya Real Estate", "Property Investment", "Real Estate Budget"],
-    featured: false
+    tags: [
+      'Investment Amount',
+      'Kenya Real Estate',
+      'Property Investment',
+      'Real Estate Budget',
+    ],
+    featured: false,
   },
 
-  "making-money-real-estate-kenya": {
-    id: "making-money-real-estate-kenya",
-    title: "How to Make Money in Real Estate in Kenya",
-    excerpt: "Overview of the real estate in Kenya. Real estate in Kenya is one of the most lucrative investment opportunities available today.",
-    author: "Grace Wanjiku",
-    category: "Investment",
-    date: "2022-10-10",
-    readTime: "15 min read",
-    image: "https://ext.same-assets.com/616702439/3753674968.png",
+  'making-money-real-estate-kenya': {
+    id: 'making-money-real-estate-kenya',
+    title: 'How to Make Money in Real Estate in Kenya',
+    excerpt:
+      'Overview of the real estate in Kenya. Real estate in Kenya is one of the most lucrative investment opportunities available today.',
+    author: 'Mark Muriithi',
+    category: 'Investment',
+    date: '2022-10-10',
+    readTime: '15 min read',
+    image: 'https://ext.same-assets.com/2009473017/1062973807.jpeg',
     content: `
       <p>Real estate in Kenya is one of the most lucrative investment opportunities available today. With a growing population, increasing urbanization, and a developing economy, the real estate sector offers multiple avenues for generating substantial returns. Whether you're a seasoned investor or just starting, understanding the various ways to make money in Kenyan real estate is crucial for your success.</p>
 
@@ -465,19 +480,25 @@ const blogData: Record<string, BlogPost> = { // Changed `any` to `BlogPost`
 
       <p>Start with a clear strategy, build your knowledge, and gradually expand your portfolio. With the right approach, real estate can become a significant source of wealth and financial security in Kenya's growing economy.</p>
     `,
-    tags: ["Making Money", "Real Estate Kenya", "Investment Strategies", "Property Investment"],
-    featured: false
+    tags: [
+      'Making Money',
+      'Real Estate Kenya',
+      'Investment Strategies',
+      'Property Investment',
+    ],
+    featured: false,
   },
 
-  "what-is-real-estate-investment": {
-    id: "what-is-real-estate-investment",
-    title: "What is Real Estate Investment?",
-    excerpt: "Real estate investment is the purchase, ownership, management, rental, and/or sale of real estate for profit. Learn the fundamentals of property investment.",
-    author: "Peter Mwangi",
-    category: "Investment",
-    date: "2022-10-10",
-    readTime: "9 min read",
-    image: "https://ext.same-assets.com/2009473017/1161467979.jpeg",
+  'what-is-real-estate-investment': {
+    id: 'what-is-real-estate-investment',
+    title: 'What is Real Estate Investment?',
+    excerpt:
+      'Real estate investment is the purchase, ownership, management, rental, and/or sale of real estate for profit. Learn the fundamentals of property investment.',
+    author: 'Mark Muriithi',
+    category: 'Investment',
+    date: '2022-10-10',
+    readTime: '9 min read',
+    image: 'https://ext.same-assets.com/2009473017/1161467979.jpeg',
     content: `
       <p>Real estate investment is the purchase, ownership, management, rental, and/or sale of real estate for profit. Unlike buying a home to live in, real estate investment is focused on generating income and building wealth through property ownership. This form of investment has been one of the most reliable wealth-building strategies throughout history.</p>
 
@@ -640,19 +661,25 @@ const blogData: Record<string, BlogPost> = { // Changed `any` to `BlogPost`
 
       <p>Whether you're interested in residential rentals, commercial properties, or alternative real estate investments, understanding the fundamentals is essential. Start with a clear strategy, continue learning, and build your portfolio gradually to maximize your chances of success in this rewarding but complex investment arena.</p>
     `,
-    tags: ["Real Estate Investment", "Property Investment", "Investment Basics", "Wealth Building"],
-    featured: false
+    tags: [
+      'Real Estate Investment',
+      'Property Investment',
+      'Investment Basics',
+      'Wealth Building',
+    ],
+    featured: false,
   },
-  
-  "boost-home-value": {
-    id: "boost-home-value",
-    title: "10 Ways to Boost Your Home Value Before Selling",
-    excerpt: "Discover strategic improvements that can significantly increase your property's market value and appeal to buyers.",
-    author: "Michael Chen",
-    category: "Guides",
-    date: "2025-01-09",
-    readTime: "12 min read",
-    image: "https://ext.same-assets.com/2009473017/1161467979.jpeg",
+
+  'boost-home-value': {
+    id: 'boost-home-value',
+    title: '10 Ways to Boost Your Home Value Before Selling',
+    excerpt:
+      "Discover strategic improvements that can significantly increase your property's market value and appeal to buyers.",
+    author: 'Mark Muriithi',
+    category: 'Guides',
+    date: '2025-01-09',
+    readTime: '12 min read',
+    image: 'https://ext.same-assets.com/2009473017/1161467979.jpeg',
     content: `
       <p>When preparing to sell your home, strategic improvements can make a significant difference in both your selling price and how quickly your property sells. Here are ten proven ways to boost your home's value.</p>
 
@@ -689,31 +716,32 @@ const blogData: Record<string, BlogPost> = { // Changed `any` to `BlogPost`
       <h2>Return on Investment</h2>
       <p>Not all improvements offer the same return. Focus on projects that appeal to the broadest range of buyers and consider your local market conditions when making decisions.</p>
     `,
-    tags: ["Home selling", "Property value", "Home improvement", "ROI"],
-    featured: false
-  }
+    tags: ['Home selling', 'Property value', 'Home improvement', 'ROI'],
+    featured: false,
+  },
 };
 
 // Related posts
-const relatedPosts: RelatedPost[] = [ // Changed to use RelatedPost interface
+const relatedPosts: RelatedPost[] = [
+  // Changed to use RelatedPost interface
   {
-    id: "luxury-homes-defined",
+    id: 'luxury-homes-defined',
     title: "What Defines a Luxury Home in Today's Market",
-    category: "Insights",
-    image: "https://ext.same-assets.com/2009473017/4194055538.jpeg"
+    category: 'Insights',
+    image: 'https://ext.same-assets.com/2009473017/4194055538.jpeg',
   },
   {
-    id: "investment-strategies-2025",
-    title: "Real Estate Investment Strategies for 2025",
-    category: "Investment",
-    image: "https://ext.same-assets.com/2009473017/299352832.jpeg"
+    id: 'investment-strategies-2025',
+    title: 'Real Estate Investment Strategies for 2025',
+    category: 'Investment',
+    image: 'https://ext.same-assets.com/2009473017/299352832.jpeg',
   },
   {
-    id: "sustainable-living-trends",
-    title: "Sustainable Living: Eco-Friendly Home Trends",
-    category: "Trends",
-    image: "https://ext.same-assets.com/2009473017/923357109.jpeg"
-  }
+    id: 'sustainable-living-trends',
+    title: 'Sustainable Living: Eco-Friendly Home Trends',
+    category: 'Trends',
+    image: 'https://ext.same-assets.com/2009473017/923357109.jpeg',
+  },
 ];
 
 export default function BlogPostPage() {
@@ -723,9 +751,11 @@ export default function BlogPostPage() {
 
   if (!post) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
+          <h1 className="mb-4 text-2xl font-bold text-gray-900">
+            Article Not Found
+          </h1>
           <Link href="/blogs" className="text-primary hover:underline">
             Back to Blog
           </Link>
@@ -738,7 +768,7 @@ export default function BlogPostPage() {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     });
   };
 
@@ -747,11 +777,11 @@ export default function BlogPostPage() {
       <Header />
 
       {/* Back Button */}
-      <div className="pt-20 pb-4 bg-white border-b">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="border-b bg-white pb-4 pt-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Button asChild variant="ghost" className="mb-4">
             <Link href="/blogs">
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Blog
             </Link>
           </Button>
@@ -759,56 +789,56 @@ export default function BlogPostPage() {
       </div>
 
       {/* Article Header */}
-      <section className="py-12 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <Badge className="bg-primary text-white mb-4">
+      <section className="bg-white py-12">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <Badge className="mb-4 bg-primary text-white">
               {post.category}
             </Badge>
 
-            <h1 className="text-4xl md:text-5xl font-radio-canada font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="mb-6 font-radio-canada text-4xl font-bold leading-tight text-gray-900 md:text-5xl">
               {post.title}
             </h1>
 
-            <p className="text-xl text-gray-600 leading-relaxed mb-8">
+            <p className="mb-8 text-xl leading-relaxed text-gray-600">
               {post.excerpt}
             </p>
 
             <div className="flex items-center justify-center space-x-6 text-gray-500">
               <div className="flex items-center">
-                <User className="w-4 h-4 mr-2" />
+                <User className="mr-2 h-4 w-4" />
                 <span>{post.author}</span>
               </div>
               <div className="flex items-center">
-                <Calendar className="w-4 h-4 mr-2" />
+                <Calendar className="mr-2 h-4 w-4" />
                 <span>{formatDate(post.date)}</span>
               </div>
               <div className="flex items-center">
-                <Clock className="w-4 h-4 mr-2" />
+                <Clock className="mr-2 h-4 w-4" />
                 <span>{post.readTime}</span>
               </div>
             </div>
           </div>
 
           {/* Share Buttons */}
-          <div className="flex items-center justify-center space-x-4 mb-8">
+          <div className="mb-8 flex items-center justify-center space-x-4">
             <Button variant="outline" size="sm">
-              <Share className="w-4 h-4 mr-2" />
+              <Share className="mr-2 h-4 w-4" />
               Share
             </Button>
             <Button variant="outline" size="sm">
-              <Bookmark className="w-4 h-4 mr-2" />
+              <Bookmark className="mr-2 h-4 w-4" />
               Save
             </Button>
             <div className="flex space-x-2">
-              <Button variant="ghost" size="sm" className="w-10 h-10 p-0">
-                <Facebook className="w-4 h-4" />
+              <Button variant="ghost" size="sm" className="h-10 w-10 p-0">
+                <Facebook className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="sm" className="w-10 h-10 p-0">
-                <Twitter className="w-4 h-4" />
+              <Button variant="ghost" size="sm" className="h-10 w-10 p-0">
+                <Twitter className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="sm" className="w-10 h-10 p-0">
-                <Linkedin className="w-4 h-4" />
+              <Button variant="ghost" size="sm" className="h-10 w-10 p-0">
+                <Linkedin className="h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -817,35 +847,35 @@ export default function BlogPostPage() {
 
       {/* Featured Image */}
       <section className="mb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="relative h-64 overflow-hidden rounded-2xl md:h-96">
             <img
               src={post.image}
               alt={post.title}
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
         </div>
       </section>
 
       {/* Article Content */}
-      <section className="py-12 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-white py-12">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg max-w-none">
             <div
               className="article-content"
               dangerouslySetInnerHTML={{ __html: post.content }}
               style={{
                 lineHeight: '1.8',
-                fontSize: '18px'
+                fontSize: '18px',
               }}
             />
           </div>
 
           {/* Tags */}
           {post.tags && (
-            <div className="mt-12 pt-8 border-t border-gray-200">
-              <h3 className="text-lg font-radio-canada font-bold text-gray-900 mb-4">
+            <div className="mt-12 border-t border-gray-200 pt-8">
+              <h3 className="mb-4 font-radio-canada text-lg font-bold text-gray-900">
                 Tags
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -861,27 +891,26 @@ export default function BlogPostPage() {
       </section>
 
       {/* Author Bio */}
-      <section className="py-12 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gray-50 py-12">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Card className="border-0 shadow-lg">
             <CardContent className="p-8">
               <div className="flex items-center space-x-6">
                 <img
                   src="https://ext.same-assets.com/2009473017/3756399664.png"
                   alt={post.author}
-                  className="w-20 h-20 rounded-full object-cover"
+                  className="h-20 w-20 rounded-full object-cover"
                 />
                 <div className="flex-1">
-                  <h3 className="text-xl font-radio-canada font-bold text-gray-900 mb-2">
+                  <h3 className="mb-2 font-radio-canada text-xl font-bold text-gray-900">
                     {post.author}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {post.author === "Sarah Vineyard"
-                      ? "Founder and CEO of Vineyard Properties with over 20 years of experience in luxury real estate. Sarah is passionate about helping clients find their perfect homes and make smart investment decisions."
-                      : "Senior real estate advisor specializing in luxury properties and investment opportunities. With extensive market knowledge and a client-first approach, Michael helps buyers and sellers achieve their real estate goals."
-                    }
+                  <p className="leading-relaxed text-gray-600">
+                    {post.author === 'Sarah Vineyard'
+                      ? 'Founder and CEO of Vineyard Properties with over 20 years of experience in luxury real estate. Sarah is passionate about helping clients find their perfect homes and make smart investment decisions.'
+                      : 'Senior real estate advisor specializing in luxury properties and investment opportunities. With extensive market knowledge and a client-first approach, Michael helps buyers and sellers achieve their real estate goals.'}
                   </p>
-                  <div className="flex space-x-4 mt-4">
+                  <div className="mt-4 flex space-x-4">
                     <Button variant="outline" size="sm">
                       View Profile
                     </Button>
@@ -897,10 +926,10 @@ export default function BlogPostPage() {
       </section>
 
       {/* Related Posts */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-radio-canada font-bold text-gray-900 mb-4">
+      <section className="bg-white py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 font-radio-canada text-3xl font-bold text-gray-900">
               Related Articles
             </h2>
             <p className="text-gray-600">
@@ -908,37 +937,42 @@ export default function BlogPostPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {relatedPosts.map((relatedPost, index) => (
               <Card
                 key={relatedPost.id}
-                className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                className="transform border-0 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               >
                 <div className="relative">
                   <img
                     src={relatedPost.image}
                     alt={relatedPost.title}
-                    className="w-full h-48 object-cover"
+                    className="h-48 w-full object-cover"
                   />
-                  <Badge className="absolute top-4 left-4 bg-primary text-white">
+                  <Badge className="absolute left-4 top-4 bg-primary text-white">
                     {relatedPost.category}
                   </Badge>
                 </div>
 
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-radio-canada font-bold text-gray-900 mb-3 line-clamp-2">
+                  <h3 className="mb-3 line-clamp-2 font-radio-canada text-lg font-bold text-gray-900">
                     <Link
                       href={`/blogs/${relatedPost.id}`}
-                      className="hover:text-primary transition-colors"
+                      className="transition-colors hover:text-primary"
                     >
                       {relatedPost.title}
                     </Link>
                   </h3>
 
-                  <Button asChild variant="ghost" size="sm" className="text-primary hover:text-primary/80 p-0">
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="p-0 text-primary hover:text-primary/80"
+                  >
                     <Link href={`/blogs/${relatedPost.id}`}>
                       Read More
-                      <ArrowRight className="w-4 h-4 ml-1" />
+                      <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
                   </Button>
                 </CardContent>

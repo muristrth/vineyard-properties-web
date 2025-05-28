@@ -1,4 +1,4 @@
 // src/sanity/schemaTypes/index.ts
-import { property } from './property'
+import { property } from './property';
 
-export const schemaTypes = [property]
+export const schemaTypes = [property];

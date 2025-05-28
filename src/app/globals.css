@@ -64,11 +64,18 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-bricolage;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background font-bricolage text-foreground;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-radio-canada;
   }
 }

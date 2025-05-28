@@ -1,51 +1,64 @@
 'use client';
 
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Bed, Car, Home, MapPin } from "lucide-react";
-import Link from "next/link";
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Bed, Car, Home, MapPin } from 'lucide-react';
+import Link from 'next/link';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+      <div className="mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-6 lg:px-8">
+        <div className="grid min-h-[80vh] grid-cols-1 items-center gap-12 lg:grid-cols-2">
           {/* Left Content */}
-          <div className="space-y-8 animate-fade-in">
+          <div className="animate-fade-in space-y-8">
             <div className="space-y-2">
-              <Badge variant="secondary" className="text-sm px-4 py-2 bg-white text-black-700 border-red-200">
-                <MapPin className="w-4 h-4 mr-1" />
-                <a href="https://maps.app.goo.gl/cwn8XL6mS2VndSoB9">South B, Mukoma Road</a>
+              <Badge
+                variant="secondary"
+                className="text-black-700 border-red-200 bg-white px-4 py-2 text-sm"
+              >
+                <MapPin className="mr-1 h-4 w-4" />
+                <a href="https://maps.app.goo.gl/cwn8XL6mS2VndSoB9">
+                  South B, Mukoma Road
+                </a>
               </Badge>
             </div>
 
             <div className="space-y-6">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-radio-canada font-bold text-gray-900 leading-tight">
+              <h1 className="font-radio-canada text-5xl font-bold leading-tight text-gray-900 md:text-6xl lg:text-7xl">
                 EXQUISITE
                 <br />
                 <span className="text-red-600">REFINEMENT</span>
               </h1>
 
-              <p className="text-xl text-gray-600 leading-relaxed max-w-xl">
-                Discover luxury living at its finest with our exclusive collection of
-                premium properties. Where modern architecture meets timeless elegance.
+              <p className="max-w-xl text-xl leading-relaxed text-gray-600">
+                Discover luxury living at its finest with our exclusive
+                collection of premium properties. Where modern architecture
+                meets timeless elegance.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg shadow-lg">
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <Button
+                  asChild
+                  className="bg-red-600 px-8 py-3 text-lg text-white shadow-lg hover:bg-red-700"
+                >
                   <Link href="/contact">Get in Touch</Link>
                 </Button>
-                <Button asChild variant="outline" className="px-8 py-3 text-lg border-gray-300 hover:border-red-600 hover:text-red-600">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-gray-300 px-8 py-3 text-lg hover:border-red-600 hover:text-red-600"
+                >
                   <Link href="/properties/futuristic-haven">View Details</Link>
                 </Button>
               </div>
             </div>
 
             {/* Property Features */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-200">
+            <div className="grid grid-cols-3 gap-6 border-t border-gray-200 pt-8">
               <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
-                  <Bed className="w-5 h-5 text-red-600" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-50">
+                  <Bed className="h-5 w-5 text-red-600" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Bedrooms</p>
@@ -54,8 +67,8 @@ export default function HeroSection() {
               </div>
 
               <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
-                  <Home className="w-5 h-5 text-red-600" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-50">
+                  <Home className="h-5 w-5 text-red-600" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Bathrooms</p>
@@ -64,8 +77,8 @@ export default function HeroSection() {
               </div>
 
               <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
-                  <Car className="w-5 h-5 text-red-600" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-50">
+                  <Car className="h-5 w-5 text-red-600" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Parking Space</p>
@@ -77,8 +90,9 @@ export default function HeroSection() {
             {/* Price */}
             <div className="pt-6">
               <div className="flex items-baseline space-x-2">
-                <span className="text-4xl font-radio-canada font-bold text-gray-900">Ksh.27,500,000 </span>
-                
+                <span className="font-radio-canada text-4xl font-bold text-gray-900">
+                  Ksh.27,500,000{' '}
+                </span>
               </div>
             </div>
           </div>
@@ -87,42 +101,42 @@ export default function HeroSection() {
           <div className="relative animate-slide-up">
             <div className="relative">
               {/* Main Hero Image */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                 <img
                   src="https://i.ytimg.com/vi/Pz03N2A6b0U/maxresdefault.jpg"
                   alt="Futuristic Haven - Modern Luxury Villa"
-                  className="w-full h-[600px] object-cover"
+                  className="h-[600px] w-full object-cover"
                 />
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               </div>
 
               {/* Floating Elements */}
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg p-4 border border-gray-100">
+              <div className="absolute -bottom-4 -left-4 rounded-xl border border-gray-100 bg-white p-4 shadow-lg">
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-red-600 rounded-full animate-pulse" />
-                  <span className="text-sm font-medium text-gray-700">Heritage Villas, Ngong 46, Oloolua</span>
+                  <div className="h-3 w-3 animate-pulse rounded-full bg-red-600" />
+                  <span className="text-sm font-medium text-gray-700">
+                    Heritage Villas, Ngong 46, Oloolua
+                  </span>
                 </div>
               </div>
 
-              <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg p-4 border border-gray-100">
+              <div className="absolute -right-4 -top-4 rounded-xl border border-gray-100 bg-white p-4 shadow-lg">
                 <div className="text-center">
                   <p className="text-sm text-gray-500">Starting from</p>
-                  <p className="font-bold text-lg text-gray-900">Ksh 24.5M</p>
+                  <p className="text-lg font-bold text-gray-900">Ksh 24.5M</p>
                 </div>
               </div>
             </div>
 
             {/* Background Decorative Elements */}
-            <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%]">
-              <div className="absolute top-0 right-0 w-72 h-72 bg-red-500/5 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-96 h-96 bg-gray-400/5 rounded-full blur-3xl" />
+            <div className="absolute left-1/2 top-1/2 -z-10 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 transform">
+              <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-red-500/5 blur-3xl" />
+              <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-gray-400/5 blur-3xl" />
             </div>
           </div>
         </div>
       </div>
-
-      
     </section>
   );
 }
