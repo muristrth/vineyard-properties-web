@@ -69,7 +69,7 @@ const blogPosts = [
     category: 'Updates',
     date: '2022-10-10',
     readTime: '15 min read',
-    image: 'https://ext.same-assets.com/2009473017/1062973807.jpeg',
+    image: 'https://images.ctfassets.net/eoa1vvg9v30r/1dFqN08SsUlz9PLb8CfU8g/8792a8bb4464c768a8e93570819fe362/How_to_invest_in_real_estate_Kenya_to_make_money.png',
   },
   {
     id: 'what-is-real-estate-investment',
@@ -81,7 +81,7 @@ const blogPosts = [
     category: 'Investment',
     date: '2022-10-10',
     readTime: '9 min read',
-    image: 'https://ext.same-assets.com/2009473017/1161467979.jpeg',
+    image: 'https://vijayshanthibuilders.com/wp-content/uploads/2024/05/WhatsApp-Image-2024-05-15-at-00.39.10_dda4402c-1.jpg',
   },
   {
     id: 'boost-home-value',
@@ -94,8 +94,87 @@ const blogPosts = [
     category: 'Guides',
     date: '2025-01-09',
     readTime: '12 min read',
-    image: 'https://ext.same-assets.com/2009473017/1161467979.jpeg',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9TNftQyTb7mipltoRRV_Dp80w7WZOeNFQAA&s',
   },
+  {
+  id: "kenyas-affordable-housing-progress-challenges-and-your-role-as-an-investor",
+  title: "Kenya's Affordable Housing: Progress, Challenges, and Your Role as an Investor",
+  excerpt: "Explore Kenya's journey toward affordable housing and learn how investors can tap into this growing market.",
+  content: "Kenya's affordable housing initiative is a cornerstone of the country's development agenda...",
+  author: "Mark Muriithi",
+  category: "Affordable Housing",
+  date: "2025-05-28",
+  readTime: "6 min read",
+  image: "https://www.kenyaforum.net/wp-content/uploads/2024/12/images-8.jpeg"
+},
+{
+  id: "rent-to-own-schemes-in-kenya",
+  title: "Rent-to-Own Schemes in Kenya: A Path to Homeownership for Many",
+  excerpt: "Discover how rent-to-own housing schemes in Kenya are making homeownership more accessible through flexible financing options.",
+  content: "Rent-to-own schemes are changing the homeownership landscape in Kenya...",
+  author: "Mark Muriithi",
+  category: "Affordable Housing",
+  date: "2025-05-28",
+  readTime: "7 min read",
+  image: "https://property254.co.ke/blogs/wp-content/uploads/2024/05/Rent-to-own-schemes-in-Kenya-1.jpg"
+},
+{
+  id: "investing-in-kenyas-affordable-housing-projects",
+  title: "Investing in Kenya's Affordable Housing Projects: What You Need to Know",
+  excerpt: "Explore the opportunities and risks of investing in Kenya’s affordable housing sector, one of the country’s fastest-growing real estate segments.",
+  content: "Kenya's affordable housing sector has emerged as a high-potential investment opportunity...",
+  author: "Mark Muriithi",
+  category: "Investment",
+  date: "2025-05-28",
+  readTime: "8 min read",
+  image: "https://coastproperties.co.ke/wp-content/uploads/2023/07/Facebook-card-010.jpg"
+},
+
+{
+  id: "the-rise-of-satellite-towns-in-kenya",
+  title: "The Rise of Satellite Towns: Affordable Land & Housing Hotspots in Kenya",
+  excerpt: "Discover why satellite towns like Ruiru, Kitengela, and Athi River are emerging as key investment destinations for affordable real estate in Kenya.",
+  content: "Satellite towns around Nairobi are becoming highly attractive for land and housing investors...",
+  author: "Mark Muriithi",
+  category: "Location Insights",
+  date: "2025-05-28",
+  readTime: "8 min read",
+  image: "https://eloidevelopers.co.ke/_next/image?url=https%3A%2F%2Fpower.nillavee.co.ke%2F%2Fimgs%2Fblogs%2FA%20panoramic%20view%20of%20a%20thriving%20satellite%20town%20near%20Nairobi%2C%20Kenya%2C%20featuring%20modern%20residential%20and%20commercial%20buildings%20interspersed%20with%20green%20space.webp&w=1080&q=75"
+},
+{
+  id: "cheap-houses-for-sale-in-nairobi",
+  title: "Unlocking Value: Finding Cheap Houses for Sale in Nairobi and Beyond",
+  excerpt: "Looking for affordable housing in Kenya? Explore top locations and tips for finding cheap houses for sale in Nairobi and its growing suburbs.",
+  content: "Kenya’s urban population is on the rise, and with it comes a growing demand for affordable housing options...",
+  author: "Mark Muriithi",
+  category: "Affordable Housing",
+  date: "2025-05-28",
+  readTime: "7 min read",
+  image: "https://realhub.co.ke/blog/wp-content/uploads/2023/02/afford.png"
+},
+{
+  id: "government-housing-projects-kenya",
+  title: "Government Initiatives Driving Real Estate Growth in Kenya: A Deep Dive",
+  excerpt: "Explore how government policies, infrastructure projects, and public-private partnerships are accelerating real estate growth in Kenya.",
+  content: "Kenya's real estate landscape is being reshaped by ambitious government initiatives and infrastructure development plans...",
+  author: "Mark Muriithi",
+  category: "Investment",
+  date: "2025-05-28",
+  readTime: "8 min read",
+  image: "https://proxima.co.ke/assets/img/1740380938-new-blog-feb-23.jpg"
+},
+{
+  id: "housing-levy-kenya-investment",
+  title: "Is the Housing Levy a Good Investment for Kenyans? Expert Analysis",
+  excerpt: "The housing levy has sparked national debate in Kenya. Discover whether this government-led initiative is a wise investment for individuals and the country’s real estate sector.",
+  content: "Kenya’s housing levy was introduced to support affordable housing development...",
+  author: "Mark Muriithi",
+  category: "Investment",
+  date: "2025-05-28",
+  readTime: "7 min read",
+  image: "https://media.licdn.com/dms/image/v2/D4D22AQHcX__hGFNZiA/feedshare-shrink_800/B4DZUc2Mg3HYAg-/0/1739945727667?e=2147483647&v=beta&t=wVvY7FTaFsIN0ZtOVHgprKjOW4T1m5_tfBI_qrhNVxE"
+},
+
 ];
 
 const categories = [
