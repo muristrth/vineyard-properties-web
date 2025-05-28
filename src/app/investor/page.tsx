@@ -40,6 +40,7 @@ import {
   AlertCircle,
   PiggyBank,
 } from 'lucide-react';
+import { MaybeAllowUnknownProps } from 'sanity';
 
 const auth = getAuth();
 
@@ -224,10 +225,14 @@ export default function InvestorPortalPage() {
       } else {
         alert('Investor not found. Please check your email.');
       }
-    } catch (error: string) {
-      // Keep `any` here for general error handling from external libs
-      console.error('Login error:', error);
-      alert(`Something went wrong during login: ${error.message}`);
+    } catch (error: unknown) { // Use 'unknown' here, or let TypeScript infer it
+      console.error("Login error:", error);
+      // ✅ Best practice: Check if 'error' is an instance of Error
+      if (error instanceof Error) {
+        alert(`Something went wrong during login: ${error.message}`);
+      } else {
+        // Fallback for non-Error type errors (e.g., a string or number)
+        alert(`Something went wrong during login: ${String(error)}`);
     }
   };
 
@@ -251,10 +256,12 @@ export default function InvestorPortalPage() {
 
       alert('Account created successfully! You can now log in.');
       setIsRegistering(false);
-    } catch (error: string) {
-      // Keep `any` here for general error handling from external libs
-      console.error('Registration error:', error);
-      alert(`Error: ${error.message}`);
+    } catch (error: unknown) { // Use 'unknown' here
+      console.error("Registration error:", error);
+      if (error instanceof Error) {
+        alert(`Error: ${error.message}`);
+      } else {
+        alert(`Error: ${String(error)}`);
     }
   };
 
@@ -429,4 +436,6 @@ export default function InvestorPortalPage() {
       </div>
     );
   }
+}
+}
 }

@@ -26,9 +26,9 @@ export default function HeroSection() {
 
             <div className="space-y-6">
               <h1 className="font-radio-canada text-5xl font-bold leading-tight text-gray-900 md:text-6xl lg:text-7xl">
-                EXQUISITE
+                Most trusted Real Estate
                 <br />
-                <span className="text-red-600">REFINEMENT</span>
+                <span className="text-red-600">Agency in Kenya</span>
               </h1>
 
               <p className="max-w-xl text-xl leading-relaxed text-gray-600">
