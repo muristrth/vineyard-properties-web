@@ -69,14 +69,14 @@ const blogPosts = [
     image: "https://ext.same-assets.com/2009473017/299352832.jpeg"
   },
   {
-    id: "sustainable-living-trends",
-    title: "Sustainable Living: Eco-Friendly Home Trends",
-    excerpt: "Learn about the latest sustainable home features and how they're shaping the future of real estate.",
+    id: "serviced-apartments-vs-hotels",
+    title: "Services apartments vs Hotels: Which is Right for You?",
+    excerpt: "Investing in serviced apartments is a fairly new concept, especially in the Kenyan real estate market.",
     content: "Sustainability has become a driving force in modern home design and construction...",
     author: "David Thompson",
     category: "Trends",
-    date: "2025-01-20",
-    readTime: "9 min read",
+    date: "2024-05-13",
+    readTime: "10 min read",
     image: "https://ext.same-assets.com/2009473017/923357109.jpeg"
   }
 ];

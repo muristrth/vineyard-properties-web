@@ -15,17 +15,17 @@ export default function FeaturedPropertySection() {
                 Featured Property
               </Badge>
               <h2 className="text-4xl md:text-5xl font-radio-canada font-bold text-gray-900">
-                Modern Luxe Villa
+                Heritage Villas
               </h2>
               <div className="flex items-center text-gray-600">
                 <MapPin className="w-5 h-5 mr-2" />
-                <span className="text-lg">20 S Aurora Ave, Miami</span>
+                <span className="text-lg">Ngong 46, Oloolua, Ngong Town</span>
               </div>
             </div>
 
             <p className="text-lg text-gray-600 leading-relaxed">
-              Experience luxury living at Modern Luxe Villa, located at 20 S Aurora Ave, Miami.
-              Priced at $1,650,500, this 560 ft smart home offers 4 bedrooms, 3 bathrooms, and
+              Experience luxury living at Heritage Villas, located at Ngong 42, Oloolua,
+              Priced at Ksh 27.5M, this 240m² smart home offers 4 bedrooms, 3 bathrooms, and
               spacious living areas. Enjoy energy efficiency, natural light, security systems,
               outdoor spaces, and 2 bar areas perfect for 8+ guests. Built in 2025.
             </p>
@@ -78,8 +78,8 @@ export default function FeaturedPropertySection() {
               <div className="mb-4 sm:mb-0">
                 <p className="text-sm text-gray-600 mb-1">Discounted Price</p>
                 <div className="flex items-baseline space-x-2">
-                  <span className="text-3xl font-radio-canada font-bold text-gray-900">$1,650,500</span>
-                  <span className="text-lg text-gray-500 line-through">$1,850,000</span>
+                  <span className="text-3xl font-radio-canada font-bold text-gray-900">Ksh 27,500,000</span>
+                  <span className="text-lg text-gray-500 line-through">Ksh 35,000,000</span>
                 </div>
               </div>
               <Button asChild className="bg-primary hover:bg-primary/90 text-white px-6 py-3">
@@ -92,8 +92,8 @@ export default function FeaturedPropertySection() {
           <div className="relative order-1 lg:order-2">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="https://ext.same-assets.com/2009473017/299352832.jpeg"
-                alt="Modern Luxe Villa"
+                src="https://i.ytimg.com/vi/Pz03N2A6b0U/maxresdefault.jpg"
+                alt="Heritage Villas"
                 className="w-full h-[600px] object-cover"
               />
 
@@ -106,7 +106,7 @@ export default function FeaturedPropertySection() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-gray-600">Total Area</p>
-                      <p className="font-bold text-lg text-gray-900">560 ft²</p>
+                      <p className="font-bold text-lg text-gray-900">240m²</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">Built Year</p>
@@ -123,7 +123,7 @@ export default function FeaturedPropertySection() {
               {/* Virtual Tour Badge */}
               <div className="absolute top-6 right-6">
                 <Badge className="bg-primary text-white px-4 py-2">
-                  360° Virtual Tour
+                  Ngong 46, Oloolua
                 </Badge>
               </div>
             </div>

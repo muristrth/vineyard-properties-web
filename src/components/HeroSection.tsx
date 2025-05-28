@@ -21,9 +21,9 @@ export default function HeroSection() {
 
             <div className="space-y-6">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-radio-canada font-bold text-gray-900 leading-tight">
-                Vineyard
+                EXQUISITE
                 <br />
-                <span className="text-red-600">Properties</span>
+                <span className="text-red-600">REFINEMENT</span>
               </h1>
 
               <p className="text-xl text-gray-600 leading-relaxed max-w-xl">

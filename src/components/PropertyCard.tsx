@@ -23,7 +23,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'KES',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);

@@ -3,16 +3,16 @@ import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-black text-white">
       {/* CTA Section */}
       <div className="border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-radio-canada font-bold mb-4">
-              Begin your path to success contact us today.
+              Become part of the 1% Investors in Kenya and grow your wealth with tangible assets.
             </h2>
             <Button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg shadow-lg">
-              Get in Touch
+              Invest Now
             </Button>
           </div>
         </div>
@@ -23,41 +23,72 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Description */}
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-red-700 rounded-lg flex items-center justify-center border border-red-500 shadow-lg">
-                <span className="text-white font-bold text-lg font-radio-canada">VP</span>
-              </div>
-              <span className="font-radio-canada font-bold text-xl">
-                Vineyard <span className="text-red-400">Properties</span>
-              </span>
-            </Link>
+            <Link href="/" className="flex items-center space-x-3">
+                    <img
+                      src="/favicon.ico"
+                      alt="Vineyard Properties Logo"
+                      className="h-12 w-auto"
+                    />
+                  
+                  </Link>
+                  
             <p className="text-gray-400 text-sm leading-relaxed">
               Your trusted partner in luxury real estate. Discover premium properties
               and exceptional investment opportunities.
             </p>
             {/* Social Links */}
-            <div className="flex space-x-4 mt-6">
-              <Link href="#" className="text-gray-400 hover:text-red-400 transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-red-400 transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                </svg>
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-red-400 transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
-                </svg>
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-red-400 transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.097.118.112.222.083.343-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z.017.017z"/>
-                </svg>
-              </Link>
-            </div>
+          <div className="flex space-x-4 mt-6">
+            {/* Facebook */}
+            <Link href="https://www.facebook.com/vineyardproperties" target="_blank" className="text-gray-400 hover:text-blue-600 transition-colors" aria-label="Facebook">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22.675 0h-21.35C.595 0 0 .593 0 1.326v21.348C0 23.406.595 24 1.326 24H12.82v-9.294H9.692v-3.622h3.127V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.313h3.59l-.467 3.622h-3.123V24h6.127C23.406 24 24 23.406 24 22.674V1.326C24 .593 23.406 0 22.675 0z"/>
+              </svg>
+            </Link>
+
+            {/* Twitter / X */}
+            <Link href="https://x.com/VineyardPropert" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors" aria-label="Twitter / X">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 4.557a9.78 9.78 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195C18.313 2.764 17.032 2 15.617 2 13.164 2 11.25 3.969 11.25 6.29c0 .34.04.67.11.98-4.084-.205-7.705-2.165-10.134-5.144-.36.63-.57 1.36-.57 2.14 0 1.48.76 2.81 1.92 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21-.7.19-1.45.23-2.22.08.63 1.95 2.45 3.38 4.61 3.42-2.07 1.62-4.68 2.35-7.29 2.04 2.18 1.39 4.76 2.2 7.54 2.2C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56A9.76 9.76 0 0 0 24 4.557z"/>
+              </svg>
+            </Link>
+
+            {/* Instagram */}
+            <Link href="https://www.instagram.com/vineyardproperties/" target="_blank" className="text-gray-400 hover:text-pink-500 transition-colors" aria-label="Instagram">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.849.07 1.259.058 2.133.25 2.608.415a5.42 5.42 0 0 1 1.937 1.26 5.42 5.42 0 0 1 1.26 1.937c.165.475.357 1.35.415 2.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.058 1.259-.25 2.133-.415 2.608a5.42 5.42 0 0 1-1.26 1.937 5.42 5.42 0 0 1-1.937 1.26c-.475.165-1.35.357-2.608.415-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.259-.058-2.133-.25-2.608-.415a5.42 5.42 0 0 1-1.937-1.26 5.42 5.42 0 0 1-1.26-1.937c-.165-.475-.357-1.35-.415-2.608-.058-1.265-.07-1.645-.07-4.849s.012-3.584.07-4.849c.058-1.259.25-2.133.415-2.608a5.42 5.42 0 0 1 1.26-1.937 5.42 5.42 0 0 1 1.937-1.26c.475-.165 1.35-.357 2.608-.415 1.265-.058 1.645-.07 4.849-.07M12 0C8.741 0 8.332.015 7.052.072 5.773.129 4.672.314 3.732.634a7.6 7.6 0 0 0-2.756 1.8A7.6 7.6 0 0 0 .634 5.195c-.32.94-.505 2.041-.562 3.32C.015 8.741 0 9.15 0 12c0 2.85.015 3.259.072 4.538.057 1.279.242 2.38.562 3.32a7.6 7.6 0 0 0 1.8 2.756 7.6 7.6 0 0 0 2.756 1.8c.94.32 2.041.505 3.32.562 1.279.057 1.688.072 4.538.072s3.259-.015 4.538-.072c1.279-.057 2.38-.242 3.32-.562a7.6 7.6 0 0 0 2.756-1.8 7.6 7.6 0 0 0 1.8-2.756c.32-.94.505-2.041.562-3.32.057-1.279.072-1.688.072-4.538s-.015-3.259-.072-4.538c-.057-1.279-.242-2.38-.562-3.32a7.6 7.6 0 0 0-1.8-2.756 7.6 7.6 0 0 0-2.756-1.8c-.94-.32-2.041-.505-3.32-.562C15.259.015 14.85 0 12 0z"/>
+                <circle cx="12" cy="12" r="3.5"/>
+              </svg>
+            </Link>
+
+            {/* LinkedIn */}
+            <Link href="https://www.linkedin.com/company/vineyard-properties-ltd" target="_blank" className="text-gray-400 hover:text-blue-700 transition-colors" aria-label="LinkedIn">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452H17.21v-5.56c0-1.325-.024-3.03-1.846-3.03-1.848 0-2.131 1.445-2.131 2.936v5.654H9.006V9h3.104v1.561h.043c.433-.822 1.494-1.688 3.076-1.688 3.29 0 3.897 2.164 3.897 4.977v6.602zM5.337 7.433a1.8 1.8 0 1 1 0-3.598 1.8 1.8 0 0 1 0 3.598zM6.86 20.452H3.81V9h3.05v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.272V1.727C24 .774 23.2 0 22.222 0z"/>
+              </svg>
+            </Link>
+
+            {/* YouTube */}
+            <Link href="https://www.youtube.com/@PropertyAdvisor254" target="_blank" className="text-gray-400 hover:text-red-600 transition-colors" aria-label="YouTube">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a2.993 2.993 0 0 0-2.11-2.114C19.525 3.5 12 3.5 12 3.5s-7.525 0-9.388.572a2.993 2.993 0 0 0-2.11 2.114A31.858 31.858 0 0 0 0 12c0 1.967.206 3.862.572 5.814a2.993 2.993 0 0 0 2.11 2.114C4.475 20.5 12 20.5 12 20.5s7.525 0 9.388-.572a2.993 2.993 0 0 0 2.11-2.114A31.858 31.858 0 0 0 24 12a31.858 31.858 0 0 0-.502-5.814zM9.75 15.02V8.98l6.25 3.02-6.25 3.02z"/>
+              </svg>
+            </Link>
+
+            {/* TikTok */}
+            <Link href="https://www.tiktok.com/@juliadirectorvpl" target="_blank" className="text-gray-400 hover:text-black transition-colors" aria-label="TikTok">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.87 0h3.8v4.764c1.18.783 2.45 1.164 3.8 1.164v3.95c-1.337.016-2.6-.25-3.8-.8v6.7c0 4.763-3.28 7.222-7.42 7.222C5.283 23 2 19.755 2 15.883c0-3.5 2.29-6.44 5.51-7.404v4.03c-1.15.486-2.04 1.66-2.04 3.374 0 1.92 1.36 3.393 3.32 3.393 2.19 0 3.37-1.533 3.37-3.888V0z"/>
+              </svg>
+            </Link>
+
+            {/* Pinterest */}
+            <Link href="https://pin.it/32Br9XuXU" target="_blank" className="text-gray-400 hover:text-red-500 transition-colors" aria-label="Pinterest">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.372 0 12c0 5.001 3.09 9.263 7.437 11.06-.102-.94-.194-2.386.04-3.42.21-.91 1.354-5.79 1.354-5.79s-.343-.69-.343-1.71c0-1.604.93-2.8 2.087-2.8.986 0 1.462.74 1.462 1.627 0 .99-.63 2.467-.956 3.837-.272 1.144.567 2.075 1.675 2.075 2.006 0 3.547-2.12 3.547-5.18 0-2.713-1.953-4.617-4.746-4.617-3.23 0-5.118 2.42-5.118 4.924 0 .975.375 2.022.842 2.59.092.11.106.206.078.318-.085.35-.276 1.12-.316 1.276-.05.21-.163.254-.382.154-1.415-.653-2.3-2.726-2.3-4.402 0-3.58 2.608-6.874 7.51-6.874 3.94 0 7.01 2.808 7.01 6.558 0 3.92-2.473 7.08-5.904 7.08-1.152 0-2.238-.597-2.607-1.308l-.71 2.5c-.26.963-.96 2.17-1.427 2.91C10.788 23.87 11.39 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+              </svg>
+            </Link>
+          </div>
+
           </div>
 
           {/* Properties */}
@@ -96,7 +127,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8 mt-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              2025 Vineyard Properties - Premium Real Estate Solutions
+              2008-2025 Vineyard Properties - Premium Real Estate Solutions for everyday investors
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="/legal/terms-conditions" className="text-gray-400 hover:text-red-400 text-sm transition-colors">

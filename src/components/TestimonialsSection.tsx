@@ -9,25 +9,25 @@ import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    name: "Emily & John Smith",
-    role: "Property Buyers",
-    image: "https://ext.same-assets.com/2009473017/370944543.jpeg",
-    content: "I found my ideal home in no time! The listings were detailed, the photos were accurate, and the whole process felt seamless. Customer service was top-notch, answering all my questions. I will definitely use this platform again in the future!",
+    name: "Promon Travellers",
+    role: "Heritage Villas Buyers",
+    image: "/testimonials/banner.jpg",
+    content: "Heritage Villas Ngong 46 offers an incredible opportunity for anyone looking to own a home in a serene and well-developed area. The houses are beautifully designed with modern finishes, spacious interiors, and a peaceful environment, making them perfect for families or investment.",
     rating: 5
   },
   {
     id: 2,
-    name: "Sarah Johnson",
-    role: "Real Estate Investor",
-    image: "https://ext.same-assets.com/2009473017/3756399664.png",
+    name: "Johnson Mwangi",
+    role: "Land Investor",
+    image: "/testimonials/48427794_933688416755342_6193271600209461248_n.jpg",
     content: "Vineyard Properties helped me build an impressive investment portfolio. Their market insights and professional guidance have been invaluable. The investor portal makes tracking my properties so easy!",
     rating: 5
   },
   {
     id: 3,
-    name: "Michael Chen",
-    role: "Luxury Home Buyer",
-    image: "https://ext.same-assets.com/2009473017/3756399664.png",
+    name: "Michael N",
+    role: "Land Investor",
+    image: "/testimonials/48404232_933689533421897_5559600264320647168_n.jpg",
     content: "The level of service and attention to detail exceeded my expectations. From the initial consultation to closing, every step was handled professionally. Our dream home is now a reality!",
     rating: 5
   }
@@ -47,7 +47,7 @@ export default function TestimonialsSection() {
   const current = testimonials[currentTestimonial];
 
   return (
-    <section className="py-20 bg-gray-900 text-white overflow-hidden">
+    <section className="py-20 bg-black text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -65,7 +65,7 @@ export default function TestimonialsSection() {
                 {/* Quote Icon */}
                 <div className="lg:col-span-1 flex justify-center lg:justify-start">
                   <div className="relative">
-                    <Avatar className="w-24 h-24 md:w-32 md:h-32 ring-4 ring-primary/20">
+                    <Avatar className="w-554 h-324 md:w-552 md:h-332 ring-4 ring-primary/20">
                       <AvatarImage src={current.image} alt={current.name} />
                       <AvatarFallback className="bg-primary text-white text-lg">
                         {current.name.split(' ').map(n => n[0]).join('')}
@@ -109,7 +109,7 @@ export default function TestimonialsSection() {
               onClick={prevTestimonial}
               variant="outline"
               size="sm"
-              className="w-12 h-12 rounded-full border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white"
+              className="w-12 h-12 rounded-full border-gray-600 text-gray-300 hover:bg-red-600 hover:text-black"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
@@ -117,7 +117,7 @@ export default function TestimonialsSection() {
               onClick={nextTestimonial}
               variant="outline"
               size="sm"
-              className="w-12 h-12 rounded-full border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white"
+              className="w-12 h-12 rounded-full border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-black"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
