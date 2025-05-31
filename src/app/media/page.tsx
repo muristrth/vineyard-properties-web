@@ -11,12 +11,57 @@ type Category = typeof categories[number];
 
 // Images with category tags
 const galleryImages: { src: string; category: Category }[] = [
-  { src: '/clients1.jpg', category: 'Clients' },
-  { src: '/project1.jpg', category: 'Projects' },
-  { src: '/site1.jpg', category: 'Sites' },
-  { src: '/client2.jpg', category: 'Clients' },
-  { src: '/team.jpg', category: 'Projects' },
-  { src: '/construction.jpg', category: 'Sites' },
+  { src: 'testimonials/IMG-20250530-WA0068.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0070.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0071.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0072.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0073.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0074.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0075.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0076.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0077.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0078.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0079.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0080.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0081.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0082.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0083.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0084.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0085.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0086.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0087.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0088.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0089.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0090.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0091.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0092.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0093.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0094.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0111.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0112.jpg', category: 'Clients' },
+  { src: 'testimonials/IMG-20250530-WA0113.jpg', category: 'Clients' },
+  { src: '/p17 heritage/IMG-20250421-WA0091.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0092.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0093.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0094.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0095.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0096.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0097.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0098.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0099.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0101.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0102.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0103.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0104.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0105.jpg', category: 'Projects' },
+  { src: '/p17 heritage/IMG-20250421-WA0106.jpg', category: 'Projects' },
+  { src: '/p15 kite 1M/20180707_105836.jpg', category: 'Sites' },
+  { src: '/p15 kite 1M/20180707_105840.jpg', category: 'Sites' },
+  { src: '/p15 kite 1M/20180707_105841.jpg', category: 'Sites' },
+  { src: '/p15 kite 1M/20180707_110935.jpg', category: 'Sites' },
+  { src: '/p15 kite 1M/20180707_111014.jpg', category: 'Sites' },
+  { src: '/p15 kite 1M/20180707_111022.jpg', category: 'Sites' },
+  { src: '/p15 kite 1M/20180707_111029.jpg', category: 'Sites' },
 ];
 
 export default function BrandShowcasePage(): JSX.Element {
@@ -60,10 +105,10 @@ export default function BrandShowcasePage(): JSX.Element {
           className="max-w-5xl mx-auto text-center"
         >
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Featured Showcase
+            Heritage Villas Highlights
           </h2>
           <div className="aspect-w-16 aspect-h-9 rounded-xl shadow-xl overflow-hidden">
-            <video src="/featured.mp4" controls className="w-full h-full object-cover" />
+            <video src="/testimonial.mp4" controls className="w-full h-full object-cover" />
           </div>
         </motion.div>
 
@@ -76,10 +121,10 @@ export default function BrandShowcasePage(): JSX.Element {
           className="max-w-5xl mx-auto text-center"
         >
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Client Experience Highlights
+            Who is Vineyard Properties?
           </h2>
           <div className="aspect-w-16 aspect-h-9 rounded-xl shadow-xl overflow-hidden">
-            <video src="/testimonial.mp4" controls className="w-full h-full object-cover" />
+            <video src="/feature.mp4" controls className="w-full h-full object-cover" />
           </div>
         </motion.div>
 
