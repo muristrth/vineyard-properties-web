@@ -62,6 +62,61 @@ interface Property {
 // Mock property data - in a real app, this would come from an API
 const propertyData: Record<string, Property> = {
   // Changed `any` to `Property`
+  'heritage-villas-ngong': {
+  id: 'heritage-villas-ngong',
+  title: 'Luxurious 4 Bedroom All Ensuite Plus DSQ For Sale Heritage Villas, Ngong',
+  location: 'Ngong, Ngong ward, Kajiado North, Kajiado, Rift Valley, Kenya',
+  price: 27500000,
+  type: 'House',
+  status: 'For Sale',
+  bedrooms: 4,
+  bathrooms: 5,
+  area: 240,
+  lotSize: 0.125,
+  yearBuilt: 2025,
+  images: [
+    '/p17 heritage/IMG-20250421-WA0093.jpg',
+    '/p17 heritage/IMG-20250421-WA0092.jpg',
+    '/p17 heritage/IMG-20250421-WA0091.jpg',
+    '/p17 heritage/IMG-20250421-WA0094.jpg',
+    '/p17 heritage/IMG-20250421-WA0095.jpg',
+    '/p17 heritage/IMG-20250421-WA0096.jpg',
+    '/p17 heritage/IMG-20250421-WA0097.jpg',
+    '/p17 heritage/IMG-20250421-WA0098.jpg',
+    '/p17 heritage/IMG-20250421-WA0098.jpg',
+    '/p17 heritage/IMG-20250421-WA0099.jpg',
+    '/p17 heritage/IMG-20250421-WA00100.jpg',
+    '/p17 heritage/IMG-20250421-WA00101.jpg',
+  ],
+  description: `Heritage Villas Ngong – Unrivaled Luxury in the Ngong Hills
+Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas offers an exclusive sanctuary of refined living for the discerning homeowner. This gated enclave occupies a manicured 6-acre estate and is limited to just 46 bespoke villas, ensuring ultimate privacy and prestige. Each home is a masterpiece of architectural elegance, boasting soaring double-volume living spaces and floor-to-ceiling windows that capture sweeping panoramic views of the iconic Ngong Hills. Every design detail, from imported finishes to seamless indoor-outdoor flow, has been curated to create a serene retreat where luxury meets nature.`,
+  features: [
+    'Exclusive 6-Acre Enclave: Only 46 ultra-luxury villas',
+    'Panoramic Ngong Hills Vistas with private balconies',
+    'Dramatic Double-Volume Living and open-plan design',
+    '100 SQM rooftop terrace per villa',
+    'Solar water heating system for energy efficiency',
+    'En-suite guest bedroom in every villa',
+    'High-end fittings and imported finishes',
+    'Minutes from Nairobi’s CBD and SGR station',
+  ],
+  amenities: [
+    'Prime connectivity to top schools and hospitals',
+    'Efficient access to SGR station & Nairobi CBD',
+    'Secure gated community',
+    'Lush landscaped gardens and scenic walkways',
+  ],
+  agent: {
+    name: 'Mark James',
+    title: 'Senior Property Agent',
+    phone: '0729170156',
+    email: 'mark.muriithi@vineyardproperties.co.ke',
+    image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+  },
+  virtualTour: false,
+  featured: true,
+},
+
   'plot-nrbwest': {
     id: 'plot-nrbwest',
     title: '1/4 Acre Prime Plot in Nairobi West Shopping Centre',

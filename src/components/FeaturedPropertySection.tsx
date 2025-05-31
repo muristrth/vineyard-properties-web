@@ -91,7 +91,9 @@ export default function FeaturedPropertySection() {
                 asChild
                 className="bg-primary px-6 py-3 text-white hover:bg-primary/90"
               >
-                <Link href="/contact">Get in Touch</Link>
+                <a href="tel:0729170156" className="flex items-center space-x-2">
+                Get in Touch
+                </a>
               </Button>
             </div>
           </div>

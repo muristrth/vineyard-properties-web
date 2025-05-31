@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { motion } from 'framer-motion';
 import HeroSection from '@/components/HeroSection';
 import CategoriesSection from '@/components/CategoriesSection';
 import PropertiesSection from '@/components/PropertiesSection';
@@ -12,11 +13,11 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection />
+        <TestimonialsSection />
         <CategoriesSection />
         <PropertiesSection />
         <FeaturedPropertySection />
-        <TestimonialsSection />
-      </main>
+         </main>
       <Footer />
     </div>
   );

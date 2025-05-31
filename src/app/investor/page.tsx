@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -384,7 +385,7 @@ export default function InvestorPortalPage() {
           </p>
         </section>
 
-        <section className="bg-gray-50 py-20 flex-grow flex items-center justify-center">
+        <section className="bg-black-50 py-20 flex-grow flex items-center justify-center">
           <div className="mx-auto max-w-md w-full">
             <Card>
               <CardHeader>
@@ -591,8 +592,8 @@ export default function InvestorPortalPage() {
                     {transactions.slice(0, 5).map((t) => (
                       <Card key={t.id} className="p-4 flex items-center justify-between">
                         <div>
-                          <p className="font-medium">{t.description}</p>
-                          <p className="text-sm text-gray-500">{t.date}</p>
+                          <p className="font-medium text-green-500">{t.description}</p>
+                          <p className="text-sm text-green-500">{t.date}</p>
                         </div>
                         <Badge variant={t.type === 'credit' ? 'default' : 'destructive'}>
                           {t.type === 'credit' ? '+' : '-'} {formatCurrency(t.amount)}

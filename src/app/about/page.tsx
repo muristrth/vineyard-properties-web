@@ -15,44 +15,44 @@ import {
 import Link from 'next/link';
 
 const stats = [
-  { label: 'Years of Experience', value: '15+', icon: Award },
+  { label: 'Years of Experience', value: '20+', icon: Award },
   { label: 'Properties Sold', value: '1,000+', icon: Home },
-  { label: 'Happy Clients', value: '2,500+', icon: Users },
+  { label: 'Happy Clients', value: '500+', icon: Users },
   { label: 'Market Growth', value: '25%', icon: TrendingUp },
 ];
 
 const teamMembers = [
   {
-    name: 'Sarah Vineyard',
+    name: 'Julia Muthoni',
     role: 'Founder & CEO',
-    image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    bio: 'With over 20 years in luxury real estate, Sarah founded Vineyard Properties to provide exceptional service and curated property experiences.',
-    email: 'sarah@vineyardproperties.com',
-    phone: '+1-555-VINEYARD',
+    image: 'https://placehold.co/400x400/F0F0F0/B0B0B0/png?text=VP+Logo', // Placeholder for company logo or abstract icon
+    bio: "As the visionary behind Vineyard Properties, Julia brings over two decades of experience in the luxury real estate sector. Her leadership focuses on delivering unparalleled service and curating exceptional property experiences that align with our clients' sophisticated tastes and investment goals.",
+    email: 'julia@vineyardproperties.co.ke',
+    phone: '+254-722-833-561',
   },
   {
-    name: 'Michael Chen',
-    role: 'Head of Sales',
-    image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    bio: 'Michael leads our sales team with expertise in luxury markets and investment properties, ensuring clients find their perfect match.',
-    email: 'michael@vineyardproperties.com',
-    phone: '+1-555-VINEYARD',
+    name: 'James Muriithi',
+    role: 'Director',
+    image: 'https://placehold.co/400x400/F0F0F0/B0B0B0/png?text=VP+Icon', // Another abstract icon
+    bio: "James is instrumental in guiding Vineyard Properties' strategic direction. With deep expertise in market analytics and investment strategies, he ensures our offerings are not only luxurious but also sound financial opportunities for our discerning clientele.",
+    email: 'jmunyori@vineyardproperties.co.ke',
+    phone: '+254-722-166-378',
   },
   {
-    name: 'Emma Rodriguez',
-    role: 'Investment Advisor',
-    image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    bio: 'Emma specializes in real estate investments and helps clients build profitable property portfolios with strategic guidance.',
-    email: 'emma@vineyardproperties.com',
-    phone: '+1-555-VINEYARD',
+    name: 'Mark Muriithi',
+    role: 'Sales Manager',
+    image: 'https://placehold.co/400x400/F0F0F0/B0B0B0/png?text=VP+Sales', // Abstract sales-related icon
+    bio: "Mark leads our dynamic sales team, bringing extensive knowledge of luxury markets and client relationship management. He's dedicated to understanding each client's unique needs to help them discover and secure their ideal property.",
+    email: 'mark.muriithi@vineyardproperties.co.ke',
+    phone: '+254-729-170-156',
   },
   {
-    name: 'David Thompson',
-    role: 'Property Manager',
-    image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    bio: 'David oversees property management services, ensuring all client investments are well-maintained and profitable.',
-    email: 'david@vineyardproperties.com',
-    phone: '+1-555-VINEYARD',
+    name: 'John Makau',
+    role: 'Property Agent',
+    image: 'https://placehold.co/400x400/F0F0F0/B0B0B0/png?text=VP+Agent', // Abstract agent-related icon
+    bio: "John is our dedicated Property Agent, a master at connecting clients with properties that perfectly fit their lifestyle and investment criteria. His meticulous approach ensures a smooth and successful property acquisition process for every client.",
+    email: 'john@vineyardproperties.co.ke',
+    phone: '+254-708-994-237',
   },
 ];
 
@@ -77,8 +77,8 @@ export default function AboutPage() {
               <span className="text-primary">Real Estate</span>
             </h1>
             <p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300">
-              For over 15 years, Vineyard Properties has been the trusted name
-              in luxury real estate, delivering exceptional service and curating
+              For over 20 years, Vineyard Properties has been the trusted name
+              in land for sale in Utawala, Joska, Kitengela, Kamulu, Lukenya and in luxury real estate, delivering exceptional service and curating
               the finest properties for discerning clients.
             </p>
           </div>
@@ -117,13 +117,13 @@ export default function AboutPage() {
                 Our Story
               </h2>
               <p className="text-lg leading-relaxed text-gray-600">
-                Founded in 2009 by Sarah Vineyard, Vineyard Properties began
-                with a simple vision: to revolutionize the luxury real estate
+                Founded in 2002 by Julia Muthoni and James Muriithi, Vineyard Properties began
+                with a simple vision: for every household to own a tangible asset investment om which they can builf their home and ecape monthly rents. In addition, to revolutionize the luxury real estate
                 experience by combining cutting-edge technology with
                 personalized service.
               </p>
               <p className="text-lg leading-relaxed text-gray-600">
-                What started as a boutique agency has grown into a premier real
+                We are a premier real
                 estate firm, known for our integrity, innovation, and unwavering
                 commitment to client satisfaction. We specialize in luxury
                 residential properties, investment opportunities, and exclusive
@@ -144,7 +144,7 @@ export default function AboutPage() {
               <div className="absolute -bottom-6 -left-6 rounded-xl bg-white p-6 shadow-lg">
                 <p className="mb-1 text-sm text-gray-600">Founded</p>
                 <p className="font-radio-canada text-2xl font-bold text-gray-900">
-                  2009
+                  2002
                 </p>
               </div>
             </div>

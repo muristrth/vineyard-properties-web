@@ -19,7 +19,7 @@ export default function HeroSection() {
               >
                 <MapPin className="mr-1 h-4 w-4" />
                 <a href="https://maps.app.goo.gl/cwn8XL6mS2VndSoB9">
-                  South B, Mukoma Road
+                  South B, Mkoma Road
                 </a>
               </Badge>
             </div>
@@ -42,14 +42,16 @@ export default function HeroSection() {
                   asChild
                   className="bg-red-600 px-8 py-3 text-lg text-white shadow-lg hover:bg-red-700"
                 >
-                  <Link href="/contact">Get in Touch</Link>
+                  <a href="tel:0729170156" className="flex items-center space-x-2">
+                    Get in Touch
+                  </a>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   className="border-gray-300 px-8 py-3 text-lg hover:border-red-600 hover:text-red-600"
                 >
-                  <Link href="/properties/futuristic-haven">View Details</Link>
+                  <Link href="/properties/heritage-villas-ngong">View Property</Link>
                 </Button>
               </div>
             </div>

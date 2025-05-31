@@ -117,15 +117,15 @@ export default function CategoriesSection() {
         <div className="mt-20 grid grid-cols-1 gap-8 text-center md:grid-cols-3">
           <div className="p-6">
             <div className="mb-2 font-radio-canada text-4xl font-bold text-gray-900">
-              500+
+              5000+
             </div>
-            <p className="text-gray-600">Premium Properties</p>
+            <p className="text-gray-600">Premium Properties Sold</p>
           </div>
           <div className="p-6">
             <div className="mb-2 font-radio-canada text-4xl font-bold text-gray-900">
-              100+
+              2500+
             </div>
-            <p className="text-gray-600">Happy Clients</p>
+            <p className="text-gray-600">Happy Investors</p>
           </div>
           <div className="p-6">
             <div className="mb-2 font-radio-canada text-4xl font-bold text-gray-900">

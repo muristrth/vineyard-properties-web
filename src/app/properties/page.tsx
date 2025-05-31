@@ -17,13 +17,24 @@ import { Search, Filter, MapPin } from 'lucide-react';
 
 const allProperties = [
   {
+  id: 'heritage-villas-ngong',
+  title: 'Luxurious 4 Bedroom All Ensuite Plus DSQ For Sale Heritage Villas, Ngong',
+  location: 'Ngong, Ngong ward, Kajiado North, Kajiado, Rift Valley, Kenya',
+  price: 27500000,
+  image: '/p17 heritage/IMG-20250421-WA0093.jpg',
+  bedrooms: 4,
+  bathrooms: 5,
+  area: 240,
+  type: 'House',
+  featured: true,
+  },
+  {
     id: 'kiambu-windsor',
     title:
       '4bdrm House Ensuite + 2 ensuite DSQs in Windsor Villas, Mushroom Gardens',
     location: 'Mushroom Gardens, Kiambu Road',
     price: 80000000,
-    image:
-      'https://austinerealtors.co.ke/wp-content/smush-webp/2024/02/1E2ACC81-C233-441F-BEF0-A6C448D14BBB-1170x720.jpeg.webp',
+    image:'https://austinerealtors.co.ke/wp-content/smush-webp/2024/02/1E2ACC81-C233-441F-BEF0-A6C448D14BBB-1170x720.jpeg.webp',
     bedrooms: 4,
     bathrooms: 6,
     area: 2000,

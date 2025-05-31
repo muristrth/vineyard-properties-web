@@ -5,6 +5,18 @@ import Link from 'next/link';
 
 const featuredProperties = [
   {
+  id: 'heritage-villas-ngong',
+  title: 'Luxurious 4 Bedroom All Ensuite Plus DSQ For Sale Heritage Villas, Ngong',
+  location: 'Ngong, Ngong ward, Kajiado North, Kajiado, Rift Valley, Kenya',
+  price: 27500000,
+  image: '/p17 heritage/IMG-20250421-WA0093.jpg',
+  bedrooms: 4,
+  bathrooms: 5,
+  area: 240,
+  type: 'House',
+  featured: true,
+  },
+  {
     id: 'plot-nrbwest',
     title: '1/4 Acre Prime Plot in Nairobi West Shopping Centre',
     location: 'Nairobi West, Nairobi',
@@ -17,16 +29,18 @@ const featuredProperties = [
     featured: true,
   },
   {
-    id: 'mlolongo-warehouse',
-    title: '1/2 acre Warehouse GoDown for sale',
-    location: 'Mlolongo, Mombasa Road',
-    price: 95000000,
-    image: 'https://ext.same-assets.com/2880436944/2452448881.jpeg',
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 11600,
-    type: 'Commercial Property',
-    featured: false,
+    id: 'kiambu-windsor',
+    title:
+      '4bdrm House Ensuite + 2 ensuite DSQs in Windsor Villas, Mushroom Gardens',
+    location: 'Mushroom Gardens, Kiambu Road',
+    price: 80000000,
+    image:
+      'https://austinerealtors.co.ke/wp-content/smush-webp/2024/02/1E2ACC81-C233-441F-BEF0-A6C448D14BBB-1170x720.jpeg.webp',
+    bedrooms: 4,
+    bathrooms: 6,
+    area: 2000,
+    type: 'House',
+    featured: true,
   },
   {
     id: 'ridgeways-mansion',
@@ -39,18 +53,6 @@ const featuredProperties = [
     area: 5000,
     type: 'Luxury Mansion',
     featured: true,
-  },
-  {
-    id: 'emali-land',
-    title: '550 Acres Land for Sale in Emali Road',
-    location: 'Kajiado, Loitoktok',
-    price: 4125000000,
-    image: 'https://ext.same-assets.com/2880436944/311664710.jpeg',
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: 'Agricultural Land',
-    featured: false,
   },
   {
     id: 'muthaiga-mansion',
