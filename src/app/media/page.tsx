@@ -102,13 +102,13 @@ export default function BrandShowcasePage(): JSX.Element {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="max-w-5xl mx-auto text-center"
+          className="max-w-5xl mx-auto text-left"
         >
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Heritage Villas Highlights
           </h2>
           <div className="aspect-w-16 aspect-h-9 rounded-xl shadow-xl overflow-hidden">
-            <video src="/testimonial.mp4" controls className="w-full h-full object-cover" />
+            <video src="/testimonial.mp4" controls className="w-50 h-50 object-cover" />
           </div>
         </motion.div>
 
@@ -118,13 +118,13 @@ export default function BrandShowcasePage(): JSX.Element {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="max-w-5xl mx-auto text-center"
+          className="max-w-5xl mx-auto text-left"
         >
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Who is Vineyard Properties?
           </h2>
           <div className="aspect-w-16 aspect-h-9 rounded-xl shadow-xl overflow-hidden">
-            <video src="/feature.mp4" controls className="w-full h-full object-cover" />
+            <video src="/feature.mp4" controls className="w-50 h-50 object-cover" />
           </div>
         </motion.div>
 

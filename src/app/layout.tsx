@@ -1,7 +1,9 @@
+// src/app/layout.tsx
 import type { Metadata } from 'next';
 import { Bricolage_Grotesque, Radio_Canada_Big } from 'next/font/google';
 import './globals.css';
 import ClientBody from './ClientBody';
+import { Toaster } from 'sonner'; // Import the Toaster component
 
 // Define your base URL once for consistency, matching your canonical URL
 const siteUrl = 'https://vineyardproperties.co.ke';
@@ -35,10 +37,11 @@ export const metadata: Metadata = {
   ],
 
   // Verification meta tags (as found in your previous site)
-  //verification: {
-    //microsoft: '2FC04AC1E25E49B86623D2B8F224D4F4',
-    // Add Google verification if you have it (e.g., google: 'your-google-site-verification-code')
-  //},
+  // Uncomment and add if you have verification codes
+  // verification: {
+  //   microsoft: '2FC04AC1E25E49B86623D2B8F224D4F4',
+  //   google: 'YOUR_GOOGLE_SITE_VERIFICATION_CODE', // Add Google verification if you have it
+  // },
 
   // Open Graph for social sharing
   openGraph: {
@@ -176,6 +179,7 @@ export default function RootLayout({
         className={`${bricolageGrotesque.variable} ${radioCanadaBig.variable} font-sans`}
       >
         {children}
+        <Toaster position="top-center" /> {/* Toaster component added inside ClientBody */}
       </ClientBody>
     </html>
   );
