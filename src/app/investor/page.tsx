@@ -417,8 +417,8 @@ export default function InvestorPortal() {
                 await signOut(auth);
                 alert('User profile data missing. Please register or contact support.');
             }
-        } catch (error: any) {
-            alert(`Login failed: ${error.message}`);
+        } catch (error) {
+            alert(`Login failed`);
         } finally {
             setLoading(false);
         }
@@ -462,8 +462,8 @@ export default function InvestorPortal() {
             alert('Account created successfully! Please login.');
             setIsRegistering(false);
             setFormData({ email: '', password: '', name: '', phone: '', confirmPassword: '' });
-        } catch (error: any) {
-            alert(`Registration failed: ${error.message}`);
+        } catch (error) {
+            alert(`Registration failed`);
         } finally {
             setLoading(false);
         }
@@ -476,8 +476,8 @@ export default function InvestorPortal() {
             setTwoFactorRequired(false);
             setFormData({ email: '', password: '', name: '', phone: '', confirmPassword: '' });
             setActiveTab('dashboard');
-        } catch (error: any) {
-            alert(`Logout failed: ${error.message}`);
+        } catch (error) {
+            alert(`Logout failed`);
         }
     };
 
@@ -1269,18 +1269,18 @@ return (
                       </div>
                       <div>
                         <p className="text-sm text-gray-600">Monthly Payment</p>
-                        <p className="text-xl font-bold">{formatCurrency(loan.monthlyPayment)}</p>
+                        <p className="text-xl font-bold">{formatCurrency(loan.monthlyPayment ?? 0)}</p>
                       </div>
                       <div>
                         <p className="text-sm text-gray-600">Interest Rate</p>
-                        <p className="text-xl font-bold">{formatPercentage(loan.interestRate)}</p>
+                        <p className="text-xl font-bold">{formatPercentage(loan.interestRate ?? 0)}</p>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                       <div>
                         <p className="text-gray-600">Credit Limit</p>
-                        <p className="font-semibold">{formatCurrency(loan.creditLimit)}</p>
+                        <p className="font-semibold">{formatCurrency(loan.creditLimit ?? 0)}</p>
                       </div>
                     </div>
                   </div>
