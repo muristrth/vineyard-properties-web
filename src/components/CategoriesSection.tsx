@@ -8,8 +8,7 @@ const categories = [
   {
     id: 'residential-homes',
     title: 'Residential Homes',
-    description:
-      'Experience elegance and comfort with our exclusive residential homes, designed for sophisticated living.',
+
     image:
       'https://th.bing.com/th/id/R.d50283442ec388701317ecce78feda66?rik=%2bdYy0zoC8SXrTw&pid=ImgRaw&r=0',
     link: '/properties',
@@ -17,8 +16,6 @@ const categories = [
   {
     id: 'luxury-villas',
     title: 'Luxury Apartments',
-    description:
-      'Experience elegance and comfort with our exclusive luxury villas, designed for sophisticated living.',
     image:
       'https://mls5ina675wh.i.optimole.com/w:auto/h:auto/q:mauto/ig:avif/https://tourkenya.co.ke/wp-content/uploads/2024/04/527267392.jpg',
     link: '/properties',
@@ -26,8 +23,6 @@ const categories = [
   {
     id: 'commercial',
     title: 'Commercial Property',
-    description:
-      'Our wide variety of available properties ensures that you get what you are looking for.',
     image:
       'https://th.bing.com/th/id/R.6cba2f42eb012960db96a405c7de203e?rik=%2fsVvqLmwdfD0nw&pid=ImgRaw&r=0',
     link: '/properties',
@@ -35,8 +30,6 @@ const categories = [
   {
     id: 'land',
     title: 'Prime Land',
-    description:
-      'We have a rich selection of both freehold and leasehold land that is ready and ideal for development.',
     image:
       'https://static.vecteezy.com/system/resources/previews/014/445/763/non_2x/land-plot-for-building-house-aerial-view-land-field-with-pins-pin-location-for-housing-subdivision-residential-development-owned-sale-rent-buy-or-investment-home-or-house-expand-the-city-suburb-free-photo.jpg',
     link: '/properties',
@@ -96,9 +89,6 @@ export default function CategoriesSection() {
                 <h3 className="mb-2 font-radio-canada text-xl font-bold transition-colors group-hover:text-red-400">
                   {category.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-200 opacity-90 transition-opacity group-hover:opacity-100">
-                  {category.description}
-                </p>
 
                 {/* Hover Arrow */}
                 <div className="mt-3 flex items-center opacity-0 transition-opacity group-hover:opacity-100">
