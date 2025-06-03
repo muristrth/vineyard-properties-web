@@ -1,6 +1,8 @@
 /** @type {import('next-sitemap').IConfig} */
-module.exports = {
+const config = {
   siteUrl: process.env.SITE_URL || 'https://vineyardproperties.co.ke',
   generateRobotsTxt: true,
-  sitemapSize: 5000, // optional: splits sitemaps if needed
+  sitemapSize: 5000,
 };
+
+export default config;

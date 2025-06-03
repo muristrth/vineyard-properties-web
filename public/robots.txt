@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://vineyardproperties.co.ke
+
+# Sitemaps
+Sitemap: https://vineyardproperties.co.ke/sitemap.xml
