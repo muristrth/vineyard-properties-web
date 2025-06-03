@@ -174,6 +174,7 @@ export default function RootLayout({
             })
           }}
         />
+          <meta name="google-site-verification" content="thd6wWPZmsIHGR8SYSG-k_fPtSza33XmHOs05MsOGwo" />
       </head>
       <ClientBody
         className={`${bricolageGrotesque.variable} ${radioCanadaBig.variable} font-sans`}
