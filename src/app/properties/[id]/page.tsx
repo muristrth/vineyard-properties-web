@@ -113,9 +113,12 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     email: 'mark.muriithi@vineyardproperties.co.ke',
     image: 'https://ext.same-assets.com/2009473017/3756399664.png',
   },
+  
   virtualTour: false,
   featured: true,
+
 },
+
 
   'plot-nrbwest': {
     id: 'plot-nrbwest',
@@ -157,7 +160,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       name: 'Mark James',
       title: 'Senior Property Agent',
       phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
+      email: 'https://maps.app.goo.gl/Ncnh8sSh15m2fQK59',
       image: 'https://ext.same-assets.com/2009473017/3756399664.png',
     },
     virtualTour: false,
@@ -3015,7 +3018,7 @@ export default function PropertyDetailPage() {
                     </Button>
                     <Button variant="outline" className="w-full">
                       <Mail className="mr-2 h-4 w-4" />
-                      Send Email
+                      Get Directions
                     </Button>
                   </div>
                 </CardContent>
@@ -3028,19 +3031,54 @@ export default function PropertyDetailPage() {
                     Quick Actions
                   </h3>
                   <div className="space-y-3">
-                    <Button variant="outline" className="w-full">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      Schedule Viewing
-                    </Button>
-                    <Button variant="outline" className="w-full">
-                      <Heart className="mr-2 h-4 w-4" />
-                      Save Property
-                    </Button>
-                    <Button variant="outline" className="w-full">
-                      <Share className="mr-2 h-4 w-4" />
-                      Share Property
-                    </Button>
-                  </div>
+  {/* Schedule Viewing */}
+  <a href="tel:0729170156" className="block">
+    <Button variant="outline" className="w-full">
+      <Calendar className="mr-2 h-4 w-4" />
+      Schedule Viewing
+    </Button>
+  </a>
+
+  {/* Save Property via WhatsApp */}
+  <a
+    href="https://wa.me/254729170156?text=I'm%20interested%20in%20this%20property%20you%20listed."
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block"
+  >
+    <Button variant="outline" className="w-full">
+      <Heart className="mr-2 h-4 w-4" />
+      Save Property
+    </Button>
+  </a>
+
+  {/* Share Property */}
+  <a
+    href={typeof window !== 'undefined' ? window.location.href : '#'}
+    onClick={(e) => {
+      e.preventDefault();
+      if (navigator.share) {
+        navigator
+          .share({
+            title: 'Check out this property!',
+            url: window.location.href,
+          })
+          .catch((error) => console.log('Share failed:', error));
+      } else {
+        // fallback: copy to clipboard
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link copied to clipboard!');
+      }
+    }}
+    className="block"
+  >
+    <Button variant="outline" className="w-full">
+      <Share className="mr-2 h-4 w-4" />
+      Share Property
+    </Button>
+  </a>
+</div>
+
                 </CardContent>
               </Card>
 
@@ -3072,6 +3110,24 @@ export default function PropertyDetailPage() {
           </div>
         </div>
       </section>
+      {property.id === 'heritage-villas-ngong' && (
+        <div className="my-6 w-full max-w-4xl mx-auto">
+          <h2 className="mb-4 font-radio-canada text-2xl font-bold text-gray-900">
+            Visit this Property on Google Maps
+
+          </h2>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.3420990810407!2d36.67286523063698!3d-1.3661591034223453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f03766481ad61%3A0x552e8a8bb94e5ff7!2sHeritage%20Villas%2C%20Ngong%2046!5e0!3m2!1sen!2ske!4v1748959191473!5m2!1sen!2ske"
+            width="100%"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="rounded-xl shadow-md"
+          />
+        </div>
+      )}
 
       <Footer />
     </div>

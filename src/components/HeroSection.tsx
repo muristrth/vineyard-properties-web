@@ -43,7 +43,7 @@ export default function HeroSection() {
                   className="bg-red-600 px-8 py-3 text-lg text-white shadow-lg hover:bg-red-700"
                 >
                   <a href="tel:0729170156" className="flex items-center space-x-2">
-                    Get in Touch
+                    Call to View
                   </a>
                 </Button>
                 <Button
