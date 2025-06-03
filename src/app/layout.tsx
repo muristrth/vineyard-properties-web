@@ -38,10 +38,10 @@ export const metadata: Metadata = {
 
   // Verification meta tags (as found in your previous site)
   // Uncomment and add if you have verification codes
-  // verification: {
+  verification: {
   //   microsoft: '2FC04AC1E25E49B86623D2B8F224D4F4',
-  //   google: 'YOUR_GOOGLE_SITE_VERIFICATION_CODE', // Add Google verification if you have it
-  // },
+     google: 'thd6wWPZmsIHGR8SYSG-k_fPtSza33XmHOs05MsOGwo', // Add Google verification if you have it
+   },
 
   // Open Graph for social sharing
   openGraph: {
