@@ -121,7 +121,7 @@ export default function CategoriesSection() {
             <div className="mb-2 font-radio-canada text-4xl font-bold text-gray-900">
               20+
             </div>
-            <p className="text-gray-600">Years Experience</p>
+            <p className="text-gray-600">Years of Experience</p>
           </div>
         </div>
       </div>

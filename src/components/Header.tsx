@@ -123,7 +123,7 @@ export default function Header() {
               <div className="border-t pt-4">
                 <div className="mb-3 flex items-center space-x-1 text-sm text-gray-600">
                   <Phone className="h-4 w-4" />
-                  <span>0729 170 156</span>
+                  <span>0729-170-156</span>
                 </div>
                 <Button className="w-full bg-red-600 text-white hover:bg-red-700">
                   Contact Us

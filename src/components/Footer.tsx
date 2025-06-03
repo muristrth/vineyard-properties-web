@@ -159,7 +159,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/categories/luxury-villas"
+                  href="/properties"
                   className="text-gray-400 transition-colors hover:text-red-400"
                 >
                   Luxury Villas
@@ -167,7 +167,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/categories/residential-homes"
+                  href="/properties"
                   className="text-gray-400 transition-colors hover:text-red-400"
                 >
                   Residential Homes
@@ -175,7 +175,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/categories/apartments"
+                  href="/properties"
                   className="text-gray-400 transition-colors hover:text-red-400"
                 >
                   Apartments
@@ -214,7 +214,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/#faq"
+                  href="/about"
                   className="text-gray-400 transition-colors hover:text-red-400"
                 >
                   FAQs
@@ -262,6 +262,8 @@ export default function Footer() {
               2008-2025 Vineyard Properties - Premium Real Estate Solutions for
               everyday investors
             </p>
+              <script src="https://static.elfsight.com/platform/platform.js" async></script>
+              <div className="elfsight-app-9ada2223-7912-4430-a87f-9667702940a2" data-elfsight-app-lazy></div>
             <div className="mt-4 flex space-x-6 md:mt-0">
               <Link
                 href="/legal/terms-conditions"
