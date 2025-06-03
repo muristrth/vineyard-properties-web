@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   // Uncomment and add if you have verification codes
   verification: {
   //   microsoft: '2FC04AC1E25E49B86623D2B8F224D4F4',
-     google: 'thd6wWPZmsIHGR8SYSG-k_fPtSza33XmHOs05MsOGwo', // Add Google verification if you have it
+     google: 'P5a-prdqn6QI4hSv9xyS1KsowHLi5ksGTyKzkb', // Add Google verification if you have it
    },
 
   // Open Graph for social sharing
