@@ -546,8 +546,8 @@ export default function InvestorPortal() {
                 await signOut(auth);
                 alert('User profile data missing. Please register or contact support.');
             }
-        } catch (error: any) {
-            alert(`Login failed: ${error.message}`);
+        } catch (error) {
+            alert(`Login failed: ${error instanceof Error ? error.message : String(error)}`);
         } finally {
             setLoading(false);
         }
@@ -605,8 +605,8 @@ export default function InvestorPortal() {
             alert('Account created successfully! Please login.');
             setIsRegistering(false);
             setFormData({ email: '', password: '', name: '', phone: '', confirmPassword: '' });
-        } catch (error: any) {
-            alert(`Registration failed: ${error.message}`);
+        } catch (error) {
+            alert(`Registration failed: ${error instanceof Error ? error.message : String(error)}`);
         } finally {
             setLoading(false);
         }
@@ -620,8 +620,8 @@ export default function InvestorPortal() {
             setTwoFactorRequired(false);
             setFormData({ email: '', password: '', name: '', phone: '', confirmPassword: '' });
             setActiveTab('dashboard');
-        } catch (error: any) {
-            alert(`Logout failed: ${error.message}`);
+        } catch (error) {
+            alert(`Logout failed: ${error instanceof Error ? error.message : String(error)}`);
         }
     };
 
@@ -661,9 +661,9 @@ export default function InvestorPortal() {
             setLoanRequestPurpose('');
             setLoanRequestTerm(12);
             setLoanRequestCollateral('');
-        } catch (error: any) {
+        } catch (error) {
             console.error("Error submitting loan request:", error);
-            alert(`Failed to submit loan request: ${error.message}`);
+            alert(`Failed to submit loan request: ${error instanceof Error ? error.message : String(error)}`);
         } finally {
             setLoading(false);
         }
@@ -696,8 +696,8 @@ export default function InvestorPortal() {
             } else {
                 alert('Property not found.');
             }
-        } catch (error: any) {
-            alert(`Failed to update sell request: ${error.message}`);
+        } catch (error) {
+            alert(`Failed to update sell request: ${error instanceof Error ? error.message : String(error)}`);
         } finally {
             setLoading(false);
         }
@@ -728,8 +728,8 @@ export default function InvestorPortal() {
             alert('Message sent successfully!');
             setShowMessageModal(false);
             setMessage({ subject: '', content: '', priority: 'normal' });
-        } catch (error: any) {
-            alert(`Failed to send message: ${error.message}`);
+        } catch (error) {
+            alert(`Failed to send message: ${error instanceof Error ? error.message : String(error)}`);
         } finally {
             setLoading(false);
         }
@@ -747,8 +747,8 @@ export default function InvestorPortal() {
                         : notif
                 )
             );
-        } catch (error: any) {
-            alert(`Failed to update notification status: ${error.message}`);
+        } catch (error) {
+            alert(`Failed to update notification status: ${(error instanceof Error ? error.message : String(error))}`);
         } finally {
             setLoading(false);
         }
