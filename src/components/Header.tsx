@@ -45,7 +45,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed left-0 right-0 top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur-md transition-shadow">
+      <header className="fixed left-0 right-0 top-0 z-50 border-b border-gray-100 bg-white backdrop-blur-md transition-shadow">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
@@ -59,7 +59,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="group relative text-sm font-medium text-gray-700 transition-colors hover:text-red-600"
+                  className="group relative text-sm font-medium text-black transition-colors hover:text-red-600"
                 >
                   {item.name}
                   <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-red-600 transition-all group-hover:w-full"></span>

@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+    <section className="relative min-h-screen overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-6 lg:px-8">
         <div className="grid min-h-[80vh] grid-cols-1 items-center gap-12 lg:grid-cols-2">
           {/* Left Content */}

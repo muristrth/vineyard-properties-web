@@ -4,37 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
-const categories = [
-  {
-    id: 'residential-homes',
-    title: 'Residential Homes',
 
-    image:
-      'https://th.bing.com/th/id/R.d50283442ec388701317ecce78feda66?rik=%2bdYy0zoC8SXrTw&pid=ImgRaw&r=0',
-    link: '/properties',
-  },
-  {
-    id: 'luxury-villas',
-    title: 'Luxury Apartments',
-    image:
-      'https://mls5ina675wh.i.optimole.com/w:auto/h:auto/q:mauto/ig:avif/https://tourkenya.co.ke/wp-content/uploads/2024/04/527267392.jpg',
-    link: '/properties',
-  },
-  {
-    id: 'commercial',
-    title: 'Commercial Property',
-    image:
-      'https://th.bing.com/th/id/R.6cba2f42eb012960db96a405c7de203e?rik=%2fsVvqLmwdfD0nw&pid=ImgRaw&r=0',
-    link: '/properties',
-  },
-  {
-    id: 'land',
-    title: 'Prime Land',
-    image:
-      'https://static.vecteezy.com/system/resources/previews/014/445/763/non_2x/land-plot-for-building-house-aerial-view-land-field-with-pins-pin-location-for-housing-subdivision-residential-development-owned-sale-rent-buy-or-investment-home-or-house-expand-the-city-suburb-free-photo.jpg',
-    link: '/properties',
-  },
-];
 
 export default function CategoriesSection() {
   return (
@@ -65,43 +35,7 @@ export default function CategoriesSection() {
           </div>
         </div>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {categories.map((category, index) => (
-            <Link
-              key={category.id}
-              href={category.link}
-              className="group relative transform overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Image */}
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={category.image}
-                  alt={category.title}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-              </div>
-
-              {/* Content */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="mb-2 font-radio-canada text-xl font-bold transition-colors group-hover:text-red-400">
-                  {category.title}
-                </h3>
-
-                {/* Hover Arrow */}
-                <div className="mt-3 flex items-center opacity-0 transition-opacity group-hover:opacity-100">
-                  <span className="text-sm font-medium">Explore</span>
-                  <ArrowRight className="ml-1 h-4 w-4 transform transition-transform group-hover:translate-x-1" />
-                </div>
-              </div>
-
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-red-600/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </Link>
-          ))}
-        </div>
+        
 
         {/* Stats Section */}
         <div className="mt-20 grid grid-cols-1 gap-8 text-center md:grid-cols-3">

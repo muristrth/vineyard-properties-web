@@ -6,8 +6,8 @@ import Link from 'next/link';
 const featuredProperties = [
   {
   id: 'heritage-villas-ngong',
-  title: 'Luxurious 4 Bedroom All Ensuite Plus DSQ For Sale Heritage Villas, Ngong',
-  location: 'Ngong, Ngong ward, Kajiado North, Kajiado, Rift Valley, Kenya',
+  title: 'Luxurious 4 Bedroom Plus DSQ For Sale Heritage Villas, Ngong',
+  location: 'Ngong Town, Kenya',
   price: 27500000,
   image: '/p17 heritage/IMG-20250421-WA0093.jpg',
   bedrooms: 4,

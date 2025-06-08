@@ -16,9 +16,9 @@ import Link from 'next/link';
 
 const stats = [
   { label: 'Years of Experience', value: '20+', icon: Award },
-  { label: 'Properties Sold', value: '1,000+', icon: Home },
-  { label: 'Happy Clients', value: '500+', icon: Users },
-  { label: 'Market Growth', value: '25%', icon: TrendingUp },
+  { label: 'Properties Sold', value: '5,000+', icon: Home },
+  { label: 'Happy Clients', value: '3500+', icon: Users },
+  { label: 'Market Growth', value: '50%', icon: TrendingUp },
 ];
 
 const teamMembers = [

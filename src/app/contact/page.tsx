@@ -82,7 +82,7 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: 'Call Us',
-      content: 'Mark James',
+      content: 'Mark M',
       actionText: 'Call Now',
       actionHref: 'tel:+254729170156',
       actionType: 'link',

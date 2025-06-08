@@ -1,86 +1,121 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
-import { Bed, Bath, Maximize, MapPin, Heart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-const images: string[] = [
-  '/testimonials/IMG-20250530-WA0111.jpg',
-  '/testimonials/48427794_933688416755342_6193271600209461248_n.jpg',
-  '/testimonials/48404232_933689533421897_5559600264320647168_n.jpg',
-  '/testimonials/IMG-20250530-WA0092.jpg',
-  '/testimonials/IMG-20250530-WA0086.jpg',
-  '/testimonials/IMG-20250530-WA0084.jpg',
-  '/testimonials/IMG-20250530-WA0077.jpg',
-  '/testimonials/IMG-20250530-WA0152.jpg',
-  '/testimonials/WhatsApp Image 2025-05-30 at 19.00.51_536f5f25.jpg',
-  '/testimonials/IMG-20250530-WA0145.jpg',
-  '/testimonials/IMG-20250530-WA0149.jpg',
-  '/testimonials/IMG-20250530-WA0147.jpg',
-  '/testimonials/IMG-20250530-WA0152.jpg',
-  '/testimonials/IMG-20250530-WA0117.jpg',
-  '/testimonials/IMG-20250530-WA0118.jpg',
-  '/testimonials/IMG-20250530-WA0119.jpg',
-  '/testimonials/IMG-20250530-WA0115.jpg',  
-  '/testimonials/IMG-20250530-WA0122.jpg',
-  '/testimonials/IMG-20250530-WA0123.jpg',
-  '/testimonials/IMG-20250530-WA0124.jpg',
-  '/testimonials/Screenshot 2025-05-12 101634.png',
-  // Add more image paths as needed
+const testimonials = [
+  {
+    image: '/testimonials/IMG-20250530-WA0111.jpg',
+    quote: "This property exceeded all our expectations. Absolutely loved every moment of our stay!",
+    name: "John Doe",
+  },
+  {
+    image: '/testimonials/48427794_933688416755342_6193271600209461248_n.jpg',
+    quote: "A beautiful experience. The attention to detail was incredible.",
+    name: "Jane Smith",
+  },
+  {
+    image: '/testimonials/48404232_933689533421897_5559600264320647168_n.jpg',
+    quote: "The best vacation ever! Will definitely come back again.",
+    name: "Emily Johnson",
+  },
+  {
+    image: '/testimonials/IMG-20250530-WA0092.jpg',
+    quote: "Truly luxurious and comfortable. The perfect getaway.",
+    name: "Michael Brown",
+  },
+  {
+    image: '/testimonials/IMG-20250530-WA0086.jpg',
+    quote: "Fantastic service and amazing views! Highly recommend.",
+    name: "Sarah Lee",
+  },
 ];
 
-export default function TestimonialsSection(): JSX.Element {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export default function LuxuryCarousel(): JSX.Element {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    document.body.style.overflow = selectedImage ? 'hidden' : 'unset';
+    const handleEsc = (e: KeyboardEvent) => e.key === 'Escape' && setSelectedImage(null);
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [selectedImage]);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
+    arrows: false,
+  };
 
   return (
-    <section className="w-full overflow-hidden py-16 bg-white">
-      {/* Luxury Persuasive Copy */}
-      <div className="text-center mb-12 px-4">
-        <h2 className="text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
-          Elevating Ownership to a Legacy
-        </h2>
-        <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-700">
-          Our title deed ceremonies are more than transactions—they are unforgettable moments that
-          celebrate trust, prestige, and prosperity. We honor our investors with the dignity and excellence their commitment deserves.
-        </p>
-        <div className="mt-6">
-          <button
-            className="inline-block bg-black text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-gray-800 transition"
+    <section className="w-full bg-gradient-to-b from-white to-gray-100 py-20 px-4 md:px-8">
+      <div className="max-w-6xl mx-auto">
+        <Slider {...settings}>
+          {testimonials.map((testimonial, idx) => (
+            <div
+              key={idx}
+              className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-4 md:p-8 bg-white rounded-2xl shadow-xl transition-all hover:shadow-2xl cursor-pointer"
+              onClick={() => setSelectedImage(testimonial.image)}
+            >
+              <div className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden">
+                <Image
+                  src={testimonial.image}
+                  alt={`Testimonial from ${testimonial.name}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className="transition-transform duration-300 ease-in-out hover:scale-105"
+                  draggable={false}
+                />
+              </div>
+              <div className="text-center md:text-left space-y-4 px-2">
+                <blockquote className="text-2xl font-light italic text-gray-800 leading-relaxed">
+                  “{testimonial.quote}”
+                </blockquote>
+                <p className="text-base font-semibold text-gray-600">— {testimonial.name}</p>
+              </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
+
+      {/* Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedImage(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="relative max-w-5xl w-full bg-white/5 rounded-xl shadow-2xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
           >
-          <a href="tel:0729170156" className="flex items-center space-x-2">
-          Speak to a Property Agent</a>
-           
-          </button>
-        </div>
-      </div>
-
-      {/* Image Marquee */}
-      <div className="flex w-max animate-marquee space-x-6">
-        {images.concat(images).map((src, idx) => (
-          <div key={idx} className="flex-shrink-0" style={{ width: 400, height: 300 }}>
-            <img
-              src={src}
-              alt="Client and director"
-              className="w-full h-full object-cover rounded-lg shadow"
-              draggable={false}
+            <Image
+              src={selectedImage}
+              alt="Full preview"
+              width={1600}
+              height={1000}
+              className="w-full h-auto max-h-[90vh] object-contain rounded-xl"
             />
+            <button
+              className="absolute top-4 right-4 text-white text-4xl font-bold bg-black/60 rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/80 transition"
+              onClick={() => setSelectedImage(null)}
+              aria-label="Close image preview"
+            >
+              ×
+            </button>
           </div>
-        ))}
-      </div>
-
-      
-      {/* Marquee Animation */}
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 50s linear infinite;
-        }
-      `}</style>
+        </div>
+      )}
     </section>
   );
 }

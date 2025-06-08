@@ -262,8 +262,7 @@ export default function Footer() {
               2008-2025 Vineyard Properties - Premium Real Estate Solutions for
               everyday investors
             </p>
-              <script src="https://static.elfsight.com/platform/platform.js" async></script>
-              <div className="elfsight-app-9ada2223-7912-4430-a87f-9667702940a2" data-elfsight-app-lazy></div>
+              
             <div className="mt-4 flex space-x-6 md:mt-0">
               <Link
                 href="/legal/terms-conditions"

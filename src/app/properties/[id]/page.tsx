@@ -428,9 +428,17 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     lotSize: 0.125,
     yearBuilt: 2019,
     images: [
-      'https://ext.same-assets.com/2880436944/1376571947.jpeg',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
+      '/p24 edenville/IMG-20250510-WA0251.jpg',
+      '/p24 edenville/IMG-20250510-WA0250.jpg',
+      '/p24 edenville/IMG-20250510-WA0249.jpg',
+      '/p24 edenville/IMG-20250510-WA0252.jpg',
+      '/p24 edenville/IMG-20250510-WA0253.jpg',
+      '/p24 edenville/IMG-20250510-WA0254.jpg',
+      '/p24 edenville/IMG-20250510-WA0255.jpg',
+      '/p24 edenville/IMG-20250510-WA0256.jpg',
+      '/p24 edenville/IMG-20250510-WA0257.jpg',
+      '/p24 edenville/IMG-20250510-WA0258.jpg',
+      '/p24 edenville/IMG-20250510-WA0259.jpg',
     ],
     description:
       'Modern 3-bedroom villa in the sought-after Edenville estate. Features contemporary design, quality finishes, and access to estate amenities in a secure gated community.',
@@ -475,9 +483,17 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     lotSize: 1,
     yearBuilt: 0,
     images: [
-      'https://ext.same-assets.com/2880436944/4206399667.jpeg',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
+      'p26 1a muthaiga/IMG-20250510-WA0215.jpg',
+      'p26 1a muthaiga/IMG-20250510-WA0224.jpg',
+      'p26 1a muthaiga/IMG-20250510-WA0225.jpg',
+      'p26 1a muthaiga/IMG-20250510-WA0226.jpg',
+      'p26 1a muthaiga/IMG-20250510-WA0227.jpg',
+      'p26 1a muthaiga/IMG-20250510-WA0228.jpg',
+      'p26 1a muthaiga/IMG-20250510-WA0229.jpg',
+      'p26 1a muthaiga/IMG-20250510-WA0230.jpg',
+      'p26 1a muthaiga/IMG-20250510-WA0231.jpg',
+      'p26 1a muthaiga/IMG-20250510-WA0232.jpg',
+      'p26 1a muthaiga/IMG-20250510-WA0234.jpg',
     ],
     description:
       "Prime 1-acre residential land in exclusive Muthaiga. Perfect for building your dream home in one of Nairobi's most prestigious addresses with excellent infrastructure and security.",
@@ -523,8 +539,11 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     yearBuilt: 0,
     images: [
       'https://ext.same-assets.com/2880436944/515128159.png',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
+      '/p kite 11/Screenshot 2024-02-12 090319.png',
+      '/p kite 11/Screenshot 2024-02-12 090327.png',
+      '/p kite 11/Screenshot 2024-02-12 090336.png',
+      '/p kite 11/Screenshot 2024-02-12 090510.png',
+      '/p kite 11/Screenshot 2024-02-12 090519.png',
     ],
     description:
       'Affordable 50x100 residential plot in the rapidly growing Kitengela area. Great investment opportunity with good accessibility and development potential.',
@@ -712,7 +731,6 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     images: [
       'https://ext.same-assets.com/3634728786/3896291020.jpeg',
       'https://ext.same-assets.com/3634728786/2705632412.jpeg',
-      '/* Image placeholder - add your image here */',
     ],
     description:
       "Prime land for sale at Brookside Gardens, an exclusive location in Nairobi's sought-after Westlands area. This rare gem offers a serene environment, excellent accessibility, and a prestigious address.",
@@ -847,9 +865,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     lotSize: 0.25,
     yearBuilt: 0,
     images: [
-      'https://ext.same-assets.com/2880436944/3486551979.jpeg',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
+      'p10 kinoo/IMG-20250421-WA0107.jpg',
+      'p10 kinoo/IMG-20250421-WA0248.jpg',
     ],
     description:
       'Quarter acre residential plot in Kinoo area, perfect for building your dream home. Located in a rapidly developing area with good access to Nairobi CBD.',
@@ -1256,9 +1273,9 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     lotSize: 0.5,
     yearBuilt: 0,
     images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
+      '/p13 lavi/IMG-20250510-WA0209.jpg',
+      '/p13 lavi/IMG-20250510-WA0212.jpg',
+      '/p13 lavi/IMG-20250510-WA0213.jpg',
     ],
     description:
       'Half acre plot in prime Lavington area. This property has been sold but similar properties are available.',
