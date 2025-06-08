@@ -1,9 +1,16 @@
 'use client'
 
 // Removed Header import as it's being replaced by direct HTML/JSX
+import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+
+// Animation variants for fade-in effect
+const fadeInVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
 import {
     DollarSign, Home, TrendingUp, MapPin, Eye, Heart, FileText, CreditCard, Wallet, Navigation, CheckCircle, XCircle, Download, Calendar, AlertCircle, PiggyBank, Shield, Users, Bell, Settings, BarChart3, PieChart, LineChart, Lock, LogOut, User, Edit, Plus, Minus, Calculator, Target, Award, Zap, TrendingDown, Globe, Map, MessageCircle, Phone, Mail, Upload, RefreshCw, ExternalLink,
     Building,
@@ -802,124 +809,194 @@ export default function InvestorPortal() {
         );
     }
 
-    if (!isLoggedIn || !user) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-                <Card className="w-full max-w-md">
-                    <CardHeader>
-                        <CardTitle className="text-center">
-                            {isRegistering ? 'Register for Investor Portal' : 'Login to Investor Portal'}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        {twoFactorRequired ? (
+// --- Auth UI ---
+    if (!isLoggedIn) {
+        if (twoFactorRequired) {
+            return (
+                <div className="min-h-screen bg-black flex items-center justify-center p-4">
+                    <Card className="w-full max-w-md">
+                        <CardHeader>
+                            <CardTitle className="text-2xl text-center">Two-Factor Authentication</CardTitle>
+                            <p className="text-gray-600 text-center">Enter the 6-digit code from your authenticator app</p>
+                        </CardHeader>
+                        <CardContent>
                             <form onSubmit={handleTwoFactorSubmit} className="space-y-4">
-                                <div>
-                                    <Label htmlFor="twoFactorCode">Two-Factor Authentication Code</Label>
-                                    <Input
-                                        id="twoFactorCode"
-                                        type="text"
-                                        placeholder="Enter your 2FA code"
-                                        value={twoFactorCode}
-                                        onChange={(e) => setTwoFactorCode(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                                <Button type="submit" className="w-full" disabled={loading}>
-                                    {loading ? <RefreshCw className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle className="h-4 w-4 mr-2" />}
-                                    Verify Code
-                                </Button>
+                                <Input
+                                    type="text"
+                                    placeholder="Enter 6-digit code"
+                                    value={twoFactorCode}
+                                    onChange={(e) => setTwoFactorCode(e.target.value)}
+                                    className="text-center text-2xl tracking-widest"
+                                    required
+                                />
                                 <Button
-                                    type="button"
-                                    variant="outline"
+                                    type="submit"
+                                    className="w-full"
+                                    disabled={loading || twoFactorCode.length !== 6}
+                                >
+                                    {loading ? <RefreshCw className="h-4 w-4 animate-spin mr-2" /> : <Shield className="h-4 w-4 mr-2" />}
+                                    Verify
+                                </Button>
+                            </form>
+                            <div className="mt-4 text-center">
+                                <button
                                     onClick={() => setTwoFactorRequired(false)}
-                                    className="w-full mt-2"
+                                    className="text-sm text-red-600 hover:underline"
                                 >
-                                    Cancel
-                                </Button>
-                            </form>
-                        ) : (
-                            <form onSubmit={isRegistering ? handleRegister : handleLogin} className="space-y-4">
-                                {isRegistering && (
+                                    Back to login
+                                </button>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+            );
+        }
+        return (
+            <div className="min-h-screen bg-black text-black">
+                <Header />
+                <div className="relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 to-black"></div>
+                    <div className="relative container mx-auto px-4 py-20">
+                        <div className="text-center">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8 }}
+                            >
+                                <Badge className="mb-6 bg-red-600/20 text-red-400 border-red-600/30">
+                                    <Shield className="h-4 w-4 mr-2" />
+                                    Secure Investor Portal
+                                </Badge>
+                                <h1 className="text-white text-5xl lg:text-7xl font-bold mb-6">
+                                    Your Real Estate
+                                    <span className="block text-red-500">Investment Hub</span>
+                                </h1>
+                                <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                                    Access your portfolio, track performance, manage documents, and stay connected with your investment journey.
+                                </p>
+                            </motion.div>
+                        </div>
+                    </div>
+                </div>
+                <div className="container mx-auto px-4 py-16">
+                    <div className="max-w-md mx-auto">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle className="text-2xl text-center text-gray-900">
+                                    {isRegistering ? 'Create Account' : 'Welcome Back'}
+                                </CardTitle>
+                                <p className="text-gray-600 text-center">
+                                    {isRegistering
+                                        ? 'Join our exclusive investor community'
+                                        : 'Sign in to access your investor dashboard'
+                                    }
+                                </p>
+                            </CardHeader>
+                            <CardContent>
+                                <form onSubmit={isRegistering ? handleRegister : handleLogin} className="space-y-4">
+                                    {isRegistering && (
+                                        <>
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                    Full Name
+                                                </label>
+                                                <Input
+                                                    type="text"
+                                                    placeholder="Enter your full name"
+                                                    value={formData.name}
+                                                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                    Phone Number
+                                                </label>
+                                                <Input
+                                                    type="tel"
+                                                    placeholder="Enter your phone number"
+                                                    value={formData.phone}
+                                                    onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                                                />
+                                            </div>
+                                        </>
+                                    )}
                                     <div>
-                                        <Label htmlFor="name">Full Name</Label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            Email Address
+                                        </label>
                                         <Input
-                                            id="name"
-                                            type="text"
-                                            placeholder="Your Name"
-                                            value={formData.name}
-                                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                            type="email"
+                                            placeholder="Enter your email"
+                                            value={formData.email}
+                                            onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                                             required
                                         />
                                     </div>
-                                )}
-                                <div>
-                                    <Label htmlFor="email">Email</Label>
-                                    <Input
-                                        id="email"
-                                        type="email"
-                                        placeholder="name@example.com"
-                                        value={formData.email}
-                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        required
-                                    />
-                                </div>
-                                {isRegistering && (
                                     <div>
-                                        <Label htmlFor="phone">Phone Number</Label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            Password
+                                        </label>
                                         <Input
-                                            id="phone"
-                                            type="tel"
-                                            placeholder="e.g., +2547XXXXXXXX"
-                                            value={formData.phone}
-                                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                            required
-                                        />
-                                    </div>
-                                )}
-                                <div>
-                                    <Label htmlFor="password">Password</Label>
-                                    <Input
-                                        id="password"
-                                        type="password"
-                                        placeholder="Password"
-                                        value={formData.password}
-                                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                                        required
-                                    />
-                                </div>
-                                {isRegistering && (
-                                    <div>
-                                        <Label htmlFor="confirmPassword">Confirm Password</Label>
-                                        <Input
-                                            id="confirmPassword"
                                             type="password"
-                                            placeholder="Confirm Password"
-                                            value={formData.confirmPassword}
-                                            onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                                            placeholder="Enter your password"
+                                            value={formData.password}
+                                            onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                                             required
                                         />
                                     </div>
+                                    {isRegistering && (
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                Confirm Password
+                                            </label>
+                                            <Input
+                                                type="password"
+                                                placeholder="Confirm your password"
+                                                value={formData.confirmPassword}
+                                                onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
+                                                required
+                                            />
+                                        </div>
+                                    )}
+                                    <Button type="submit" className="w-full" disabled={loading}>
+                                        {loading ? (
+                                            <RefreshCw className="h-4 w-4 animate-spin mr-2" />
+                                        ) : isRegistering ? (
+                                            <User className="h-4 w-4 mr-2" />
+                                        ) : (
+                                            <Lock className="h-4 w-4 mr-2" />
+                                        )}
+                                        {isRegistering ? 'Create Account' : 'Sign In'}
+                                    </Button>
+                                </form>
+                                <div className="mt-6 text-center">
+                                    <button
+                                        onClick={() => setIsRegistering(!isRegistering)}
+                                        className="text-red-600 hover:text-red-700 font-medium"
+                                    >
+                                        {isRegistering
+                                            ? 'Already have an account? Sign in'
+                                            : "Don't have an account? Register"
+                                        }
+                                    </button>
+                                </div>
+                                {!isRegistering && (
+                                    <div className="mt-4 text-center">
+                                        <button className="text-sm text-gray-600 hover:text-gray-800">
+                                            Forgot your password?
+                                        </button>
+                                    </div>
                                 )}
-                                <Button type="submit" className="w-full" disabled={loading}>
-                                    {loading ? <RefreshCw className="h-4 w-4 animate-spin mr-2" /> : <Lock className="h-4 w-4 mr-2" />}
-                                    {isRegistering ? 'Register' : 'Login'}
-                                </Button>
-                                <Button
-                                    type="button"
-                                    variant="outline"
-                                    onClick={() => setIsRegistering(!isRegistering)}
-                                    className="w-full mt-2"
-                                >
-                                    {isRegistering ? 'Already have an account? Login' : 'Need an account? Register'}
-                                </Button>
-                            </form>
-                        )}
-                    </CardContent>
-                </Card>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </div>
+                <Footer />
             </div>
         );
     }
+
 
   function setShowLoanModal(arg0: boolean): void {
     throw new Error('Function not implemented.');
