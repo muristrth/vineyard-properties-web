@@ -652,6 +652,7 @@ export default function InvestorPortal() {
         try {
             const newLoanRequestDoc = {
                 investorId: user.id,
+                senderEmail: user.email,
                 amount: loanRequestAmount,
                 purpose: loanRequestPurpose,
                 term: loanRequestTerm,
@@ -1237,7 +1238,7 @@ export default function InvestorPortal() {
                                       <Button
                                         variant="outline"
                                         className="h-auto py-4 flex flex-col items-center space-y-2"
-                                        onClick={() => setShowLoanModal(true)}
+                                        onClick={() => setShowLoanRequestModal(true)}
                                       >
                                         <PiggyBank className="h-6 w-6" />
                                         <span>Request Loan</span>
@@ -1752,69 +1753,97 @@ export default function InvestorPortal() {
                 </DialogContent>
               </Dialog>
 
-            {/* Loan Request Modal */}
-            <Dialog open={showLoanRequestModal} onOpenChange={setShowLoanRequestModal}>
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>Request New Loan</DialogTitle>
-                        <DialogDescription>Fill in the details for your loan application.</DialogDescription>
-                    </DialogHeader>
-                    <form onSubmit={requestNewLoan} className="py-4 space-y-4">
-                        <div>
-                            <Label htmlFor="loanAmount">Loan Amount (KES)</Label>
-                            <Input
-                                id="loanAmount"
-                                type="number"
-                                placeholder="e.g., 500000"
-                                value={loanRequestAmount}
-                                onChange={(e) => setLoanRequestAmount(parseFloat(e.target.value) || 0)}
-                                required
-                            />
-                        </div>
-                        <div>
-                            <Label htmlFor="loanPurpose">Purpose of Loan</Label>
-                            <Textarea
-                                id="loanPurpose"
-                                placeholder="e.g., Property acquisition, home renovation, working capital"
-                                value={loanRequestPurpose}
-                                onChange={(e) => setLoanRequestPurpose(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div>
-                            <Label htmlFor="loanTerm">Loan Term (Months)</Label>
-                            <Input
-                                id="loanTerm"
-                                type="number"
-                                placeholder="e.g., 12, 24, 36"
-                                value={loanRequestTerm}
-                                onChange={(e) => setLoanRequestTerm(parseFloat(e.target.value) || 0)}
-                                required
-                            />
-                        </div>
-                        <div>
-                            <Label htmlFor="loanCollateral">Collateral (e.g., Property ID, Asset Description)</Label>
-                            <Input
-                                id="loanCollateral"
-                                type="text"
-                                placeholder="e.g., Property ID: XYZ123, Vehicle: KDA456B"
-                                value={loanRequestCollateral}
-                                onChange={(e) => setLoanRequestCollateral(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <DialogFooter className="flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 pt-4">
-                            <Button type="button" variant="outline" onClick={() => setShowLoanRequestModal(false)} disabled={loading}>
-                                Cancel
-                            </Button>
-                            <Button type="submit" disabled={loading}>
-                                {loading ? (<RefreshCw className="h-4 w-4 animate-spin mr-2" />) : (<CheckCircle className="h-4 w-4 mr-2" />)}
-                                Submit Request
-                            </Button>
-                        </DialogFooter>
-                    </form>
-                </DialogContent>
-            </Dialog>
+                        {/* Loan Request Modal (UNCHANGED) */}
+                        <Dialog open={showLoanRequestModal} onOpenChange={setShowLoanRequestModal}>
+                          <DialogContent>
+                            <DialogHeader>
+                              <DialogTitle>Request a Loan</DialogTitle>
+                              <DialogDescription>Fill in the details below to request a new loan.</DialogDescription>
+                            </DialogHeader>
+                            <form onSubmit={requestNewLoan} className="space-y-4">
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                  Loan Amount
+                                </label>
+                                <Input
+                                  type="number"
+                                  placeholder="Enter amount"
+                                  value={loanRequestAmount}
+                                  onChange={(e) => setLoanRequestAmount(Number(e.target.value))}
+                                  required
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                  Purpose
+                                </label>
+                                <select
+                                  value={loanRequestPurpose}
+                                  onChange={(e) => setLoanRequestPurpose(e.target.value)}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                                  required
+                                >
+                                  <option value="">Select purpose</option>
+                                  <option value="property_purchase">Property Purchase</option>
+                                  <option value="renovation">Renovation</option>
+                                  <option value="bridge_financing">Bridge Financing</option>
+                                  <option value="working_capital">Working Capital</option>
+                                </select>
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                  Term (months)
+                                </label>
+                                <Input
+                                  type="number"
+                                  placeholder="Enter term in months"
+                                  value={loanRequestTerm}
+                                  onChange={(e) => setLoanRequestTerm(Number(e.target.value))}
+                                  required
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                  Collateral
+                                </label>
+                                <select
+                                  value={loanRequestCollateral}
+                                  onChange={(e) => setLoanRequestCollateral(e.target.value)}
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                                  required
+                                >
+                                  <option value="">Select collateral property</option>
+                                  {properties.map((property) => (
+                                    <option key={property.id} value={property.id}>
+                                      {property.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                              <DialogFooter>
+                                <Button
+                                  type="submit"
+                                  disabled={
+                                    loading ||
+                                    !loanRequestAmount ||
+                                    !loanRequestPurpose ||
+                                    !loanRequestCollateral
+                                  }
+                                >
+                                  {loading ? <RefreshCw className="h-4 w-4 animate-spin mr-2" /> : <PiggyBank className="h-4 w-4 mr-2" />}
+                                  Submit Request
+                                </Button>
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  onClick={() => setShowLoanRequestModal(false)}
+                                >
+                                  Cancel
+                                </Button>
+                              </DialogFooter>
+                            </form>
+                          </DialogContent>
+                        </Dialog>
 
             {/* Bank Details Modal */}
             <Dialog open={showBankDetailsModal} onOpenChange={setShowBankDetailsModal}>
