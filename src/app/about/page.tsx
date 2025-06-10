@@ -40,7 +40,7 @@ const teamMembers = [
   },
   {
     name: 'Mark Muriithi',
-    role: 'Sales Manager',
+    role: 'Sales & IT Manager',
     image: 'https://placehold.co/400x400/F0F0F0/B0B0B0/png?text=VP+Sales', // Abstract sales-related icon
     bio: "Mark leads our dynamic sales team, bringing extensive knowledge of luxury markets and client relationship management. He's dedicated to understanding each client's unique needs to help them discover and secure their ideal property.",
     email: 'mark.muriithi@vineyardproperties.co.ke',
@@ -108,49 +108,49 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Story Section */}
       <section className="bg-gray-50 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <div className="space-y-6">
-              <h2 className="font-radio-canada text-4xl font-bold text-gray-900">
-                Our Story
-              </h2>
-              <p className="text-lg leading-relaxed text-gray-600">
-                Founded in 2002 by Julia Muthoni and James Muriithi, Vineyard Properties began
-                with a simple vision: for every household to own a tangible asset investment om which they can builf their home and ecape monthly rents. In addition, to revolutionize the luxury real estate
-                experience by combining cutting-edge technology with
-                personalized service.
-              </p>
-              <p className="text-lg leading-relaxed text-gray-600">
-                We are a premier real
-                estate firm, known for our integrity, innovation, and unwavering
-                commitment to client satisfaction. We specialize in luxury
-                residential properties, investment opportunities, and exclusive
-                developments across prime locations.
-              </p>
-              <p className="text-lg leading-relaxed text-gray-600">
-                Today, we continue to set new standards in the industry, helping
-                clients not just find properties, but discover their perfect
-                lifestyle and investment opportunities.
-              </p>
-            </div>
-            <div className="relative">
-              <img
-                src="https://ext.same-assets.com/2009473017/4194055538.jpeg"
-                alt="Vineyard Properties Office"
-                className="h-96 w-full rounded-2xl object-cover shadow-xl"
-              />
-              <div className="absolute -bottom-6 -left-6 rounded-xl bg-white p-6 shadow-lg">
-                <p className="mb-1 text-sm text-gray-600">Founded</p>
-                <p className="font-radio-canada text-2xl font-bold text-gray-900">
-                  2002
-                </p>
-              </div>
-            </div>
-          </div>
+  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+      <div className="space-y-6">
+        <h2 className="font-radio-canada text-4xl font-bold text-gray-900">
+          Our Story
+        </h2>
+        <p className="text-lg leading-relaxed text-gray-600">
+          Founded in 2005, Vineyard Properties Limited (VPL) is a trusted real estate company offering premium land, residential plots, and property management services in Nairobi and its surrounding areas. With over 20 years of industry experience, we have helped thousands of clients secure genuine land and build their dream homes.
+        </p>
+        <p className="text-lg leading-relaxed text-gray-600">
+          We are guided by honesty, efficiency, and professionalism. Our team ensures a seamless process for our clients—from land acquisition to development and title processing. We handle all the paperwork, liaise with government agencies, and only involve our clients when it's time to sign or collect documents.
+        </p>
+        <p className="text-lg leading-relaxed text-gray-600">
+          At VPL, we specialize in serviced plots, housing estate development, and property management. Our homes are built by skilled professionals to the highest standards of quality, ensuring value for money and long-term durability.
+        </p>
+        <p className="text-lg leading-relaxed text-gray-600">
+          Our vision is to elevate Africa’s living standards through innovative housing and infrastructure. Our mission is to create master-planned neighborhoods that promote peace of mind, lifestyle enhancement, and long-term growth for homeowners and investors alike.
+        </p>
+        <ul className="list-disc pl-6 text-gray-600">
+          <li>Honesty and Integrity</li>
+          <li>Efficiency and Effectiveness</li>
+          <li>Growth and Profitability</li>
+          <li>Win-Win Partnerships</li>
+          <li>Long-Term Client Relationships</li>
+        </ul>
+      </div>
+      <div className="relative">
+        <img
+          src="/og-image.jpg"
+          alt="Vineyard Properties Office"
+          className="h-96 w-full rounded-2xl object-cover shadow-xl"
+        />
+        <div className="absolute -bottom-6 -left-6 rounded-xl bg-white p-6 shadow-lg">
+          <p className="mb-1 text-sm text-gray-600">Founded</p>
+          <p className="font-radio-canada text-2xl font-bold text-gray-900">
+            2005
+          </p>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Mission & Values */}
       <section className="bg-white py-20">

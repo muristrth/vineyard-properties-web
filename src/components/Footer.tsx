@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import TawkMessenger  from '@/components/TawkMessenger';
 
 export default function Footer() {
   return (
@@ -280,6 +281,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      <TawkMessenger />
     </footer>
   );
 }
