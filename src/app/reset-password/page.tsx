@@ -229,7 +229,7 @@ function PasswordResetContent() {
                 <p className={`text-center text-lg ${message.type === 'error' ? 'text-red-600' : 'text-yellow-500'}`}>
                     {message.text || "Verifying reset link..."}
                 </p>
-                <Button onClick={() => router.push("/")} className="mt-6 bg-blue-600 hover:bg-blue-700" disabled={loading}>
+                <Button onClick={() => router.push("/investor")} className="mt-6 bg-blue-600 hover:bg-blue-700" disabled={loading}>
                     Go to Login
                 </Button>
             </div>
