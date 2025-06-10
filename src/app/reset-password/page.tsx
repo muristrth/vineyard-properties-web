@@ -216,7 +216,7 @@ function PasswordResetContent() {
                 <p className="text-red-600 text-center text-lg">
                     {message.text || "No reset code found in the URL. Please use the complete link from your email."}
                 </p>
-                <Button onClick={() => router.push("/")} className="mt-6 bg-blue-600 hover:bg-blue-700">
+                <Button onClick={() => router.push("/investor")} className="mt-6 bg-blue-600 hover:bg-blue-700">
                     Go to Login
                 </Button>
             </div>
