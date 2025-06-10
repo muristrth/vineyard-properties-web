@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-// Removed Header import as it's being replaced by direct HTML/JSX
+import { useRouter } from "next/navigation";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useState, useEffect } from 'react';
@@ -346,6 +346,7 @@ interface Notification {
 
 // --- Main Component ---
 export default function InvestorPortal() {
+    const router = useRouter();
     // --- State ---
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isRegistering, setIsRegistering] = useState(false);
@@ -972,19 +973,13 @@ export default function InvestorPortal() {
                                     </Button>
                                 </form>
                                 <div className="mt-6 text-center">
-                                    <button
-                                        onClick={() => setIsRegistering(!isRegistering)}
-                                        className="text-red-600 hover:text-red-700 font-medium"
-                                    >
-                                        {isRegistering
-                                            ? 'Already have an account? Sign in'
-                                            : "Don't have an account? Register"
-                                        }
+                                    <button onClick={() => setIsRegistering(!isRegistering)} className="text-red-600 hover:text-red-700 font-medium" >
+                                        {isRegistering ? 'Already have an account? Sign in' : "Don't have an account? Register" }
                                     </button>
                                 </div>
                                 {!isRegistering && (
                                     <div className="mt-4 text-center">
-                                        <button className="text-sm text-gray-600 hover:text-gray-800">
+                                        <button className="text-sm text-gray-600 hover:text-gray-800" onClick={() => router.push("/forgot-password")} >
                                             Forgot your password?
                                         </button>
                                     </div>
@@ -997,7 +992,6 @@ export default function InvestorPortal() {
             </div>
         );
     }
-
 
   function setShowLoanModal(arg0: boolean): void {
     throw new Error('Function not implemented.');
