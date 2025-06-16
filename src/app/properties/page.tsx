@@ -16,6 +16,20 @@ import {
 import { Search, Filter, MapPin } from 'lucide-react';
 
 const allProperties = [
+
+  {
+    id: 'panari-hotel',
+    title: '5 STAR HOTEL FOR SALE: THE PANARI HOTEL',
+    location: 'Mombasa Road, Nairobi',
+    price: 3500000000,
+    image: '/p40 ph/1.jpg',
+    bedrooms: 136,
+    bathrooms: 200,
+    area: 9000,
+    type: 'Hotel',
+    featured: true,
+  },
+  
   {
   id: 'heritage-villas-ngong',
   title: 'Luxurious 4 Bedroom All Ensuite Plus DSQ For Sale Heritage Villas, Ngong',
@@ -30,8 +44,7 @@ const allProperties = [
   },
   {
     id: 'kiambu-windsor',
-    title:
-      '4bdrm House Ensuite + 2 ensuite DSQs in Windsor Villas, Mushroom Gardens',
+    title:'4bdrm House Ensuite + 2 ensuite DSQs in Windsor Villas, Mushroom Gardens',
     location: 'Mushroom Gardens, Kiambu Road',
     price: 80000000,
     image:'https://austinerealtors.co.ke/wp-content/smush-webp/2024/02/1E2ACC81-C233-441F-BEF0-A6C448D14BBB-1170x720.jpeg.webp',
@@ -510,18 +523,7 @@ const allProperties = [
     type: 'Bungalow',
     featured: false,
   },
-  {
-    id: 'ruaka-duplex',
-    title: '4 bedroom duplex for sale in Ruaka',
-    location: 'Kiambu, Ruaka',
-    price: 22000000,
-    image: '/* Image placeholder - add your image here */',
-    bedrooms: 4,
-    bathrooms: 3,
-    area: 200,
-    type: 'Duplex',
-    featured: false,
-  },
+  
 ];
 
 export default function PropertiesPage() {
