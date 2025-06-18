@@ -716,7 +716,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Market Analysis',
     date: '2025-08-10',
     readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1549926402-6e279269550b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit&crop&w=1770&q=80',
+    image: 'https://www.policeinvestment.com/wp-content/uploads/2025/04/Kenyas-Real-Estate-Market-Trends.png',
     content: `
       <p>The Kenyan real estate market has long been a significant contributor to the nation's GDP and a key area of investment. As we delve into 2025, the market continues to evolve, influenced by a blend of economic policies, infrastructure development, demographic shifts, and global trends. Understanding its current state and future outlook is crucial for investors, developers, and aspiring homeowners. This blog post provides an expert analysis of the health of Kenya's real estate market in 2025, highlighting key sectors, opportunities, and challenges.</p>
 
@@ -786,7 +786,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Infrastructure',
     date: '2025-08-15',
     readTime: '11 min read',
-    image: 'https://images.unsplash.com/photo-1598006277259-2e11802b1f7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://chinaglobalsouth.com/wp-content/uploads/2025/03/Kenya-SGR-Site-768x432.jpg',
     content: `
       <p>Since its launch in 2017, the Standard Gauge Railway (SGR) has been a transformative infrastructure project in Kenya, significantly impacting logistics, tourism, and most notably, the real estate industry. As we approach a decade since its operationalization, it's timely to conduct a retrospective and prospective analysis of how the SGR has reshaped property values and development patterns along its corridor. In 2025, its influence continues to be felt, driving investment and urbanization in key areas. This blog post explores the profound and lasting impact of the SGR on Kenya’s real estate sector.</p>
 
@@ -844,7 +844,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Events',
     date: '2025-08-20',
     readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1544374343-690c74900a0d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://property254.co.ke/blogUploadedImages/1026/conversions/418-main.jpg',
     content: `
       <p>October is often a bustling month for the real estate sector in Kenya, playing host to a variety of events designed to connect investors, developers, service providers, and prospective homeowners. These gatherings offer invaluable opportunities for networking, gaining market insights, discovering new investment opportunities, and staying abreast of the latest trends and regulations. For anyone involved in or interested in the Kenyan real estate market in 2025, marking these events on your calendar is a must. Here's your comprehensive guide to the top real estate events expected in Kenya this October 2025.</p>
 
@@ -927,7 +927,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Lifestyle',
     date: '2025-08-25',
     readTime: '9 min read',
-    image: 'https://images.unsplash.com/photo-1616422896570-8d5f30e0b3c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://cdn.businessday.ng/wp-content/uploads/2025/01/Top-5-cities-in-Africa-with-highest-cost-of-living-in-2025.png',
     content: `
       <p>Africa's economic landscape is rapidly evolving, with several cities emerging as bustling economic hubs and desirable places to live. However, this growth often comes with a higher cost of living. For expatriates, global businesses, and even local residents, understanding which cities are the most expensive is crucial for financial planning and investment decisions. As we navigate 2025, the perennial question arises: where does Nairobi, Kenya's vibrant capital, rank among Africa's most expensive cities? This blog post delves into the factors contributing to the cost of living in major African cities, compares Nairobi's position, and provides insights for residents and real estate investors.</p>
 
@@ -1001,7 +1001,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Urban Development',
     date: '2025-09-01',
     readTime: '12 min read',
-    image: 'https://images.unsplash.com/photo-1616422896570-8d5f30e0b3c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://i.ytimg.com/vi/PaKHjJstPBc/mqdefault.jpg',
     content: `
       <p>Nairobi, East Africa’s economic powerhouse, is experiencing a relentless pace of urbanization. This growth manifests as a dual challenge: the rapid vertical expansion of high-rise developments within the city and uncontrolled urban sprawl into its peripheries. While indicative of economic vibrancy, this "housing menace" presents significant implications for urban planning, infrastructure, and the critical issue of housing affordability. As we stand in 2025, understanding and addressing these dynamics is crucial for Nairobi's sustainable future. This blog post examines the complexities of Nairobi’s high-rise development and urban sprawl, and their far-reaching consequences.</p>
 
@@ -1063,11 +1063,11 @@ const blogData: Record<string, BlogPost> = {
     id: 'navigating-kenya-real-estate-ms-expert',
     title: 'Navigating Kenya\'s Real Estate Landscape with Ms. [Expert Name]: Key Insights for 2025',
     excerpt: 'An exclusive interview with a leading real estate expert, Ms. [Expert Name], providing invaluable insights and predictions for the Kenyan property market in 2025.',
-    author: 'Editor', // Author will be "Editor" since the expert's name is dynamic
+    author: 'Mark Muriithi', // Author will be "Editor" since the expert's name is dynamic
     category: 'Expert Interview',
     date: '2025-09-05',
     readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1550920401-d007c5b61e2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://property254.co.ke/blogs/wp-content/uploads/2024/05/Navigating-Kenyas-real-estate-market.jpg',
     content: `
       <p>The Kenyan real estate market is a dynamic and often complex terrain, influenced by a myriad of factors from government policy and economic shifts to technological advancements and demographic changes. To gain a deeper understanding of what 2025 holds for this crucial sector, we sat down with Ms. [Expert Name], a highly respected and influential figure in the Kenyan real estate industry. With over [Number] years of experience in [mention specific area, e.g., property valuation, development, legal aspects, investment advisory], Ms. [Expert Name] offers invaluable insights and predictions that every investor, homeowner, and aspiring property owner should consider.</p>
 
@@ -1114,7 +1114,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Policy',
     date: '2025-09-10',
     readTime: '9 min read',
-    image: 'https://images.unsplash.com/photo-1598516086937-2911b6f007b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://www.buyrentkenya.com/discover/wp-content/uploads/2023/07/brkmarketing-image-of-kenyan-members-of-parliament-giving-a-pre-7ba7835a-1c89-4182-bfc5-99860b06c78a-1.png',
     content: `
       <p>The Kenyan land sector, historically fraught with complexities and occasional controversies, is undergoing significant regulatory adjustments aimed at formalizing operations and enhancing investor protection. A prominent new development set to impact the market in 2025 is the proposed introduction of substantial license fees, reportedly up to KES 500 million, for land buying and selling firms. This move, spearheaded by regulatory bodies, aims to professionalize the industry, filter out unscrupulous players, and ensure greater accountability. However, it also raises questions about its potential effects on market dynamics, land prices, and the accessibility of land for ordinary Kenyans. This blog post analyzes the implications of these new license fees on Kenya’s land market.</p>
 
@@ -1175,7 +1175,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Infrastructure',
     date: '2025-09-15',
     readTime: '11 min read',
-    image: 'https://images.unsplash.com/photo-1544498308-41f2382f6e91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://swalanyeti.co.ke/storage/uploads/2024/01/Mombasa%20Gate%20bridge%201-1706616576.jpeg',
     content: `
       <p>Mombasa, Kenya's primary port city and a vital economic hub, has long grappled with significant traffic congestion, particularly at the Likoni Channel crossing. The proposed Mombasa Gate Bridge project is poised to be a game-changer, addressing this perennial challenge and fundamentally reshaping the urban and real estate landscape of the coastal region. As construction progresses, the anticipated impact on accessibility, economic activity, and property values is immense. In 2025, this project is not just a bridge; it's a catalyst for regional transformation. This blog post offers a comprehensive review of the Mombasa Gate Bridge project and its projected transformative impact on coastal real estate.</p>
 
@@ -1235,7 +1235,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Infrastructure',
     date: '2025-09-20',
     readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1621644782079-c88f72c01b1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://samrack.com/wp-content/uploads/2019/10/Screen-Shot-2019-10-20-at-6.56.13-PM.png',
     content: `
       <p>Nairobi, a bustling economic hub in East Africa, has long been synonymous with crippling traffic congestion. The JKIA-Westlands Expressway, a major infrastructure project launched to alleviate this notorious "traffic menace," brought with it immense hope for improved urban mobility. As we delve into 2025, it’s crucial to assess whether this ambitious project has indeed solved Nairobi's traffic woes and what its broader impact has been on the city's real estate, accessibility, and economic life. This blog post provides an evaluation of the Expressway's effectiveness and its multifaceted consequences.</p>
 
@@ -1337,7 +1337,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Development',
     date: '2025-08-01',
     readTime: '10 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-affordable-homes',
+    image: 'https://nairobileo.co.ke/storage/uploads/2024/12/Ruto%20Mukuru%20houses-1734768895.jpeg',
     content: `
       <p>The quest for **affordable housing** has been a consistent priority for the Kenyan government, aiming to provide dignified shelter for its growing population. While significant strides have been made in policy formulation and project launches, the path to widespread affordable homeownership remains fraught with challenges. This blog post explores the measurable progress achieved in Kenya’s affordable housing agenda and dissects the persistent hurdles that continue to impede its full realization, offering a current perspective on the state of **real estate in Kenya**.</p>
 
@@ -1389,7 +1389,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Government Policy',
     date: '2025-07-22',
     readTime: '11 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-construction-fund',
+    image: 'https://publish.eastleighvoice.co.ke/mugera_lock/uploads/2025/02/Alice-Wahome-2.jpg',
     content: `
       <p>Recent statements from Water and Sanitation Cabinet Secretary Alice Wahome have reignited public debate on Kenya's **Housing Levy**. While acknowledging that the funds collected are indeed being channeled into construction projects, CS Wahome's remarks implicitly highlighted a crucial disconnect: the actual rate of homeownership amongst Kenyans is not keeping pace with the visible construction activities. This disparity raises significant questions about the effectiveness of the levy in achieving its ultimate goal of increased homeownership and the broader implications for **real estate in Kenya**.</p>
 
@@ -1434,7 +1434,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Current Affairs',
     date: '2025-06-10',
     readTime: '9 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-state-house',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcEMywzPoElIrDvs91zNfdH7kXEN-DeI7g7w&s',
     content: `
       <p>The recent news of renovations at Kenya's State House has stirred considerable public discussion and debate. As the official residence and workplace of the President, State House holds significant symbolic importance, representing the nation's sovereignty and aspirations. However, in an economic climate marked by high cost of living and persistent calls for fiscal prudence, questions naturally arise about the necessity and extent of such expenditures. This article delves into the various facets of the State House makeover, examining the arguments for and against, and its implications for public perception and the broader **real estate in Kenya** context of public infrastructure investment.</p>
 
@@ -1483,7 +1483,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Sustainability',
     date: '2025-08-15',
     readTime: '10 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-environmental-impact',
+    image: 'https://nairobiwire.com/wp-content/uploads/2025/05/afford.jpg',
     content: `
       <p>The recent halting of a major housing project in Nairobi's Lang’ata area due to environmental concerns serves as a stark reminder of the increasing emphasis on sustainable development and robust environmental oversight in Kenya. This incident underscores a growing trend where environmental considerations are taking precedence, reshaping the landscape of **real estate in Kenya**. Developers, investors, and policymakers alike are being compelled to integrate ecological impact assessments more rigorously into their project planning, acknowledging that sustainable practices are not just good for the environment, but also critical for project viability and public acceptance.</p>
 
@@ -1537,7 +1537,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Taxation',
     date: '2025-09-01',
     readTime: '8 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-tax-filing',
+    image: 'https://www.mwakilishi.com/sites/default/files/styles/large/public/2023-01/Fc85dDst%20%282%29.jpg?itok=vPFzgRJR',
     content: `
       <p>The Kenya Revenue Authority (KRA) continues its push towards digital transformation and enhanced tax compliance. In a significant move for the **real estate in Kenya** sector, KRA has recently launched a new system specifically designed to simplify tax filing for landlords and real estate agents. This initiative aims to broaden the tax base, improve efficiency in tax collection from the rental income segment, and hopefully, reduce the burden of compliance for property owners and managers. Understanding the functionalities and implications of this new system is crucial for anyone involved in Kenya's dynamic property market.</p>
 
@@ -1595,7 +1595,7 @@ const blogData: Record<string, BlogPost> = {
     category: 'Finance',
     date: '2025-07-05',
     readTime: '13 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-sacco-housing',
+    image: 'https://media.licdn.com/dms/image/v2/D4D12AQEUdvYcXQfFSw/article-cover_image-shrink_720_1280/B4DZVbIqR2HAAI-/0/1740990752474?e=2147483647&v=beta&t=5h0xJQN4JdI-8XaH8sABeT2H8KDv7ZF-nFD5nYmQB34',
     content: `
       <p>The recent revelations of a multi-billion shilling fraud scandal involving the Kenya Union of Savings and Credit Co-operatives (KUSCCO) have sent shockwaves across Kenya's financial sector and, more specifically, put a dark cloud over **SACCO-backed housing projects**. With alleged misappropriation amounting to KSh 12 billion, this scandal threatens the financial stability of numerous SACCOs and the housing dreams of thousands of Kenyans who have diligently saved through these cooperative movements. This incident underscores critical vulnerabilities within the cooperative sector and highlights the urgent need for enhanced governance and oversight in **real estate in Kenya** where SACCOs play a pivotal role.</p>
 

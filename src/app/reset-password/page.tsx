@@ -177,7 +177,7 @@ function PasswordResetContent() {
                 setLoading(false);
                 return;
             }
-            await confirmPasswordReset(auth, oobCode, newPassword);
+            await confirmPasswordReset(auth, oobCode as string, newPassword);
             setMessage({ type: 'success', text: "Password reset successful! Redirecting to login..." });
             setNewPassword("");
             setConfirmPassword("");

@@ -148,7 +148,7 @@ const blogPosts = [
     category: 'Market Analysis',
     date: '2025-08-10',
     readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1549926402-6e279269550b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://www.policeinvestment.com/wp-content/uploads/2025/04/Kenyas-Real-Estate-Market-Trends.png',
     featured: false,
   },
   {
@@ -159,7 +159,7 @@ const blogPosts = [
     category: 'Infrastructure',
     date: '2025-08-15',
     readTime: '11 min read',
-    image: 'https://images.unsplash.com/photo-1598006277259-2e11802b1f7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://chinaglobalsouth.com/wp-content/uploads/2025/03/Kenya-SGR-Site-768x432.jpg',
     featured: false,
   },
   {
@@ -170,7 +170,7 @@ const blogPosts = [
     category: 'Events',
     date: '2025-08-20',
     readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1544374343-690c74900a0d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://property254.co.ke/blogUploadedImages/1026/conversions/418-main.jpg',
     featured: false,
   },
   {
@@ -181,7 +181,7 @@ const blogPosts = [
     category: 'Lifestyle',
     date: '2025-08-25',
     readTime: '9 min read',
-    image: 'https://images.unsplash.com/photo-1616422896570-8d5f30e0b3c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://cdn.businessday.ng/wp-content/uploads/2025/01/Top-5-cities-in-Africa-with-highest-cost-of-living-in-2025.png',
     featured: false,
   },
   {
@@ -192,7 +192,7 @@ const blogPosts = [
     category: 'Urban Development',
     date: '2025-09-01',
     readTime: '12 min read',
-    image: 'https://images.unsplash.com/photo-1616422896570-8d5f30e0b3c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://i.ytimg.com/vi/PaKHjJstPBc/mqdefault.jpg',
     featured: true,
   },
   {
@@ -203,7 +203,7 @@ const blogPosts = [
     category: 'Expert Interview',
     date: '2025-09-05',
     readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1550920401-d007c5b61e2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://property254.co.ke/blogs/wp-content/uploads/2024/05/Navigating-Kenyas-real-estate-market.jpg',
     featured: false,
   },
   {
@@ -214,7 +214,7 @@ const blogPosts = [
     category: 'Policy',
     date: '2025-09-10',
     readTime: '9 min read',
-    image: 'https://images.unsplash.com/photo-1598516086937-2911b6f007b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://www.buyrentkenya.com/discover/wp-content/uploads/2023/07/brkmarketing-image-of-kenyan-members-of-parliament-giving-a-pre-7ba7835a-1c89-4182-bfc5-99860b06c78a-1.png',
     featured: false,
   },
   {
@@ -225,7 +225,7 @@ const blogPosts = [
     category: 'Infrastructure',
     date: '2025-09-15',
     readTime: '11 min read',
-    image: 'https://images.unsplash.com/photo-1544498308-41f2382f6e91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://swalanyeti.co.ke/storage/uploads/2024/01/Mombasa%20Gate%20bridge%201-1706616576.jpeg',
     featured: true,
   },
   {
@@ -236,7 +236,7 @@ const blogPosts = [
     category: 'Infrastructure',
     date: '2025-09-20',
     readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1621644782079-c88f72c01b1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    image: 'https://samrack.com/wp-content/uploads/2019/10/Screen-Shot-2019-10-20-at-6.56.13-PM.png',
     featured: false,
   },
   {
@@ -247,7 +247,7 @@ const blogPosts = [
     category: 'Development',
     date: '2025-08-01',
     readTime: '10 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-affordable-homes',
+    image: 'https://nairobileo.co.ke/storage/uploads/2024/12/Ruto%20Mukuru%20houses-1734768895.jpeg',
     featured: false,
   },
   {
@@ -258,7 +258,7 @@ const blogPosts = [
     category: 'Government Policy',
     date: '2025-07-22',
     readTime: '11 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-construction-fund',
+    image: 'https://publish.eastleighvoice.co.ke/mugera_lock/uploads/2025/02/Alice-Wahome-2.jpg',
     featured: false,
   },
   {
@@ -269,7 +269,7 @@ const blogPosts = [
     category: 'Current Affairs',
     date: '2025-06-10',
     readTime: '9 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-state-house',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcEMywzPoElIrDvs91zNfdH7kXEN-DeI7g7w&s',
     featured: false,
   },
   {
@@ -280,7 +280,7 @@ const blogPosts = [
     category: 'Sustainability',
     date: '2025-08-15',
     readTime: '10 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-environmental-impact',
+    image: 'https://nairobiwire.com/wp-content/uploads/2025/05/afford.jpg',
     featured: false,
   },
   {
@@ -291,7 +291,7 @@ const blogPosts = [
     category: 'Taxation',
     date: '2025-09-01',
     readTime: '8 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-tax-filing',
+    image: 'https://www.mwakilishi.com/sites/default/files/styles/large/public/2023-01/Fc85dDst%20%282%29.jpg?itok=vPFzgRJR',
     featured: false,
   },
   {
@@ -302,7 +302,7 @@ const blogPosts = [
     category: 'Finance',
     date: '2025-07-05',
     readTime: '13 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-sacco-housing',
+    image: 'https://media.licdn.com/dms/image/v2/D4D12AQEUdvYcXQfFSw/article-cover_image-shrink_720_1280/B4DZVbIqR2HAAI-/0/1740990752474?e=2147483647&v=beta&t=5h0xJQN4JdI-8XaH8sABeT2H8KDv7ZF-nFD5nYmQB34',
     featured: true,
   },
   {

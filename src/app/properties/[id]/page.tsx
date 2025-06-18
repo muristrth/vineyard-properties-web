@@ -2738,7 +2738,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
 
 export default function PropertyDetailPage() {
   const params = useParams();
-  const propertyId = params.id as string;
+  const propertyId = params && 'id' in params ? (params.id as string) : '';
   const property = propertyData[propertyId];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
