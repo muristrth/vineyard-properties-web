@@ -5,6 +5,8 @@ import { useParams } from 'next/navigation'; // Correct hook for Next.js App Rou
 import { doc, getDoc, updateDoc, Firestore, DocumentData } from 'firebase/firestore';
 import { db } from '@/lib/firebase'; // Adjust this path if your firebase.ts is elsewhere
 import { RefreshCw, CheckCircle, XCircle } from 'lucide-react'; // Assuming these icons are available
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 // --- Re-using UI Components from your existing page.tsx for consistency ---
 // These should ideally be in a shared components folder, but for this example,
@@ -142,7 +144,7 @@ type FormDataDoc = {
 // --- ClientForm Component ---
 const ClientForm: React.FC = () => {
   const params = useParams();
-  const formId = params?.formId as string; // Get formId from URL params, safe access
+  const formId = params?.formId as string | undefined; // Get formId from URL params safely
 
   const [formData, setFormData] = useState<FormDataDoc | null>(null);
   const [clientInfo, setClientInfo] = useState<ClientInfo>({
@@ -173,8 +175,8 @@ const ClientForm: React.FC = () => {
       setLoading(true);
       setError(null);
       try {
-        // Corrected path: Assuming 'form' is a top-level collection
-        const formRef = doc(db, 'form', formId);
+        // Corrected path based on screenshot: 'forms' is a top-level collection
+        const formRef = doc(db, 'forms', formId); // <--- CORRECTED LINE HERE
         const formSnap = await getDoc(formRef);
 
         if (formSnap.exists()) {
@@ -189,7 +191,11 @@ const ClientForm: React.FC = () => {
         }
       } catch (err) { // Catching any error and typing it as any for now, can be more specific
         console.error('Error fetching form data:', err);
-        setError(`Failed to load form: ${err instanceof Error ? err.message : String(err)}`);
+        if (err instanceof Error) {
+          setError(`Failed to load form: ${err.message}`);
+        } else {
+          setError('Failed to load form: An unknown error occurred.');
+        }
       } finally {
         setLoading(false);
       }
@@ -220,8 +226,8 @@ const ClientForm: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      // Corrected path: Assuming 'form' is a top-level collection
-      const formRef = doc(db, 'form', formId);
+      // Corrected path based on screenshot: 'forms' is a top-level collection
+      const formRef = doc(db, 'forms', formId); // <--- CORRECTED LINE HERE
 
       // Update the document in Firestore
       await updateDoc(formRef, {
@@ -236,8 +242,11 @@ const ClientForm: React.FC = () => {
       setLoading(false);
     } catch (err) { // Catching any error and typing it as any for now, can be more specific
       console.error('Error submitting form:', err);
-      const errorMessage = (err instanceof Error) ? err.message : String(err);
-      setError(`Failed to submit form: ${errorMessage}`);
+      if (err instanceof Error) {
+        setError(`Failed to submit form: ${err.message}`);
+      } else {
+        setError('Failed to submit form: An unknown error occurred.');
+      }
       setLoading(false);
     }
   };
@@ -290,10 +299,13 @@ const ClientForm: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-black text-black flex flex-col">
+                <Header />
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-10">
+
       <Card className="w-full max-w-2xl">
         <CardHeader>
-          <CardTitle className="text-center">Property Details Form</CardTitle>
+          <CardTitle className="text-center">VPL Sales Form</CardTitle>
           <p className="text-center text-gray-600">Please fill in your personal information.</p>
         </CardHeader>
         <CardContent>
@@ -448,6 +460,9 @@ const ClientForm: React.FC = () => {
           </form>
         </CardContent>
       </Card>
+      
+    </div>
+    <Footer/>
     </div>
   );
 };
