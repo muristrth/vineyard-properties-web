@@ -142,7 +142,7 @@ type FormDataDoc = {
 // --- ClientForm Component ---
 const ClientForm: React.FC = () => {
   const params = useParams();
-  const formId = params.formId as string; // Get formId from URL params
+  const formId = params?.formId as string; // Get formId from URL params, safe access
 
   const [formData, setFormData] = useState<FormDataDoc | null>(null);
   const [clientInfo, setClientInfo] = useState<ClientInfo>({
@@ -187,9 +187,9 @@ const ClientForm: React.FC = () => {
         } else {
           setError('Form not found or invalid ID.');
         }
-      } catch (err: any) { // Catching any error and typing it as any for now, can be more specific
+      } catch (err) { // Catching any error and typing it as any for now, can be more specific
         console.error('Error fetching form data:', err);
-        setError(`Failed to load form: ${err.message}`);
+        setError(`Failed to load form: ${err instanceof Error ? err.message : String(err)}`);
       } finally {
         setLoading(false);
       }
@@ -234,9 +234,10 @@ const ClientForm: React.FC = () => {
 
       setIsSubmitted(true); // Set state to show success message
       setLoading(false);
-    } catch (err: any) { // Catching any error and typing it as any for now, can be more specific
+    } catch (err) { // Catching any error and typing it as any for now, can be more specific
       console.error('Error submitting form:', err);
-      setError(`Failed to submit form: ${err.message}`);
+      const errorMessage = (err instanceof Error) ? err.message : String(err);
+      setError(`Failed to submit form: ${errorMessage}`);
       setLoading(false);
     }
   };
