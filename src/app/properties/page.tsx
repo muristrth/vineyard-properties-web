@@ -32,7 +32,7 @@ const allProperties = [
   
   {
     id: 'carol-wangan-nguthi-kitengela',
-    title: 'Spacious Plot for Sale in Kitengela',
+    title: 'Spacious Plot for Sale in Kitengela Phase 11',
     location: 'Kitengela, Kajiado County, Kenya',
     price: 750000,
     image: '/p kite 11/Screenshot 2024-02-12 090319.png',

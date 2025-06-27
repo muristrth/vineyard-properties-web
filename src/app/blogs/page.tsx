@@ -313,7 +313,7 @@ const blogPosts = [
     category: 'Legal',
     date: '2025-08-20',
     readTime: '11 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-real-estate-legal',
+    image: 'https://www.wynnconsult.co.ke/wp-content/uploads/2023/09/1680684458222.png',
     featured: false,
   },
   {
@@ -324,7 +324,7 @@ const blogPosts = [
     category: 'Commercial Real Estate',
     date: '2025-09-10',
     readTime: '9 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-bpo-office',
+    image: 'https://trendgroup.co.za/wp-content/uploads/2024/07/Commercial_Office_Cape_Town_Design_and_Build_1st_floor_boardroom-4.jpg',
     featured: false,
   },
   {
@@ -412,7 +412,7 @@ const blogPosts = [
     category: 'Market Analysis',
     date: '2025-07-01',
     readTime: '11 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-urban-homeownership',
+    image: 'https://usafactsdata.blob.core.windows.net/flourish-screenshots/what_is_the_homeownership_rate-LOC__country-United_States-national_homeownership_rate_by_type_line_chart.png',
     featured: false,
   },
   {
@@ -423,7 +423,7 @@ const blogPosts = [
     category: 'Investment Trends',
     date: '2025-09-20',
     readTime: '10 min read',
-    image: 'https://source.unsplash.com/random/800x600?kenya-fractional-ownership',
+    image: 'https://www.buyrentkenya.com/discover/wp-content/uploads/2025/04/image-fx-2025-04-01t144758527-1.jpg',
     featured: true,
   },
   {
