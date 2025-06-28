@@ -253,12 +253,16 @@ const ClientForm: React.FC = () => {
 
   if (loading) {
     return (
+      <div className="min-h-screen bg-black text-black flex flex-col">
+                <Header />
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="text-center">
           <RefreshCw className="h-10 w-10 text-red-600 animate-spin mx-auto" />
           <p className="mt-4 text-gray-700">Loading form...</p>
         </div>
       </div>
+      <Footer/>
+    </div>
     );
   }
 
@@ -282,6 +286,8 @@ const ClientForm: React.FC = () => {
 
   if (isSubmitted) {
     return (
+      <div className="min-h-screen bg-black text-black flex flex-col">
+                <Header />
       <div className="min-h-screen flex items-center justify-center bg-green-50 p-4">
         <Card className="w-full max-w-md text-center">
           <CardHeader>
@@ -291,10 +297,12 @@ const ClientForm: React.FC = () => {
           </CardHeader>
           <CardContent>
             <p className="text-gray-700">Thank you for providing your details. Your form has been received.</p>
-            <p className="mt-4 text-gray-500">You can close this page now.</p>
+            <p className="mt-4 text-gray-500">Register as an investor in our Investor Portal to view your assets in one place.</p>
           </CardContent>
         </Card>
       </div>
+      <Footer/>
+    </div>
     );
   }
 
