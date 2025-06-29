@@ -1,5 +1,6 @@
 // functions/src/index.ts
 
+import * as functions from 'firebase-functions';
 import * as functionsV1 from 'firebase-functions/v1'; // Explicitly importing v1 for firestore trigger
 import * as admin from 'firebase-admin';
 import * as pdf from 'html-pdf'; // For PDF generation
@@ -11,12 +12,12 @@ admin.initializeApp();
 // --- Nodemailer Transporter Setup ---
 // SMTP credentials will be stored in Firebase Functions config
 const smtpConfig = {
-  host: functionsV1.config().smtp.host,
-  port: parseInt(functionsV1.config().smtp.port), // Ensure port is a number
-  secure: functionsV1.config().smtp.secure === 'true', // Use 'true' or 'false' string in config
+  host: functions.config().smtp.host,
+  port: parseInt(functions.config().smtp.port), // Ensure port is a number
+  secure: functions.config().smtp.secure === 'true', // Use 'true' or 'false' string in config
   auth: {
-    user: functionsV1.config().smtp.user,
-    pass: functionsV1.config().smtp.pass,
+    user: functions.config().smtp.user,
+    pass: functions.config().smtp.pass,
   },
 };
 
@@ -43,7 +44,6 @@ export const processSalesFormSubmission = functionsV1.firestore
         formId: string;
         property: { name: string; beacon: string; price: string; viewedDate: string; salesperson: string; };
         client: {
-          [x: string]: any;
           name1: string;
           name2: string;
           tel: string;
@@ -54,6 +54,7 @@ export const processSalesFormSubmission = functionsV1.firestore
           nextOfKin: string;
           idNumber: string;
           passportPhotoUrl?: string; // Optional if not always present
+          signed?: boolean; // Optional signed property
         };
         status: string;
       };
@@ -61,7 +62,7 @@ export const processSalesFormSubmission = functionsV1.firestore
       const clientEmail = formData.client.email;
       const clientFullName = `${formData.client.name1} ${formData.client.name2}`;
 
-      functionsV1.logger.info(`Processing form ${formId} for ${clientFullName}`);
+      functions.logger.info(`Processing form ${formId} for ${clientFullName}`);
 
       try {
         // 1. Generate HTML content for the PDF
@@ -156,7 +157,7 @@ export const processSalesFormSubmission = functionsV1.firestore
           'client.pdfDownloadUrl': pdfDownloadUrl,
           status: 'completed', // Mark as completed after PDF generation
         });
-        functionsV1.logger.info(`PDF generated and uploaded for form ${formId}. URL: ${pdfDownloadUrl}`);
+        functions.logger.info(`PDF generated and uploaded for form ${formId}. URL: ${pdfDownloadUrl}`);
 
         // 6. Send email to client
         const mailOptionsClient = {
@@ -183,7 +184,7 @@ export const processSalesFormSubmission = functionsV1.firestore
           }
         };
         await transporter.sendMail(mailOptionsClient);
-        functionsV1.logger.info(`Email sent to client ${clientEmail} for form ${formId}`);
+        functions.logger.info(`Email sent to client ${clientEmail} for form ${formId}`);
 
         // 7. Send notification email to admin
         const mailOptionsAdmin = {
@@ -214,10 +215,10 @@ export const processSalesFormSubmission = functionsV1.firestore
           }
         };
         await transporter.sendMail(mailOptionsAdmin);
-        functionsV1.logger.info(`Notification email sent to admin for form ${formId}`);
+        functions.logger.info(`Notification email sent to admin for form ${formId}`);
 
       } catch (error) {
-        functionsV1.logger.error(`Error processing form ${formId}:`, error);
+        functions.logger.error(`Error processing form ${formId}:`, error);
         // Optionally, update Firestore status to 'failed' or log for manual review
         await admin.firestore().collection('forms').doc(formId).update({
           status: 'failed_pdf_email',
@@ -225,7 +226,7 @@ export const processSalesFormSubmission = functionsV1.firestore
         });
       }
     } else {
-      functionsV1.logger.info(`Form ${formId} update not relevant for PDF/email generation (status: ${newData.status}, pdfUrl: ${newData.client?.pdfDownloadUrl})`);
+      functions.logger.info(`Form ${formId} update not relevant for PDF/email generation (status: ${newData.status}, pdfUrl: ${newData.client?.pdfDownloadUrl})`);
     }
     return null;
   });
