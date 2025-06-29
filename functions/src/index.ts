@@ -54,7 +54,7 @@ export const processSalesFormSubmission = functionsV1.firestore
           nextOfKin: string;
           idNumber: string;
           passportPhotoUrl?: string; // Optional if not always present
-          signed?: boolean; // Optional signed property
+          signed?: boolean; // Optional property for form signed status
         };
         status: string;
       };
