@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import Header from '@/components/Header';
@@ -24,6 +25,10 @@ import {
   Camera,
   ChevronLeft,
   ChevronRight,
+  Calculator, // Added for calculator icons
+  DollarSign, // Added for financial icons
+  TrendingUp,
+  XCircle, // Added for ROI
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -114,7 +119,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     image: 'https://ext.same-assets.com/2009473017/3756399664.png',
   },
   
-  virtualTour: false,
+  virtualTour: true, // Set to true for demonstration
   featured: true,
 
 },
@@ -539,6 +544,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       'Close to major schools',
       'Reputable hospitals nearby',
       'Shopping and entertainment centers',
+      'Reliable public transport',
     ],
     agent: {
       name: 'Mark James',
@@ -1119,7 +1125,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       "email": "info@gaithomarketingmasters.com",
       "image": "https://images.openai.com/thumbnails/6e502fcccbd8109ef0bada70a01636b9.jpeg"
     },
-    "virtualTour": false,
+    "virtualTour": true, // Set to true for demonstration
     "featured": true
   },
 
@@ -1396,13 +1402,15 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       'Swimming pool',
       'Landscaped gardens',
       'Staff quarters',
+      'Wine cellar', // Added for demo
+      'Elevator', // Added for demo
       'Generator',
       'Security system',
       'Garage parking',
       'Mature trees',
     ],
     amenities: [
-      'Swimming Pool',
+      'Private Pool',
       'Private Gardens',
       'Security',
       'Staff Accommodation',
@@ -1652,7 +1660,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       'High yield investment',
       'Fully functional facility',
       'Good road access',
-      'Power supply',
+      'Power backup',
       'Security features',
       'Development potential',
     ],
@@ -1705,7 +1713,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     ],
     amenities: [
       'Prime CBD Location',
-      'High Traffic Area',
+      'High Traffic',
       'Commercial Zone',
       'Public Transport',
     ],
@@ -3234,7 +3242,6 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       '4 bedrooms',
       '3 bathrooms',
       'Panoramic views',
-      'Premium finishes',
       'Terrace garden',
       'Swimming pool',
       'Gym',
@@ -3686,6 +3693,29 @@ export default function PropertyDetailPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showVirtualTour, setShowVirtualTour] = useState(false);
 
+  // Mortgage Calculator States
+  const [mortgagePrincipal, setMortgagePrincipal] = useState(property ? property.price : 0);
+  const [mortgageInterestRate, setMortgageInterestRate] = useState(7); // Annual interest rate in %
+  const [mortgageLoanTerm, setMortgageLoanTerm] = useState(30); // Loan term in years
+  const [monthlyMortgagePayment, setMonthlyMortgagePayment] = useState(0);
+
+  // Property Valuation States
+  const [valuationInputPrice, setValuationInputPrice] = useState(property ? property.price : 0);
+  const [valuationResult, setValuationResult] = useState<number | null>(null);
+
+  // Investment ROI Calculator States
+  const [roiInvestmentCost, setRoiInvestmentCost] = useState(property ? property.price : 0);
+  const [roiAnnualReturn, setRoiAnnualReturn] = useState(0); // Expected annual return
+  const [roiResult, setRoiResult] = useState<number | null>(null);
+
+  // Calculate initial mortgage payment on load
+  React.useEffect(() => {
+    if (property) {
+      setMortgagePrincipal(property.price);
+      calculateMortgagePayment(property.price, mortgageInterestRate, mortgageLoanTerm);
+    }
+  }, [property, mortgageInterestRate, mortgageLoanTerm]); // Recalculate if these change
+
   if (!property) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -3720,6 +3750,48 @@ export default function PropertyDetailPage() {
     );
   };
 
+  // Mortgage Calculator Logic
+  const calculateMortgagePayment = (principal: number, annualInterestRate: number, loanTermYears: number) => {
+    if (principal <= 0 || annualInterestRate < 0 || loanTermYears <= 0) {
+      setMonthlyMortgagePayment(0);
+      return;
+    }
+
+    const monthlyInterestRate = annualInterestRate / 100 / 12;
+    const numberOfPayments = loanTermYears * 12;
+
+    if (monthlyInterestRate === 0) {
+      setMonthlyMortgagePayment(principal / numberOfPayments);
+    } else {
+      const numerator = principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments);
+      const denominator = Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1;
+      setMonthlyMortgagePayment(numerator / denominator);
+    }
+  };
+
+  // Property Valuation Logic (Simplified/Simulated)
+  const handleValuationCalculate = () => {
+    if (valuationInputPrice <= 0) {
+      setValuationResult(null);
+      return;
+    }
+    // Simulate a valuation: e.g., +/- 10% of input price
+    const randomFactor = (Math.random() * 0.2) - 0.1; // -0.1 to +0.1
+    const estimatedValue = valuationInputPrice * (1 + randomFactor);
+    setValuationResult(Math.round(estimatedValue));
+  };
+
+  // Investment ROI Logic
+  const handleROICalculate = () => {
+    if (roiInvestmentCost <= 0) {
+      setRoiResult(null);
+      return;
+    }
+    const roi = (roiAnnualReturn / roiInvestmentCost) * 100;
+    setRoiResult(roi);
+  };
+
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -3743,14 +3815,36 @@ export default function PropertyDetailPage() {
             {/* Main Image */}
             <div className="lg:col-span-2">
               <div className="relative h-96 overflow-hidden rounded-2xl bg-gray-100 lg:h-[500px]">
-                <img
-                  src={property.images[currentImageIndex]}
-                  alt={property.title}
-                  className="h-full w-full object-cover"
-                />
+                {/* Conditional rendering for Virtual Tour */}
+                {showVirtualTour && property.virtualTour ? (
+                    <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
+                        {/* Placeholder for actual virtual tour embed */}
+                        <iframe
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" // Example YouTube embed, replace with actual tour
+                            title="Virtual Property Tour"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="w-full h-full"
+                        ></iframe>
+                        <Button
+                            onClick={() => setShowVirtualTour(false)}
+                            className="absolute top-4 right-4 bg-white text-gray-800 hover:bg-gray-100"
+                        >
+                            <XCircle className="h-5 w-5 mr-2" /> Close Tour
+                        </Button>
+                    </div>
+                ) : (
+                    <img
+                        src={property.images[currentImageIndex]}
+                        alt={property.title}
+                        className="h-full w-full object-cover"
+                    />
+                )}
 
-                {/* Image Navigation */}
-                {property.images.length > 1 && (
+
+                {/* Image Navigation (only if not showing virtual tour) */}
+                {!showVirtualTour && property.images.length > 1 && (
                   <>
                     <button
                       onClick={prevImage}
@@ -3767,14 +3861,17 @@ export default function PropertyDetailPage() {
                   </>
                 )}
 
-                {/* Image Counter */}
-                <div className="absolute bottom-4 left-4 rounded-full bg-black/60 px-3 py-1 text-sm text-white">
-                  {currentImageIndex + 1} / {property.images.length}
-                </div>
+                {/* Image Counter (only if not showing virtual tour) */}
+                {!showVirtualTour && (
+                    <div className="absolute bottom-4 left-4 rounded-full bg-black/60 px-3 py-1 text-sm text-white">
+                        {currentImageIndex + 1} / {property.images.length}
+                    </div>
+                )}
+
 
                 {/* Actions */}
                 <div className="absolute right-4 top-4 flex space-x-2">
-                  {property.virtualTour && (
+                  {property.virtualTour && !showVirtualTour && ( // Only show if virtual tour exists and not currently showing
                     <Button
                       onClick={() => setShowVirtualTour(true)}
                       className="bg-primary hover:bg-primary/90"
@@ -3783,10 +3880,12 @@ export default function PropertyDetailPage() {
                       Virtual Tour
                     </Button>
                   )}
-                  <Button variant="secondary" size="sm">
-                    <Camera className="mr-2 h-4 w-4" />
-                    {property.images.length} Photos
-                  </Button>
+                  {!showVirtualTour && ( // Only show if not showing virtual tour
+                    <Button variant="secondary" size="sm">
+                      <Camera className="mr-2 h-4 w-4" />
+                      {property.images.length} Photos
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -4005,73 +4104,119 @@ export default function PropertyDetailPage() {
                     Quick Actions
                   </h3>
                   <div className="space-y-3">
-  {/* Schedule Viewing */}
-  <a href="tel:0729170156" className="block">
-    <Button variant="outline" className="w-full">
-      <Calendar className="mr-2 h-4 w-4" />
-      Schedule Viewing
-    </Button>
-  </a>
+                    {/* Schedule Viewing */}
+                    <a href="tel:0729170156" className="block">
+                      <Button variant="outline" className="w-full">
+                        <Calendar className="mr-2 h-4 w-4" />
+                        Schedule Viewing
+                      </Button>
+                    </a>
 
-  {/* Save Property via WhatsApp */}
-  <a
-    href="https://wa.me/254729170156?text=I'm%20interested%20in%20this%20property%20you%20listed."
-    target="_blank"
-    rel="noopener noreferrer"
-    className="block"
-  >
-    <Button variant="outline" className="w-full">
-      <Heart className="mr-2 h-4 w-4" />
-      Save Property
-    </Button>
-  </a>
+                    {/* Save Property via WhatsApp */}
+                    <a
+                      href="https://wa.me/254729170156?text=I'm%20interested%20in%20this%20property%20you%20listed."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <Button variant="outline" className="w-full">
+                        <Heart className="mr-2 h-4 w-4" />
+                        Save Property
+                      </Button>
+                    </a>
 
-  {/* Share Property */}
-  <a
-    href={typeof window !== 'undefined' ? window.location.href : '#'}
-    onClick={(e) => {
-      e.preventDefault();
-      if (navigator.share) {
-        navigator
-          .share({
-            title: 'Check out this property!',
-            url: window.location.href,
-          })
-          .catch((error) => console.log('Share failed:', error));
-      } else {
-        // fallback: copy to clipboard
-        navigator.clipboard.writeText(window.location.href);
-        alert('Link copied to clipboard!');
-      }
-    }}
-    className="block"
-  >
-    <Button variant="outline" className="w-full">
-      <Share className="mr-2 h-4 w-4" />
-      Share Property
-    </Button>
-  </a>
-</div>
-
+                    {/* Share Property */}
+                    <a
+                      href={typeof window !== 'undefined' ? window.location.href : '#'}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (navigator.share) {
+                          navigator
+                            .share({
+                              title: 'Check out this property!',
+                              url: window.location.href,
+                            })
+                            .catch((error) => console.log('Share failed:', error));
+                        } else {
+                          // fallback: copy to clipboard
+                          navigator.clipboard.writeText(window.location.href);
+                          alert('Link copied to clipboard!');
+                        }
+                      }}
+                      className="block"
+                    >
+                      <Button variant="outline" className="w-full">
+                        <Share className="mr-2 h-4 w-4" />
+                        Share Property
+                      </Button>
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
 
-              {/* Mortgage Calculator */}
+              {/* Mortgage Calculator (Enhanced) */}
               <Card className="border-0 shadow-lg">
                 <CardContent className="p-6">
-                  <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900">
-                    Mortgage Calculator
+                  <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900 flex items-center">
+                    <Calculator className="mr-2 h-5 w-5 text-primary" /> Mortgage Calculator
                   </h3>
                   <div className="space-y-4">
                     <div>
-                      <p className="mb-1 text-sm text-gray-600">
-                        Estimated Monthly Payment
-                      </p>
+                      <label htmlFor="principal" className="block text-sm font-medium text-gray-700 mb-1">
+                        Loan Amount (KES)
+                      </label>
+                      <input
+                        type="number"
+                        id="principal"
+                        value={mortgagePrincipal}
+                        onChange={(e) => {
+                            setMortgagePrincipal(Number(e.target.value));
+                            calculateMortgagePayment(Number(e.target.value), mortgageInterestRate, mortgageLoanTerm);
+                        }}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        min="0"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="interestRate" className="block text-sm font-medium text-gray-700 mb-1">
+                        Annual Interest Rate (%)
+                      </label>
+                      <input
+                        type="number"
+                        id="interestRate"
+                        value={mortgageInterestRate}
+                        onChange={(e) => {
+                            setMortgageInterestRate(Number(e.target.value));
+                            calculateMortgagePayment(mortgagePrincipal, Number(e.target.value), mortgageLoanTerm);
+                        }}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        step="0.1"
+                        min="0"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="loanTerm" className="block text-sm font-medium text-gray-700 mb-1">
+                        Loan Term (Years)
+                      </label>
+                      <input
+                        type="number"
+                        id="loanTerm"
+                        value={mortgageLoanTerm}
+                        onChange={(e) => {
+                            setMortgageLoanTerm(Number(e.target.value));
+                            calculateMortgagePayment(mortgagePrincipal, mortgageInterestRate, Number(e.target.value));
+                        }}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        min="1"
+                      />
+                    </div>
+                    <div>
+                      <p className="mb-1 text-sm text-gray-600">Estimated Monthly Payment</p>
                       <p className="text-2xl font-bold text-primary">
-                        {formatPrice(Math.round(property.price * 0.004))}
+                        {formatPrice(Math.round(monthlyMortgagePayment))}
                       </p>
                       <p className="text-xs text-gray-500">
-                        *Based on 20% down, 30-year fixed at 7% APR
+                        *Calculated based on provided inputs.
                       </p>
                     </div>
                     <Button variant="outline" className="w-full">
@@ -4080,6 +4225,96 @@ export default function PropertyDetailPage() {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Property Valuation Tool */}
+              <Card className="border-0 shadow-lg">
+                <CardContent className="p-6">
+                  <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900 flex items-center">
+                    <DollarSign className="mr-2 h-5 w-5 text-primary" /> Property Valuation Tool
+                  </h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label htmlFor="valuationPrice" className="block text-sm font-medium text-gray-700 mb-1">
+                        Property Price (KES)
+                      </label>
+                      <input
+                        type="number"
+                        id="valuationPrice"
+                        value={valuationInputPrice}
+                        onChange={(e) => setValuationInputPrice(Number(e.target.value))}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        min="0"
+                      />
+                    </div>
+                    <Button onClick={handleValuationCalculate} className="w-full bg-primary hover:bg-primary/90">
+                      Calculate Estimated Value
+                    </Button>
+                    {valuationResult !== null && (
+                      <div>
+                        <p className="mb-1 text-sm text-gray-600">Estimated Property Value</p>
+                        <p className="text-2xl font-bold text-primary">
+                          {formatPrice(valuationResult)}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          *This is an estimate and not a professional appraisal.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Investment ROI Calculator */}
+              <Card className="border-0 shadow-lg">
+                <CardContent className="p-6">
+                  <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900 flex items-center">
+                    <TrendingUp className="mr-2 h-5 w-5 text-primary" /> Investment ROI Calculator
+                  </h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label htmlFor="investmentCost" className="block text-sm font-medium text-gray-700 mb-1">
+                        Total Investment Cost (KES)
+                      </label>
+                      <input
+                        type="number"
+                        id="investmentCost"
+                        value={roiInvestmentCost}
+                        onChange={(e) => setRoiInvestmentCost(Number(e.target.value))}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        min="0"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="annualReturn" className="block text-sm font-medium text-gray-700 mb-1">
+                        Expected Annual Return (KES)
+                      </label>
+                      <input
+                        type="number"
+                        id="annualReturn"
+                        value={roiAnnualReturn}
+                        onChange={(e) => setRoiAnnualReturn(Number(e.target.value))}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        min="0"
+                      />
+                    </div>
+                    <Button onClick={handleROICalculate} className="w-full bg-primary hover:bg-primary/90">
+                      Calculate ROI
+                    </Button>
+                    {roiResult !== null && (
+                      <div>
+                        <p className="mb-1 text-sm text-gray-600">Estimated Annual ROI</p>
+                        <p className="text-2xl font-bold text-primary">
+                          {roiResult.toFixed(2)}%
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          *Return on Investment based on provided figures.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+
             </div>
           </div>
         </div>

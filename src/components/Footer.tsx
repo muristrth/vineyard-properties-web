@@ -15,9 +15,9 @@ export default function Footer() {
               Become part of the 1% Investors in Kenya and grow your wealth with
               tangible assets.
             </h2>
-            <Button className="bg-red-600 px-8 py-3 text-lg text-white shadow-lg hover:bg-red-700">
-              Invest Now
-            </Button>
+            <Link href="/calculators"className="bg-red-600 px-8 py-3 text-lg text-white shadow-lg hover:bg-red-700">
+              Calculate Your Returns
+            </Link>
           </div>
         </div>
       </div>

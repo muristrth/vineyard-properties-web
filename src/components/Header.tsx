@@ -31,6 +31,7 @@ export default function Header() {
     { name: 'Careers', href: '/careers' },
     { name: 'Media Gallery', href: '/media' },
     { name: 'Contact', href: '/contact' },
+    { name: 'Calculators', href: '/calculators' },
     { name: 'Investor Portal', href: '/investor' },
   ];
 
@@ -69,13 +70,9 @@ export default function Header() {
 
             {/* Contact & Call Button */}
             <div className="hidden items-center space-x-4 md:flex">
-              <div className="flex items-center space-x-1 text-sm text-gray-600">
-                <Phone className="h-4 w-4" />
-                <span>0729-170-156</span>
-              </div>
               <Button className="bg-red-600 text-white hover:bg-black-700">
               <a href="tel:0729170156" className="flex items-center space-x-2">
-                Call
+                Call Now
               </a>
               </Button>
             </div>
