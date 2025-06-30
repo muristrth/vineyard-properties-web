@@ -25,7 +25,7 @@ const transporter = nodemailer.createTransport(smtpConfig);
 // --- End Nodemailer Transporter Setup ---
 
 // Admin email address for notifications
-const ADMIN_EMAIL = 'admin@yourcompany.com'; // <<< IMPORTANT: Replace with your actual admin email
+const ADMIN_EMAIL = 'info@vineyardproperties.co.ke'; // <<< IMPORTANT: Replace with your actual admin email
 
 /**
  * Cloud Function to generate a PDF, upload to Storage, update Firestore, and send emails
@@ -161,7 +161,7 @@ export const processSalesFormSubmission = functionsV1.firestore
 
         // 6. Send email to client
         const mailOptionsClient = {
-          from: 'sales@vineyardproperties.co.ke', // <<< IMPORTANT: Replace with your verified sender email from Postmark
+          from: 'info@vineyardproperties.co.ke', // <<< IMPORTANT: Replace with your verified sender email from Postmark
           to: clientEmail,
           subject: `Your VPL Sales Form Submission for ${formData.property.name}`,
           html: `
@@ -188,7 +188,7 @@ export const processSalesFormSubmission = functionsV1.firestore
 
         // 7. Send notification email to admin
         const mailOptionsAdmin = {
-          from: 'noreply@yourcompany.com', // <<< IMPORTANT: Replace with your verified sender email from Postmark
+          from: 'info@vineyardproperties.co.ke', // <<< IMPORTANT: Replace with your verified sender email from Postmark
           to: ADMIN_EMAIL,
           subject: `NEW SALES FORM SUBMISSION: ${formData.property.name} by ${clientFullName}`,
           html: `
