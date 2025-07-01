@@ -128,7 +128,7 @@ const Input = ({
     id={id}
     name={name}
     type={type}
-    placeholder={placeholder}
+    placeholder={placeholder} // Always use the provided placeholder
     value={value}
     onChange={onChange}
     required={required}
@@ -200,10 +200,11 @@ const SecretCalculator = ({ coffeeCount, setCoffeeCount }: { coffeeCount: number
         <div>
           <label className="block text-sm font-medium text-purple-700 mb-1">Property Value (KES)</label>
           <Input
-            type="number"
+            type="text" // Changed to text to remove arrows
             value={propertyValue}
             onChange={(e) => setPropertyValue(Number(e.target.value))}
             className="border-purple-300 focus:ring-purple-500"
+            placeholder="Input number" // Set placeholder
           />
         </div>
 
@@ -276,15 +277,15 @@ const MortgageCalculator = ({ propertyPrice = 0 }: { propertyPrice?: number }) =
 
       <div>
         <label htmlFor="loanAmount" className="block text-sm font-medium text-gray-700 mb-1">Loan Amount (KES)</label>
-        <Input type="number" id="loanAmount" value={loanAmount} onChange={(e) => setLoanAmount(Number(e.target.value))} />
+        <Input type="text" id="loanAmount" value={loanAmount} onChange={(e) => setLoanAmount(Number(e.target.value))} placeholder="Input number" />
       </div>
       <div>
         <label htmlFor="interestRate" className="block text-sm font-medium text-gray-700 mb-1">Annual Interest Rate (%)</label>
-        <Input type="number" id="interestRate" value={interestRate} onChange={(e) => setInterestRate(Number(e.target.value))} step="0.1" />
+        <Input type="text" id="interestRate" value={interestRate} onChange={(e) => setInterestRate(Number(e.target.value))} step="0.1" placeholder="Input number" />
       </div>
       <div>
         <label htmlFor="loanTerm" className="block text-sm font-medium text-gray-700 mb-1">Loan Term (Years)</label>
-        <Input type="number" id="loanTerm" value={loanTerm} onChange={(e) => setLoanTerm(Number(e.target.value))} min="1" />
+        <Input type="text" id="loanTerm" value={loanTerm} onChange={(e) => setLoanTerm(Number(e.target.value))} min="1" placeholder="Input number" />
       </div>
 
       <div className="bg-gray-50 p-4 rounded-md">
@@ -372,27 +373,27 @@ const SimpleRentalPropertyCalculator = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="purchasePrice" className="block text-sm font-medium text-gray-700 mb-1">Purchase Price (KES)</label>
-          <Input type="number" id="purchasePrice" value={purchasePrice} onChange={(e) => setPurchasePrice(Number(e.target.value))} />
+          <Input type="text" id="purchasePrice" value={purchasePrice} onChange={(e) => setPurchasePrice(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="downPayment" className="block text-sm font-medium text-gray-700 mb-1">Down Payment (KES)</label>
-          <Input type="number" id="downPayment" value={downPayment} onChange={(e) => setDownPayment(Number(e.target.value))} />
+          <Input type="text" id="downPayment" value={downPayment} onChange={(e) => setDownPayment(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="monthlyRent" className="block text-sm font-medium text-gray-700 mb-1">Monthly Rental Income (KES)</label>
-          <Input type="number" id="monthlyRent" value={monthlyRent} onChange={(e) => setMonthlyRent(Number(e.target.value))} />
+          <Input type="text" id="monthlyRent" value={monthlyRent} onChange={(e) => setMonthlyRent(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="mortgagePayment" className="block text-sm font-medium text-gray-700 mb-1">Monthly Mortgage Payment (KES)</label>
-          <Input type="number" id="mortgagePayment" value={mortgagePayment} onChange={(e) => setMortgagePayment(Number(e.target.value))} />
+          <Input type="text" id="mortgagePayment" value={mortgagePayment} onChange={(e) => setMortgagePayment(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="annualExpenses" className="block text-sm font-medium text-gray-700 mb-1">Annual Operating Expenses (KES)</label>
-          <Input type="number" id="annualExpenses" value={annualExpenses} onChange={(e) => setAnnualExpenses(Number(e.target.value))} />
+          <Input type="text" id="annualExpenses" value={annualExpenses} onChange={(e) => setAnnualExpenses(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="vacancyRate" className="block text-sm font-medium text-gray-700 mb-1">Vacancy Rate (%)</label>
-          <Input type="number" id="vacancyRate" value={vacancyRate} onChange={(e) => setVacancyRate(Number(e.target.value))} min="0" max="100" />
+          <Input type="text" id="vacancyRate" value={vacancyRate} onChange={(e) => setVacancyRate(Number(e.target.value))} min="0" max="100" placeholder="Input number" />
         </div>
       </div>
 
@@ -497,7 +498,7 @@ const PropertyValuationCalculator = () => {
             id="comparableSales"
             value={comparableSales}
             onChange={(e) => setComparableSales(e.target.value)}
-            placeholder="e.g., 25000000, 26500000, 24800000, 27000000, 25500000"
+            placeholder="Input number" // Changed placeholder
           />
         </div>
 
@@ -506,11 +507,11 @@ const PropertyValuationCalculator = () => {
             Property Size (Square Feet)
           </label>
           <Input
-            type="number"
+            type="text" // Changed to text to remove arrows
             id="propertySize"
             value={propertySize}
             onChange={(e) => setPropertySize(Number(e.target.value))}
-            placeholder="e.g., 2500"
+            placeholder="Input number" // Set placeholder
           />
         </div>
 
@@ -751,15 +752,15 @@ const InvestmentFeasibilityCalculator = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="acquisitionCost" className="block text-sm font-medium text-gray-700 mb-1">Acquisition Cost (Purchase Price, KES)</label>
-          <Input type="number" id="acquisitionCost" value={acquisitionCost} onChange={(e) => setAcquisitionCost(Number(e.target.value))} />
+          <Input type="text" id="acquisitionCost" value={acquisitionCost} onChange={(e) => setAcquisitionCost(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="developmentCost" className="block text-sm font-medium text-gray-700 mb-1">Development/Renovation Cost (KES)</label>
-          <Input type="number" id="developmentCost" value={developmentCost} onChange={(e) => setDevelopmentCost(Number(e.target.value))} />
+          <Input type="text" id="developmentCost" value={developmentCost} onChange={(e) => setDevelopmentCost(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="otherInitialCosts" className="block text-sm font-medium text-gray-700 mb-1">Other Initial Costs (Legal, Closing, KES)</label>
-          <Input type="number" id="otherInitialCosts" value={otherInitialCosts} onChange={(e) => setOtherInitialCosts(Number(e.target.value))} />
+          <Input type="text" id="otherInitialCosts" value={otherInitialCosts} onChange={(e) => setOtherInitialCosts(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div className="md:col-span-2">
           <p className="text-sm text-gray-600">Total Initial Investment:</p>
@@ -775,15 +776,15 @@ const InvestmentFeasibilityCalculator = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="loanAmount" className="block text-sm font-medium text-gray-700 mb-1">Loan Amount (KES)</label>
-          <Input type="number" id="loanAmount" value={loanAmount} onChange={(e) => setLoanAmount(Number(e.target.value))} />
+          <Input type="text" id="loanAmount" value={loanAmount} onChange={(e) => setLoanAmount(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="loanInterestRate" className="block text-sm font-medium text-gray-700 mb-1">Loan Annual Interest Rate (%)</label>
-          <Input type="number" id="loanInterestRate" value={loanInterestRate} onChange={(e) => setLoanInterestRate(Number(e.target.value))} step="0.1" />
+          <Input type="text" id="loanInterestRate" value={loanInterestRate} onChange={(e) => setLoanInterestRate(Number(e.target.value))} step="0.1" placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="loanTermYears" className="block text-sm font-medium text-gray-700 mb-1">Loan Term (Years)</label>
-          <Input type="number" id="loanTermYears" value={loanTermYears} onChange={(e) => setLoanTermYears(Number(e.target.value))} min="1" />
+          <Input type="text" id="loanTermYears" value={loanTermYears} onChange={(e) => setLoanTermYears(Number(e.target.value))} min="1" placeholder="Input number" />
         </div>
         <div className="md:col-span-2">
           <p className="text-sm text-gray-600">Estimated Monthly Debt Service:</p>
@@ -799,19 +800,19 @@ const InvestmentFeasibilityCalculator = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="monthlyRentalIncomePerUnit" className="block text-sm font-medium text-gray-700 mb-1">Monthly Rent Per Unit (KES)</label>
-          <Input type="number" id="monthlyRentalIncomePerUnit" value={monthlyRentalIncomePerUnit} onChange={(e) => setMonthlyRentalIncomePerUnit(Number(e.target.value))} />
+          <Input type="text" id="monthlyRentalIncomePerUnit" value={monthlyRentalIncomePerUnit} onChange={(e) => setMonthlyRentalIncomePerUnit(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="numberOfUnits" className="block text-sm font-medium text-gray-700 mb-1">Number of Units</label>
-          <Input type="number" id="numberOfUnits" value={numberOfUnits} onChange={(e) => setNumberOfUnits(Number(e.target.value))} min="1" />
+          <Input type="text" id="numberOfUnits" value={numberOfUnits} onChange={(e) => setNumberOfUnits(Number(e.target.value))} min="1" placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="vacancyRate" className="block text-sm font-medium text-gray-700 mb-1">Vacancy Rate (%)</label>
-          <Input type="number" id="vacancyRate" value={vacancyRate} onChange={(e) => setVacancyRate(Number(e.target.value))} min="0" max="100" />
+          <Input type="text" id="vacancyRate" value={vacancyRate} onChange={(e) => setVacancyRate(Number(e.target.value))} min="0" max="100" placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="annualOperatingExpenses" className="block text-sm font-medium text-gray-700 mb-1">Annual Operating Expenses (KES, excl. Debt)</label>
-          <Input type="number" id="annualOperatingExpenses" value={annualOperatingExpenses} onChange={(e) => setAnnualOperatingExpenses(Number(e.target.value))} />
+          <Input type="text" id="annualOperatingExpenses" value={annualOperatingExpenses} onChange={(e) => setAnnualOperatingExpenses(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div className="md:col-span-2">
           <p className="text-sm text-gray-600">Annual Net Operating Income (NOI):</p>
@@ -831,15 +832,15 @@ const InvestmentFeasibilityCalculator = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="holdingPeriodYears" className="block text-sm font-medium text-gray-700 mb-1">Holding Period (Years)</label>
-          <Input type="number" id="holdingPeriodYears" value={holdingPeriodYears} onChange={(e) => setHoldingPeriodYears(Number(e.target.value))} min="1" />
+          <Input type="text" id="holdingPeriodYears" value={holdingPeriodYears} onChange={(e) => setHoldingPeriodYears(Number(e.target.value))} min="1" placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="expectedSalePrice" className="block text-sm font-medium text-gray-700 mb-1">Expected Sale Price (at end of holding period, KES)</label>
-          <Input type="number" id="expectedSalePrice" value={expectedSalePrice} onChange={(e) => setExpectedSalePrice(Number(e.target.value))} />
+          <Input type="text" id="expectedSalePrice" value={expectedSalePrice} onChange={(e) => setExpectedSalePrice(Number(e.target.value))} placeholder="Input number" />
         </div>
         <div>
           <label htmlFor="discountRate" className="block text-sm font-medium text-gray-700 mb-1">Discount Rate for NPV (%)</label>
-          <Input type="number" id="discountRate" value={discountRate} onChange={(e) => setDiscountRate(Number(e.target.value))} step="0.1" />
+          <Input type="text" id="discountRate" value={discountRate} onChange={(e) => setDiscountRate(Number(e.target.value))} step="0.1" placeholder="Input number" />
         </div>
       </div>
 

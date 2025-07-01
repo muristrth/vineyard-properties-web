@@ -67,6 +67,7 @@ interface Property {
 // Mock property data - in a real app, this would come from an API
 const propertyData: Record<string, Property> = {
   // Changed `any` to `Property`
+  
   'heritage-villas-ngong': {
   id: 'heritage-villas-ngong',
   title: 'Luxurious 4 Bedroom All Ensuite Plus DSQ For Sale Heritage Villas, Ngong',
@@ -136,6 +137,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     lotSize: 0.125, // Assuming 1/8th acre for a typical plot
     yearBuilt: 0, // Not applicable for a plot
     images: [
+      'https://i.roamcdn.net/prop/brk/listing-thumb-400w/08ad908aa8bb4740ee829379cf70ded5/-/prod-property-core-backend-media-brk/7612881/abf7c089-79a0-483f-80d4-dbe90d72fb6f.jpg',
       '/p kite 11/Screenshot 2024-02-12 090319.png',
       '/p kite 11/Screenshot 2024-02-12 090327.png',
       '/p kite 11/Screenshot 2024-02-12 090336.png',
@@ -163,9 +165,60 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     virtualTour: false,
     featured: true,
   },
-  'pauline-mwaura-kitengela': {
-    id: 'pauline-mwaura-kitengela',
-    title: 'Prime Plot for Sale in Kitengela',
+  'lukenya-plot': {
+    id: 'lukenya-plot',
+    title: 'Scenic Plots for Sale in Lukenya',
+    location: 'Lukenya, Machakos County, Kenya', // Based on Lukenya, Mua Hills
+    price: 380000,
+    type: 'Land',
+    status: 'Available', // Assuming it's available for sale
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 505, // m2 as specified
+    lotSize: 0.125, // Assuming 1/8th acre from the description
+    yearBuilt: 0, // Not applicable for a plot
+    images: [
+        '/p/20190123_113658.jpg',
+        '/p/20190123_113704.jpg',
+        '/p/20190123_113713.jpg',
+        '/p/20190207_090902.jpg',
+        '/p/20190207_090904.jpg',
+        '/p/20190207_090906.jpg',
+    ],
+    description: `An ideal investment opportunity or perfect for a serene holiday home, these plots in Lukenya offer unparalleled peace and quiet. Enjoy breathtaking views of Ngong Hills, Kamulu Plains, Lukenya Hills, and Mua Hills from this elevated location. The community is well-established with long-term residents.
+
+Located approximately 15km off Mombasa Road, branching at the diversion to Lukenya Schools. The plots are situated near Kusyombunguo Guest House and overlook Lukenya and Mua hills. This block comprises 37 plots, each measuring 1/8 acre.`,
+    features: [
+        'Good for long-term investment',
+        'Ideal for a holiday home',
+        'Quiet, serene, and peaceful environment',
+        'High ground with panoramic views',
+        'All plots well marked',
+        'Title deeds available',
+        'Abundant building materials nearby',
+        'Easily accessible',
+        'Gated Community',
+        'Excellent customer service post-purchase',
+    ],
+    amenities: [
+        'Proximity to Lukenya Schools',
+        'Near Kusyombunguo Guest house',
+        'Opposite a commercial poultry farm', // While not a typical amenity, it's a nearby landmark
+        // Add other general amenities if known (e.g., shops, clinics in the wider Lukenya area)
+    ],
+    agent: {
+        name: 'Mark James', // Using the same agent as the example, replace if different
+        title: 'Senior Property Agent',
+        phone: '0729170156',
+        email: 'mark.muriithi@vineyardproperties.co.ke',
+        image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+    },
+    virtualTour: false,
+    featured: false, // Set to true if you want this property to be featured
+},
+  'Thorngroove-Kitengela': {
+    id: 'Thorngroove-Kitengela',
+    title: 'Thorngroove 1/8 Acre Plot for Sale in Kitengela',
     location: 'Kitengela, Kajiado County, Kenya',
     price: 1100000,
     type: 'Land',
@@ -176,6 +229,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     lotSize: 0.125,
     yearBuilt: 0,
     images: [
+      'https://i.roamcdn.net/prop/brk/listing-thumb-400w/ae9159b02748a236a3d049c2900f73ab/-/prod-property-core-backend-media-brk/7615572/94b19998-895d-4e50-87c0-fd50e00036ac.jpg',
       '/p6 kite11b/P_20171020_172051.jpg',
       '/p6 kite11b/P_20171028_115636.jpg',
       '/p6 kite11b/P_20171028_115638.jpg',
@@ -203,9 +257,9 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     virtualTour: false,
     featured: true,
   },
-  'lawrence-mugambi-kitengela': {
-    id: 'lawrence-mugambi-kitengela',
-    title: 'Well-Located Plot in Kitengela',
+  '1/8 Acre Plot in Epz Tank, Kitengela': {
+    id: '1/8 Acre Plot in Epz Tank, Kitengela',
+    title: '1/8 Acre Plot in Epz Tank, Kitengela',
     location: 'Kitengela, Kajiado County, Kenya',
     price: 700000,
     type: 'Land',
@@ -216,7 +270,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     lotSize: 0.125,
     yearBuilt: 0,
     images: [
-    '/p/20180630_140800.jpg',
+    'https://i0.wp.com/kimisituinvestment.co.ke/wp-content/uploads/2021/06/DJI_0349-scaled.jpg?fit=2560%2C1440&ssl=1',
     '/p/20180630_140804.jpg',
     '/p/20180630_140808.jpg',
     ],
@@ -4327,7 +4381,7 @@ export default function PropertyDetailPage() {
           </h2>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.3420990810407!2d36.67286523063698!3d-1.3661591034223453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f03766481ad61%3A0x552e8a8bb94e5ff7!2sHeritage%20Villas%2C%20Ngong%2046!5e0!3m2!1sen!2ske!4v1748959191473!5m2!1sen!2ske"
-            width="100%"
+            width="50%"
             height="450"
             style={{ border: 0 }}
             allowFullScreen

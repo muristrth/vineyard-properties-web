@@ -171,7 +171,7 @@ export default function ForgotPasswordPage() {
 
                         <div className="mt-6 text-center">
                             <button
-                                onClick={() => router.push("/")}
+                                onClick={() => router.push("/investor")}
                                 className="text-sm text-red-600 hover:underline transition-colors duration-200"
                             >
                                 Back to Login

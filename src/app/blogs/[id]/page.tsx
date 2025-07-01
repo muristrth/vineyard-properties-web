@@ -11827,6 +11827,25 @@ const blogData: Record<string, BlogPost> = {
     ],
     featured: false
   },
+  "ngong-heritage-villas": {
+    id: "ngong-heritage-villas",
+    title: "NGONG: The New Luxury Frontier for Kenya's Elite Families",
+    excerpt: "The market has spoken: While traditional luxury enclaves like Kilimani face oversupply, Ngong is emerging as Kenya's premier lifestyle destination with property values appreciating faster than ever.",
+    author: "James Munyori, Consutruction Manager",
+    category: "Luxury Properties",
+    date: "2025-07-01",
+    readTime: "3 min read",
+    image: "/p17 heritage/IMG-20250421-WA0093.jpg",
+    content: "<h2>Why Smart Money is Moving to Ngong Now:</h2>\n<p><strong>Infrastructure Boom:</strong> The Nairobi Expressway and improved bypass roads have transformed Ngong from a sleepy outskirt to a thriving residential center, dramatically cutting commute times to the city.</p>\n<p><strong>Lifestyle Premium:</strong> While Runda villas command KSh 95-125M, and Karen remains saturated, Ngong offers something neither can: adventure at your doorstep.</p>\n<p><strong>Adventure Capital:</strong> From helicopter tours over the Great Rift Valley to ziplining through forest canopies, Ngong Hills offers premium adventure activities that make it Kenya's outdoor recreation hub.</p>\n<h2>HERITAGE VILLAS: Where Luxury Meets Adventure</h2>\n<p>Ngong 46, Oloolua - KSh 27.5M</p>\n<h3>What makes this a smart buy:</h3>\n<ul>\n<li>4BR Ensuite + DSQ (320m²)</li>\n<li>Fully Solar Powered (sustainability = future-proofing)</li>\n<li>Rooftop Lounge (perfect for entertaining)</li>\n<li>24/7 Security + CCTV (peace of mind)</li>\n<li>Kids Playground (family-focused design)</li>\n</ul>\n<h3>The Ngong Advantage:</h3>\n<ul>\n<li>5-minute drive to Ngong Hills hiking trails</li>\n<li>Direct access to helicopter & hot air balloon operators</li>\n<li>Premium cycling routes through scenic valleys</li>\n<li>Forest sanctuaries for weekend family picnics</li>\n<li>Ngong Hills Hotel for hosting business associates</li>\n</ul>\n<h2>The Investment Thesis:</h2>\n<p><strong>Market Growth:</strong> Kenya's real estate sector expects to reach $944.1 billion by 2029, with satellite towns like Ngong seeing the fastest appreciation.</p>\n<p><strong>Demographic Sweet Spot:</strong> Rising urbanization is pushing affluent families toward suburbs with superior lifestyle amenities.</p>\n<p><strong>Scarcity Premium:</strong> As Karen prices soar to KSh 330M+ and Runda commands KSh 125M+, Ngong's 27.5M entry point offers exceptional value for comparable luxury.</p>\n<h3>For High-Net-Worth Families Who:</h3>\n<ul>\n<li>Value adventure tourism access for weekend family bonding</li>\n<li>Seek premium security in gated communities</li>\n<li>Want sustainable living (solar power, forest proximity)</li>\n<li>Appreciate 40-minute commute to Wilson Airport for business travel</li>\n<li>Desire entertainment-ready spaces (rooftop lounges, kids areas)</li>\n</ul>\n<p>Think of it as: Your family's gateway to Kenya's premier adventure lifestyle - where Monday's board meeting transitions seamlessly to Saturday's helicopter tour over the Rift Valley.</p>",
+    tags: [
+      "Kenya real estate",
+      "Luxury Villas",
+      "Ngong Hills",
+      "Property Investment",
+      "Lifestyle Living"
+    ],
+    "featured": false
+  },
   "market-entry-guide-foreign-investors-in-mombasa-real-estate-170": {
     id: "market-entry-guide-foreign-investors-in-mombasa-real-estate-170",
     title: "Market Entry Guide: Foreign Investors in Mombasa Real Estate",
@@ -12646,16 +12665,18 @@ export default function BlogPostPage() {
                     {post.author}
                   </h3>
                   <p className="leading-relaxed text-gray-600">
-                    {post.author === 'Sarah Vineyard'
+                    {post.author === 'Mark Muriithi'
                       ? 'Founder and CEO of Vineyard Properties with over 20 years of experience in luxury real estate. Sarah is passionate about helping clients find their perfect homes and make smart investment decisions.'
-                      : 'Senior real estate advisor specializing in luxury properties and investment opportunities. With extensive market knowledge and a client-first approach, Michael helps buyers and sellers achieve their real estate goals.'}
+                      : 'Senior real estate advisor specializing in luxury properties and investment opportunities. With extensive market knowledge and a client-first approach,I helps buyers and sellers achieve their real estate goals.'}
                   </p>
                   <div className="mt-4 flex space-x-4">
                     <Button variant="outline" size="sm">
                       View Profile
                     </Button>
                     <Button variant="outline" size="sm">
+                      <Link href={`/blogs`}>
                       More Articles
+                      </Link>
                     </Button>
                   </div>
                 </div>

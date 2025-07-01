@@ -32,7 +32,6 @@ export const metadata: Metadata = {
   icons: [
     { rel: 'icon', url: 'https://www.kenyabizlist.com/logos/12598.jpg', type: 'image/jpeg' }, // Using the external URL directly
     { rel: 'icon', url: '/favicon.ico', type: 'image/x-icon' }, // You might still have these local ones
-    { rel: 'icon', url: '/favicon.png', type: 'image/png', sizes: '32x32' },
     { rel: 'apple-touch-icon', url: '/apple-touch-icon.png', sizes: '180x180' }, // Recommended to keep
   ],
 

@@ -31,6 +31,17 @@ const blogPosts = [
     featured: false,
   },
   {
+    id: "ngong-heritage-villas",
+    title: "NGONG: The New Luxury Frontier for Kenya's Elite Families",
+    excerpt: "The market has spoken: While traditional luxury enclaves like Kilimani face oversupply, Ngong is emerging as Kenya's premier lifestyle destination with property values appreciating faster than ever.",
+    author: "Ngong Heritage Villas",
+    category: "Luxury Properties",
+    date: "2025-07-01",
+    readTime: "3 min read",
+    image: "/p17 heritage/IMG-20250421-WA0093.jpg",
+    featured: false
+  },
+  {
     id: 'unlocking-homeownership-mortgages-kenya',
     title: 'Unlocking Homeownership: A Comprehensive Guide to Mortgages in Kenya',
     excerpt: 'Demystify the mortgage application process in Kenya for 2025, exploring different types of mortgages, eligibility criteria, and tips for first-time homebuyers.',
