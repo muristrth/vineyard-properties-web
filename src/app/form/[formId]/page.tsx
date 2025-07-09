@@ -149,9 +149,13 @@ type ClientInfo = {
     currentAddress: string;
     permanentAddress: string;
     nextOfKin: string;
+    nextOfKinTel: string; // NEW: Added nextOfKinTel
     idNumber: string;
     signed: boolean; // Indicates if the form has been digitally signed
     passportPhotoUrl?: string; // Field for passport photo URL
+    kraPinCertificateUrl?: string; // NEW: Field for KRA PIN Certificate URL
+    nationalIdFrontUrl?: string; // NEW: Field for National ID Front URL
+    nationalIdBackUrl?: string; // NEW: Field for National ID Back URL
     pdfDownloadUrl?: string; // NEW: Field for PDF download URL
 };
 
@@ -177,13 +181,26 @@ const ClientForm: React.FC = () => {
         currentAddress: '',
         permanentAddress: '',
         nextOfKin: '',
+        nextOfKinTel: '', // Initialize new field
         idNumber: '',
         signed: false, // Default to false
         passportPhotoUrl: undefined,
+        kraPinCertificateUrl: undefined, // Initialize new field
+        nationalIdFrontUrl: undefined, // Initialize new field
+        nationalIdBackUrl: undefined, // Initialize new field
         pdfDownloadUrl: undefined, // Initialize new field
     });
     const [passportPhotoFile, setPassportPhotoFile] = useState<File | null>(null);
     const [passportPhotoPreviewUrl, setPassportPhotoPreviewUrl] = useState<string | null>(null);
+
+    const [kraPinCertificateFile, setKraPinCertificateFile] = useState<File | null>(null); // NEW: State for KRA PIN file
+    const [kraPinCertificatePreviewUrl, setKraPinCertificatePreviewUrl] = useState<string | null>(null); // NEW: State for KRA PIN preview (filename for PDF)
+
+    const [nationalIdFrontFile, setNationalIdFrontFile] = useState<File | null>(null); // NEW: State for National ID Front file
+    const [nationalIdFrontPreviewUrl, setNationalIdFrontPreviewUrl] = useState<string | null>(null); // NEW: State for National ID Front preview
+
+    const [nationalIdBackFile, setNationalIdBackFile] = useState<File | null>(null); // NEW: State for National ID Back file
+    const [nationalIdBackPreviewUrl, setNationalIdBackPreviewUrl] = useState<string | null>(null); // NEW: State for National ID Back preview
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -228,6 +245,18 @@ const ClientForm: React.FC = () => {
                 if (data.client?.passportPhotoUrl && !passportPhotoFile) {
                     setPassportPhotoPreviewUrl(data.client.passportPhotoUrl);
                 }
+                // NEW: Set KRA PIN Certificate preview if URL exists
+                if (data.client?.kraPinCertificateUrl && !kraPinCertificateFile) {
+                    setKraPinCertificatePreviewUrl(data.client.kraPinCertificateUrl);
+                }
+                // NEW: Set National ID Front preview if URL exists
+                if (data.client?.nationalIdFrontUrl && !nationalIdFrontFile) {
+                    setNationalIdFrontPreviewUrl(data.client.nationalIdFrontUrl);
+                }
+                // NEW: Set National ID Back preview if URL exists
+                if (data.client?.nationalIdBackUrl && !nationalIdBackFile) {
+                    setNationalIdBackPreviewUrl(data.client.nationalIdBackUrl);
+                }
 
             } else {
                 setError('Form not found or invalid ID.');
@@ -243,7 +272,7 @@ const ClientForm: React.FC = () => {
 
         // Cleanup subscription on unmount
         return () => unsubscribe();
-    }, [formId]); // Only re-run if formId changes
+    }, [formId, clientInfo.passportPhotoUrl, kraPinCertificateFile, nationalIdFrontFile, nationalIdBackFile]); // Added file states to dependency array to update previews correctly
 
     // Handle form input changes for text/textarea fields
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -258,21 +287,78 @@ const ClientForm: React.FC = () => {
     const handlePassportPhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
-            // Validate file type (optional but recommended)
             if (!file.type.startsWith('image/')) {
-                setError('Please upload an image file (e.g., JPEG, PNG).');
+                setError('Passport photo: Please upload an image file (e.g., JPEG, PNG).');
                 setPassportPhotoFile(null);
                 setPassportPhotoPreviewUrl(null);
                 return;
             }
             setPassportPhotoFile(file);
             setPassportPhotoPreviewUrl(URL.createObjectURL(file));
-            setError(null); // Clear previous errors
+            setError(null);
         } else {
             setPassportPhotoFile(null);
             setPassportPhotoPreviewUrl(null);
         }
     };
+
+    // NEW: Handle file input change for KRA PIN Certificate
+    const handleKRAPINChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            if (file.type !== 'application/pdf') {
+                setError('KRA PIN Certificate: Please upload a PDF file.');
+                setKraPinCertificateFile(null);
+                setKraPinCertificatePreviewUrl(null);
+                return;
+            }
+            setKraPinCertificateFile(file);
+            setKraPinCertificatePreviewUrl(file.name); // Store filename for preview
+            setError(null);
+        } else {
+            setKraPinCertificateFile(null);
+            setKraPinCertificatePreviewUrl(null);
+        }
+    };
+
+    // NEW: Handle file input change for National ID Front
+    const handleNationalIDFrontChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            if (!file.type.startsWith('image/')) {
+                setError('National ID (Front): Please upload an image file (e.g., JPEG, PNG).');
+                setNationalIdFrontFile(null);
+                setNationalIdFrontPreviewUrl(null);
+                return;
+            }
+            setNationalIdFrontFile(file);
+            setNationalIdFrontPreviewUrl(URL.createObjectURL(file));
+            setError(null);
+        } else {
+            setNationalIdFrontFile(null);
+            setNationalIdFrontPreviewUrl(null);
+        }
+    };
+
+    // NEW: Handle file input change for National ID Back
+    const handleNationalIDBackChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            if (!file.type.startsWith('image/')) {
+                setError('National ID (Back): Please upload an image file (e.g., JPEG, PNG).');
+                setNationalIdBackFile(null);
+                setNationalIdBackPreviewUrl(null);
+                return;
+            }
+            setNationalIdBackFile(file);
+            setNationalIdBackPreviewUrl(URL.createObjectURL(file));
+            setError(null);
+        } else {
+            setNationalIdBackFile(null);
+            setNationalIdBackPreviewUrl(null);
+        }
+    };
+
 
     // Handle form submission
     const handleSubmit = async (e: React.FormEvent) => {
@@ -283,23 +369,60 @@ const ClientForm: React.FC = () => {
             return;
         }
 
-        // Check if a new file is selected OR if an existing photo URL is present
+        // Validate required file uploads
         if (!passportPhotoFile && !clientInfo.passportPhotoUrl) {
             setError('Passport photo is required.');
+            return;
+        }
+        if (!kraPinCertificateFile && !clientInfo.kraPinCertificateUrl) {
+            setError('KRA PIN Certificate is required.');
+            return;
+        }
+        if (!nationalIdFrontFile && !clientInfo.nationalIdFrontUrl) {
+            setError('National ID (Front) is required.');
+            return;
+        }
+        if (!nationalIdBackFile && !clientInfo.nationalIdBackUrl) {
+            setError('National ID (Back) is required.');
             return;
         }
 
         setLoading(true);
         setError(null);
-        let uploadedPhotoUrl = clientInfo.passportPhotoUrl; // Start with existing URL if any
+        let uploadedPhotoUrl = clientInfo.passportPhotoUrl;
+        let uploadedKraPinUrl = clientInfo.kraPinCertificateUrl;
+        let uploadedNationalIdFrontUrl = clientInfo.nationalIdFrontUrl;
+        let uploadedNationalIdBackUrl = clientInfo.nationalIdBackUrl;
 
         try {
-            // If a new passport photo file is selected, upload it
+            const storage = getStorage();
+
+            // Upload Passport Photo
             if (passportPhotoFile) {
-                const storage = getStorage();
-                const photoRef = ref(storage, `forms/${formId}/passport_photo.jpg`); // Standardize filename
+                const photoRef = ref(storage, `forms/${formId}/passport_photo.jpg`);
                 await uploadBytes(photoRef, passportPhotoFile);
                 uploadedPhotoUrl = await getDownloadURL(photoRef);
+            }
+
+            // Upload KRA PIN Certificate
+            if (kraPinCertificateFile) {
+                const kraPinRef = ref(storage, `forms/${formId}/kra_pin_certificate.pdf`); // Standardize filename and type
+                await uploadBytes(kraPinRef, kraPinCertificateFile);
+                uploadedKraPinUrl = await getDownloadURL(kraPinRef);
+            }
+
+            // Upload National ID Front
+            if (nationalIdFrontFile) {
+                const idFrontRef = ref(storage, `forms/${formId}/national_id_front.jpg`); // Standardize filename
+                await uploadBytes(idFrontRef, nationalIdFrontFile);
+                uploadedNationalIdFrontUrl = await getDownloadURL(idFrontRef);
+            }
+
+            // Upload National ID Back
+            if (nationalIdBackFile) {
+                const idBackRef = ref(storage, `forms/${formId}/national_id_back.jpg`); // Standardize filename
+                await uploadBytes(idBackRef, nationalIdBackFile);
+                uploadedNationalIdBackUrl = await getDownloadURL(idBackRef);
             }
 
             const formRef = doc(db, 'forms', formId);
@@ -310,13 +433,15 @@ const ClientForm: React.FC = () => {
                     ...clientInfo,
                     signed: true, // Mark as signed upon submission
                     passportPhotoUrl: uploadedPhotoUrl, // Save the uploaded photo URL
+                    kraPinCertificateUrl: uploadedKraPinUrl, // Save KRA PIN URL
+                    nationalIdFrontUrl: uploadedNationalIdFrontUrl, // Save National ID Front URL
+                    nationalIdBackUrl: uploadedNationalIdBackUrl, // Save National ID Back URL
                 },
                 status: 'submitted', // Update status to submitted
             });
 
-            // Set state to indicate submission and PDF generation in progress
             setIsSubmitted(true);
-            setIsPdfGenerating(true); // Assume PDF generation starts on backend
+            setIsPdfGenerating(true);
 
         } catch (err) {
             console.error('Error submitting form:', err);
@@ -325,7 +450,7 @@ const ClientForm: React.FC = () => {
             } else {
                 setError('Failed to submit form: An unknown error occurred.');
             }
-            setIsSubmitted(false); // Revert submission state on error
+            setIsSubmitted(false);
             setIsPdfGenerating(false);
         } finally {
             setLoading(false);
@@ -405,7 +530,7 @@ const ClientForm: React.FC = () => {
                         </CardContent>
                     </Card>
                 </div>
-                
+
             </div>
         );
     }
@@ -561,6 +686,19 @@ const ClientForm: React.FC = () => {
                                 />
                             </div>
 
+                            {/* NEW: Next of Kin Telephone */}
+                            <div>
+                                <Label htmlFor="nextOfKinTel">Next of Kin Telephone</Label>
+                                <Input
+                                    id="nextOfKinTel"
+                                    type="tel"
+                                    name="nextOfKinTel"
+                                    value={clientInfo.nextOfKinTel}
+                                    onChange={handleChange}
+                                    placeholder="e.g., +2547XXXXXXXX"
+                                />
+                            </div>
+
                             {/* Passport Photo Upload Section */}
                             <div className="mt-6 p-4 bg-gray-50 rounded-md border border-gray-200">
                                 <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
@@ -576,10 +714,10 @@ const ClientForm: React.FC = () => {
                                         type="file"
                                         id="passportPhoto"
                                         name="passportPhoto"
-                                        accept="image/*" // Restrict to image files
+                                        accept="image/*"
                                         onChange={handlePassportPhotoChange}
-                                        required={!clientInfo.passportPhotoUrl} // Required only if no existing photo
-                                        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-white hover:file:bg-red-600"
+                                        required={!clientInfo.passportPhotoUrl && !passportPhotoFile}
+                                        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
                                     />
                                     {(passportPhotoPreviewUrl || clientInfo.passportPhotoUrl) && (
                                         <div className="mt-4 p-2 border border-gray-200 rounded-md bg-white">
@@ -588,13 +726,111 @@ const ClientForm: React.FC = () => {
                                                 src={passportPhotoPreviewUrl || clientInfo.passportPhotoUrl || ''}
                                                 alt="Passport Photo Preview"
                                                 className="max-w-full h-auto rounded-md shadow-md border border-gray-200 object-contain"
-                                                style={{ maxHeight: '200px' }} // Limit preview height
+                                                style={{ maxHeight: '200px' }}
                                             />
                                         </div>
                                     )}
                                 </div>
                             </div>
+                        {/* KRA PIN Certificate Upload Section */}
+                        <div className="mt-6 p-4 bg-gray-50 rounded-md border border-gray-200">
+                            <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                                <Upload className="h-5 w-5 mr-2 text-emerald-600" />
+                                Upload KRA PIN Certificate <span className="text-red-500 ml-1">*</span>
+                            </h3>
+                            <p className="text-sm text-gray-600 mb-3">
+                                Please upload a clear PDF copy of your KRA PIN certificate. This is a required field.
+                            </p>
+                            <div>
+                                <Label htmlFor="kraPinCertificate">Choose File</Label>
+                                <Input
+                                    type="file"
+                                    id="kraPinCertificate"
+                                    name="kraPinCertificate"
+                                    accept="application/pdf"
+                                    onChange={handleKRAPINChange}
+                                    required={!clientInfo.kraPinCertificateUrl && !kraPinCertificateFile}
+                                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
+                                />
+                                {(kraPinCertificatePreviewUrl || clientInfo.kraPinCertificateUrl) && (
+                                    <div className="mt-4 p-2 border border-gray-200 rounded-md bg-white">
+                                        <p className="text-sm font-medium text-gray-700 mb-2">
+                                            File uploaded: {kraPinCertificatePreviewUrl || clientInfo.kraPinCertificateUrl?.split('/').pop()}
+                                        </p>
+                                        {/* For PDF, you typically don't show an image preview directly in HTML.
+                                            You can provide a link to view or just show the filename as done above. */}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
 
+                        {/* National ID Front Upload Section */}
+                        <div className="mt-6 p-4 bg-gray-50 rounded-md border border-gray-200">
+                            <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                                <Upload className="h-5 w-5 mr-2 text-emerald-600" />
+                                Upload National ID (Front) <span className="text-red-500 ml-1">*</span>
+                            </h3>
+                            <p className="text-sm text-gray-600 mb-3">
+                                Please upload a clear image of the front side of your National ID.
+                            </p>
+                            <div>
+                                <Label htmlFor="nationalIdFront">Choose File</Label>
+                                <Input
+                                    type="file"
+                                    id="nationalIdFront"
+                                    name="nationalIdFront"
+                                    accept="image/*"
+                                    onChange={handleNationalIDFrontChange}
+                                    required={!clientInfo.nationalIdFrontUrl && !nationalIdFrontFile}
+                                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
+                                />
+                                {(nationalIdFrontPreviewUrl || clientInfo.nationalIdFrontUrl) && (
+                                    <div className="mt-4 p-2 border border-gray-200 rounded-md bg-white">
+                                        <p className="text-sm font-medium text-gray-700 mb-2">Preview:</p>
+                                        <img
+                                            src={nationalIdFrontPreviewUrl || clientInfo.nationalIdFrontUrl || ''}
+                                            alt="National ID Front Preview"
+                                            className="max-w-full h-auto rounded-md shadow-md border border-gray-200 object-contain"
+                                            style={{ maxHeight: '200px' }}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* National ID Back Upload Section */}
+                        <div className="mt-6 p-4 bg-gray-50 rounded-md border border-gray-200">
+                            <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+                                <Upload className="h-5 w-5 mr-2 text-emerald-600" />
+                                Upload National ID (Back) <span className="text-red-500 ml-1">*</span>
+                            </h3>
+                            <p className="text-sm text-gray-600 mb-3">
+                                Please upload a clear image of the back side of your National ID.
+                            </p>
+                            <div>
+                                <Label htmlFor="nationalIdBack">Choose File</Label>
+                                <Input
+                                    type="file"
+                                    id="nationalIdBack"
+                                    name="nationalIdBack"
+                                    accept="image/*"
+                                    onChange={handleNationalIDBackChange}
+                                    required={!clientInfo.nationalIdBackUrl && !nationalIdBackFile}
+                                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
+                                />
+                                {(nationalIdBackPreviewUrl || clientInfo.nationalIdBackUrl) && (
+                                    <div className="mt-4 p-2 border border-gray-200 rounded-md bg-white">
+                                        <p className="text-sm font-medium text-gray-700 mb-2">Preview:</p>
+                                        <img
+                                            src={nationalIdBackPreviewUrl || clientInfo.nationalIdBackUrl || ''}
+                                            alt="National ID Back Preview"
+                                            className="max-w-full h-auto rounded-md shadow-md border border-gray-200 object-contain"
+                                            style={{ maxHeight: '200px' }}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                             {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
 
                             <Button type="submit" className="w-full" disabled={loading}>

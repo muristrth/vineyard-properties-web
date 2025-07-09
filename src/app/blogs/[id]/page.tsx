@@ -12484,22 +12484,22 @@ const blogData: Record<string, BlogPost> = {
 const relatedPosts: RelatedPost[] = [
   // Changed to use RelatedPost interface
   {
-    id: 'luxury-homes-defined',
-    title: "What Defines a Luxury Home in Today's Market",
-    category: 'Insights',
-    image: 'https://ext.same-assets.com/2009473017/4194055538.jpeg',
+    id: 'unlocking-homeownership-mortgages-kenya',
+    title: 'Unlocking Homeownership: A Comprehensive Guide to Mortgages in Kenya',
+    category: 'Homeownership',
+    image: 'https://www.buyrentkenya.com/discover/wp-content/uploads/2024/05/brkmarketing-image-of-a-home-owner-in-nairobi-opening-the-door-4b1ed9cc-114b-43d6-b025-479561f02c7b.png',
   },
   {
-    id: 'investment-strategies-2025',
-    title: 'Real Estate Investment Strategies for 2025',
-    category: 'Investment',
-    image: 'https://ext.same-assets.com/2009473017/299352832.jpeg',
+    id: 'step-by-step-home-insurance-kenya',
+    title: 'Step-by-Step Guide on Home Insurance in Kenya: Protecting Your Investment',
+    category: 'Property Management',
+    image: 'https://stepbystepinsurance.co.ke/wp-content/uploads/2024/09/Home-Insurance.png',
   },
   {
-    id: 'sustainable-living-trends',
-    title: 'Sustainable Living: Eco-Friendly Home Trends',
-    category: 'Trends',
-    image: 'https://ext.same-assets.com/2009473017/923357109.jpeg',
+    id: 'affordable-housing-kenya-2025',
+    title: 'Affordable Housing in Kenya 2025: Opportunities and Challenges',    
+    category: 'Development',
+    image: 'https://cdn.radioafrica.digital/image/2025/04/6b35a210-6d7e-4e99-bf51-95c1f4b34e8f.jpeg',
   },
 ];
 

@@ -124,6 +124,143 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
   featured: true,
 
 },
+'kitengela-plots-near-new-life-academy': {
+    id: 'kitengela-plots-near-new-life-academy',
+    title: 'Plots for Sale Near New Life Academy, Kitengela',
+    location: 'Kitengela, Kajiado County, Rift Valley, Kenya',
+    price: 1800000, // This is an average, consider making it a range or clarifying it's a starting price
+    type: 'Land',
+    status: 'For Sale',
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 465, // 50x100 sq ft = 5000 sq ft, approx 465 sq meters
+    lotSize: 0.125, // 50x100 ft is 0.114 acres, approximating to 0.125 acres
+    yearBuilt: 0, // Not applicable for land
+    images: [
+      '/p/20190207_094225.jpg',
+      '/p/20190207_094318.jpg',
+      '/p/20190207_094321.jpg',
+      '/p/20190207_094722.jpg',
+    ],
+    description: `Discover prime plots for sale in Kitengela, strategically located near New Life Academy. These versatile plots offer excellent opportunities for residential development or investment. With varying sizes and competitive pricing, they provide a flexible solution for your real estate needs. Enjoy proximity to essential amenities and key transportation routes, making these plots highly desirable.`,
+    features: [
+      'Proximity to New Life Academy',
+      '500m from Namanga Highway (for some plots)',
+      'Access to electricity and water',
+      'Near schools, shopping centers, and bus stops',
+      'Sizes varying, including 50x100 sq ft',
+    ],
+    amenities: [
+      'Developed infrastructure in the vicinity',
+      'Close to social amenities',
+      'Good road network access',
+    ],
+    agent: {
+      name: 'Mark James',
+      title: 'Senior Property Agent',
+      phone: '0729170156',
+      email: 'mark.muriithi@vineyardproperties.co.ke',
+      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+    },
+    virtualTour: false,
+    featured: false,
+  },
+  'uchumi-house-cbd': {
+    id: 'uchumi-house-cbd',
+    title: 'Uchumi House Commercial Building for Sale, Nairobi CBD',
+    location: 'Aga Khan Walk, Nkrumah Lane, Central Business District, Nairobi, Nairobi County, Kenya',
+    price: 570000000,
+    type: 'Commercial Building',
+    status: 'For Sale',
+    bedrooms: 0, // Not applicable for commercial building
+    bathrooms: 0, // Not applicable for commercial building
+    area: 4491, // in square meters
+    lotSize: 0.2893, // in acres
+    yearBuilt: 0, // Year built not provided, can be omitted or set to 0
+    images: [
+      '/p43 uchumi/Screenshot 2025-07-05 114627.png',
+      '/p43 uchumi/Screenshot 2025-07-05 114636.png',
+      '/p43 uchumi/Screenshot 2025-07-05 114650.png',
+      '/p43 uchumi/Screenshot 2025-07-05 114704.png',
+    ],
+    description: `Seize the unparalleled opportunity to own a landmark commercial building in the vibrant heart of Nairobi's Central Business District. Uchumi House offers a strategic location with excellent visibility and accessibility, guaranteeing a steady income stream from its established tenants. This five-story building with a basement and mezzanine provides immediate rental returns, making it an ideal investment for those seeking a prominent presence in Nairobi's thriving commercial landscape.`,
+    features: [
+      'Prime CBD location along Aga Khan Walk and Nkrumah Lane',
+      '0.2893-acre rectangular plot with level terrain',
+      'Five-story commercial building with basement and mezzanine',
+      'Annual income of KSh 45,000,000',
+      '38 years remaining on the lease',
+      'Proximity to Sunken Parking, Electricity House, Nairobi Cinema, Kenya-Re Building',
+    ],
+    amenities: [
+      'Excellent visibility and access',
+      'Well-established commercial neighborhood',
+      'Proximity to major transportation hubs and government offices',
+      'High foot traffic and commercial activity',
+    ],
+    agent: {
+      name: 'Mark James',
+      title: 'Senior Property Agent',
+      phone: '0729170156',
+      email: 'mark.muriithi@vineyardproperties.co.ke',
+      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+    },
+    virtualTour: false,
+    featured: true,
+  },
+  'langata-house-jambo-estate': {
+    id: 'langata-house-jambo-estate',
+    title: '4 Bedroom Maisonette Plus Extension For Sale, Jambo Estate, Langata',
+    location: 'Jambo Estate, Langata, Nairobi, Nairobi County, Kenya',
+    price: 30000000,
+    type: 'House',
+    status: 'For Sale',
+    bedrooms: 5, // 4 bedrooms in main house + 1 ensuite in extension
+    bathrooms: 4, // Assuming at least 3 in main house + 1 in extension, adjust if more specific info is available
+    area: 203, // in sq.m
+    lotSize: 0.0845, // in acres
+    yearBuilt: 1977, // Lease from 1977
+    images: [
+      '/p41 langata/Screenshot 2025-07-05 115338.png',
+      '/p41 langata/Screenshot 2025-07-05 115352.png',
+      '/p41 langata/Screenshot 2025-07-05 115402.png',
+      '/p41 langata/Screenshot 2025-07-05 115423.png',
+      '/p41 langata/Screenshot 2025-07-05 115438.png',
+      '/p41 langata/Screenshot 2025-07-05 115450.png',
+      '/p41 langata/Screenshot 2025-07-05 115515.png',
+      '/p41 langata/Screenshot 2025-07-05 115524.png',
+      '/p41 langata/Screenshot 2025-07-05 115537.png',
+      '/p41 langata/Screenshot 2025-07-05 115546.png',
+      '/p41 langata/Screenshot 2025-07-05 115610.png',
+      '/p41 langata/Screenshot 2025-07-05 115537.png',
+    ],
+    description: `A spacious 4-bedroom maisonette with an external extension featuring an additional en-suite bedroom and gym room, located in the highly sought-after Jambo Estate, Langata. This property offers an ideal family home in a well-established neighborhood, boasting strong rental demand and excellent connectivity to key amenities and social services. The house is in good condition, with recent interior upgrades, and sits on a rectangular corner plot with a secure masonry stone wall.`,
+    features: [
+      '4-bedroom Maisonette (Double Storey) family house',
+      'External extension with additional en-suite bedroom and gym room',
+      'Estimate rental income of KSh 100,000 per month (main house)',
+      'Estimate rental income of KSh 20,000 per month (external guest bedroom)',
+      'Rectangular shaped residential corner plot (0.0845 Acres)',
+      'Walled-in internal yard with 2-car covered parking bay and covered laundry area',
+      'Mains water, electricity, and sewer connected with a water reservoir',
+      'Recent interior upgrades/renovations within the last 3 years',
+    ],
+    amenities: [
+      'Adjacent to Uhuru Gardens Primary School and KRA Flats',
+      'Neighbors Sunvalley and Royal Park Estates',
+      'Tarmac surfaced immediate access road to the estate',
+      'Proximity to Nairobi National Park, T-Mall, Wilson Airport, Strathmore University, Carnivore Restaurant',
+    ],
+    agent: {
+      name: 'Mark James',
+      title: 'Senior Property Agent',
+      phone: '0729170156',
+      email: 'mark.muriithi@vineyardproperties.co.ke',
+      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+    },
+    virtualTour: false,
+    featured: false,
+  },
 'carol-wangan-nguthi-kitengela': {
     id: 'carol-wangan-nguthi-kitengela',
     title: 'Spacious Plot for Sale in Kitengela',
@@ -2280,8 +2417,8 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     id: 'karen-mansion',
     title: '13bdrm Mansion in Mayeast Road',
     location: 'Nairobi, Karen',
-    price: 400000000,
-    originalPrice: 450000000,
+    price: 400000,
+    originalPrice: 450000,
     type: 'Luxury Mansion',
     status: 'For Rent',
     bedrooms: 13,
@@ -2290,9 +2427,11 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     lotSize: 2,
     yearBuilt: 2012,
     images: [
-      'https://ext.same-assets.com/2880436944/312339966.jpeg',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
+      'p35 may east/IMG-20250510-WA0072.jpg',
+      'p35 may east/IMG-20250510-WA0073.jpg',
+      'p35 may east/IMG-20250510-WA0074.jpg',
+      'p35 may east/IMG-20250510-WA0075.jpg',
+      'p35 may east/IMG-20250510-WA0083.jpg',
     ],
     description:
       'Spectacular 13-bedroom mansion in prestigious Karen along Mayeast Road. Perfect for large families or corporate use with extensive grounds and luxury finishes.',
