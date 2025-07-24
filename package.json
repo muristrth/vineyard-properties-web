@@ -21,6 +21,7 @@
     "@radix-ui/react-tabs": "^1.1.12",
     "@sanity/image-url": "^1.1.0",
     "@types/react-router-dom": "^5.3.3",
+    "@types/three": "^0.178.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "firebase": "^11.8.1",
@@ -40,7 +41,8 @@
     "sooner": "^1.1.1",
     "styled-components": "^6.1.18",
     "tailwind-merge": "^3.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.178.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

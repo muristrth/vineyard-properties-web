@@ -170,7 +170,7 @@ const AuthorityToSellForm: React.FC = () => {
     signature: false,
     date: '',
   });
-  const [agreedTerms, setAgreedTerms] = useState<boolean[]>([]); // New state for terms checkboxes
+  // Removed `agreedTerms` state as it's no longer needed for plain text terms.
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -194,8 +194,7 @@ const AuthorityToSellForm: React.FC = () => {
         if (formSnap.exists()) {
           const data = formSnap.data() as AuthorityToSellDoc;
           setFormData(data);
-          // Initialize agreedTerms based on fetched terms
-          setAgreedTerms(new Array((data.terms || []).length).fill(false));
+          // Removed initialization of `agreedTerms` as it's no longer needed.
 
           // Pre-fill seller info if it already exists
           if (data.seller1) {
@@ -242,14 +241,7 @@ const AuthorityToSellForm: React.FC = () => {
     }));
   };
 
-  // Handle changes for terms checkboxes
-  const handleTermChange = (index: number, isChecked: boolean) => {
-    setAgreedTerms((prev) => {
-      const newAgreedTerms = [...prev];
-      newAgreedTerms[index] = isChecked;
-      return newAgreedTerms;
-    });
-  };
+  // Removed `handleTermChange` as there are no longer checkboxes for terms.
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -268,12 +260,7 @@ const AuthorityToSellForm: React.FC = () => {
         return;
     }
 
-    // Validate all terms are checked
-    if (agreedTerms.length === 0 || !agreedTerms.every(term => term === true)) {
-        alert('Please confirm that you agree to all the terms by checking each box.');
-        setLoading(false);
-        return;
-    }
+    // Removed validation for `agreedTerms` as terms are now plain text.
 
     // Validate signature checkboxes are checked
     if (!seller1Info.signature || !seller2Info.signature) {
@@ -427,16 +414,13 @@ const AuthorityToSellForm: React.FC = () => {
             </div>
           </div>
 
-          {/* Terms Section - Now plain text, left-aligned */}
-          <div> {/* Removed flex justify-end and width constraints from this div */}
-            <p className="mb-4 text-left">I hereby undertake the following;</p>
-            <ul className="list-decimal list-inside mb-6 space-y-2 text-left"> {/* Changed to list-decimal and text-left */}
-              {(formData?.terms || []).map((term, index) => (
-                <li key={index} className="text-gray-700"> {/* Simplified li structure */}
-                  {term}
-                </li>
-              ))}
-            </ul>
+          <div>
+            <p className="mb-4 text-left font-semibold">I hereby undertake the following:</p>
+            <div className="mb-6 space-y-2 text-left">
+              <p>1. Pay a commission of 6% to Vineyard Properties Ltd, of which it will be paid after payment of the said plot is completed by the Purchaser.</p>
+              <p>2. To pay for the consent to transfer at Lands office.</p>
+              <p>3. To pay Surveying fee (Rebeaconing) of the plot for missing beacons if any.</p>
+            </div>
           </div>
 
           <p className="mb-6">We agree with the above Conditions.</p>

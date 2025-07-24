@@ -302,6 +302,785 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     virtualTour: false,
     featured: true,
   },
+  "crest-gardens-phase-1b": {
+    id: "crest-gardens-phase-1b",
+    title: "Crest Gardens Phase 1B",
+    location: "1.5K from Tarmac",
+    price: 1900000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "https://fanaka.co.ke/storage/IMG-20250708-WA0053.webp",
+      "https://fanaka.co.ke//storage/images/84d8cdd7-591c-431a-b4cc-0409a2938b84.webp",
+      "https://fanaka.co.ke/storage/w1.webp"
+    ],
+    description: "Introducing Crest Gardens Phase 1B, the latest addition to the highly sought-after Crest Gardens development, nestled right next to the successful Crest Gardens Phase 1A in the vibrant Katani neighborhood.",
+    features: [
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "jabali-court-ruiru-kamakis": {
+    id: "jabali-court-ruiru-kamakis",
+    title: "Jabali Court Ruiru Kamakis",
+    location: "Ruiru Kamakis, 6.5km from Eastern Bypass",
+    price: 2500000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "https://fanaka.co.ke/storage/8x5 jabali 4.webp",
+      "https://fanaka.co.ke//storage/images/5a33c969-ee19-4f2d-ada9-093de6547ca1.webp",
+      "https://fanaka.co.ke//storage/images/19a9a191-4458-4148-90f6-aa2d39751a2e.webp"
+    ],
+    description: "Looking to buy land in Kenya that is affordable, well-located, and boasts high growth potential? Welcome to Jabali Court, a premium collection of 1/8-acre plots for sale in Kamakis, Ruiru, strategically positioned just off the Eastern Bypass and a mere few minutes from Thika Road.",
+    features: [
+      "Good access roads",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "ahadi-gardens-phase-2-prime-plots-for-sale-in-malaa": {
+    id: "ahadi-gardens-phase-2-prime-plots-for-sale-in-malaa",
+    title: "Ahadi Gardens Phase 2 -  Prime Plots for sale in  Malaa",
+    location: "2Km off Kangundo Road",
+    price: 1500000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "https://fanaka.co.ke/storage/Ahadi%20Gardens%20Phase%202%20-%20Plots%20For%20Sale%20in%20Malaa.jpg",
+      "https://fanaka.co.ke/storage/Ahadi%20Gardens%20Phase%202%20-%20Plots%20For%20Sale%20in%20Malaa.jpg",
+      "https://fanaka.co.ke//storage/images/9d05364e-749c-4073-9ade-0a1ae3ca5ba6.jpg",
+      "https://fanaka.co.ke//storage/images/96a2f5b3-4b3b-4f62-ad91-8b67513d5d08.jpg"
+    ],
+    description: "Welcome to Ahadi Gardens Phase 2, a unique opportunity to own a prime 50x100 (1/8-acre plot) residential plot in the fast-growing township of Malaa, just 2 km off Kangundo Road and a short drive from Nairobi.",
+    features: [
+      "Good access roads",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: true
+  },
+  "jujafarm-gardens-phase-2": {
+    id: "jujafarm-gardens-phase-2",
+    title: "Jujafarm Gardens Phase 2",
+    location: "3.8km from Jujafarm Shopping Centre",
+    price: 1200000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke/storage/8x5 web 4.jpg",
+      "https://fanaka.co.ke//storage/images/add2b0a6-1a4b-49be-82bc-4a660c18e51a.jpg",
+      "https://fanaka.co.ke//storage/images/5c9bcc14-37db-4673-a7ef-29a02d8bd05a.jpg"
+    ],
+    description: "Looking for plots for sale in Juja Farm or prime land for sale in Kenya near Nairobi? Welcome to Jujafarm Gardens Phase 2—your perfect opportunity to own land in a strategic and fast-developing location. This project offers affordable, ready-to-build plots in one of the most promising growth areas along the Thika Road corridor.",
+    features: [
+      "Ready for development",
+      "Good access roads",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "crest-gardens-phase-1": {
+    id: "crest-gardens-phase-1",
+    title: "Crest Gardens Phase 1",
+    location: "15 min drive to Mombasa Road",
+    price: 2700000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke/storage/w1.webp",
+      "https://fanaka.co.ke//storage/images/a74054e3-454c-4398-b5f0-34dffbedcfd3.webp",
+      "https://fanaka.co.ke//storage/images/6585da8a-5d44-4bd6-9a7b-e2df2d40dcac.webp"
+    ],
+    description: "At Crest Gardens Phase 1, we don’t just sell land—we create thriving communities where families build, live, and grow. With Katani Gardens Phases 1, 2 & 6 already SOLD OUT, this is your chance to secure a prime plot in the next hotspot!",
+    features: [
+      "Ready for development",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "commercial-plots-for-sale-malaa": {
+    id: "commercial-plots-for-sale-malaa",
+    title: "Commercial Plots For Sale Malaa",
+    location: "3 Minutes drive from Malaa Shopping Center",
+    price: 2200000,
+    type: "Commercial",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke//storage/images/7e7699fe-6254-4324-87a6-bae28942bbe0.jpg",
+      "https://fanaka.co.ke//storage/images/e9bc05fd-285f-4740-a602-e0e70023ad51.jpg",
+      "https://fanaka.co.ke/storage/springfield-by-fanaka.jpg"
+    ],
+    description: "Here are 50 by 100 ft (1/8 acre) commercial plots in Malaa that present the perfect opportunity for you seeking long-term value real estate",
+    features: [
+      "Prime location",
+      "Ready title deeds",
+      "Good investment opportunity"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "mugutha-court": {
+    id: "mugutha-court",
+    title: "Mugutha Court",
+    location: "4.5 Km off Thika Road",
+    price: 4300000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke/storage/Ruiru-Mugutha-Plots-For-Sale-along-thika-road-7.jpg",
+      "https://fanaka.co.ke/storage/Ruiru-Mugutha-Plots-For-Sale.jpg",
+      "https://fanaka.co.ke/storage/Ruiru-Mugutha-Plots-For-Sale-along-thika-road.jpg"
+    ],
+    description: "Mugutha Court is nestled in a serene and rapidly developing neighborhood, with an 1/8 acre plots, offering the perfect opportunity to build your dream home or invest in one of the most sought-after areas near Nairobi. Located just 4.5 Kilometres off Thika Road, these plots combine accessibility, tranquillity, and convenience.",
+    features: [
+      "Good access roads",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: true
+  },
+  "katani-gardens-phase-8": {
+    id: "katani-gardens-phase-8",
+    title: "Katani Gardens Phase 8",
+    location: "Just 1.5km off Katani  Road,",
+    price: 2700000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke//storage/images/1e3f0894-7f3f-4fb1-9fcd-431dc6778dbf.webp",
+      "https://fanaka.co.ke//storage/images/64a27cef-65d5-4769-88f9-cd2b64a337cd.webp",
+      "https://fanaka.co.ke/storage/katani-plots-2.webp"
+    ],
+    description: "Imagine: Owning prime, ready-to-build land in the highly sought-after Syokimau/Katani neighborhood. Welcome to Katani Gardens Phase 8 (MEGA CLOSE) – where your vision of the perfect home becomes a reality!",
+    features: [
+      "Ready for development",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: true
+  },
+  "amani-gardens-phase-2": {
+    id: "amani-gardens-phase-2",
+    title: "Amani Gardens Phase 2",
+    location: "5 Minutes drive from Koma-Kenol tarmac",
+    price: 650000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke//storage/images/6ac7ba05-c946-4036-9d50-95caf4db3e01.jpg",
+      "https://fanaka.co.ke//storage/images/d11f1239-1d5b-4af7-ae0f-67ba0b9b64f2.jpg",
+      "https://fanaka.co.ke//storage/images/d441ed81-eca1-45c8-b04d-f66291cc8086.jpg"
+    ],
+    description: "Introducing Amani Gardens Phase 2  an ideal ready-to-build affordable residential project in Koma Town, just after Malaa Town.",
+    features: [
+      "Ready for development",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: true
+  },
+  "prime-court-phase-6": {
+    id: "prime-court-phase-6",
+    title: "Prime Court Phase 6",
+    location: "10 minutes drive from Eastern Bypass",
+    price: 1295000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke/storage/prime 6 6.jpg",
+      "https://fanaka.co.ke//storage/images/1dfd74b0-7351-4ccd-a733-101c9de9dc17.jpg",
+      "https://fanaka.co.ke//storage/images/a26b88ef-f7d5-4c72-951b-8449298a00aa.jpg"
+    ],
+    description: "Prime Court Phase 6 is located in one of the fastest growing satellite town along Eastern Bypass in Ruiru Kamakis, just a few minutes drive off Thika Road.",
+    features: [
+      "Good access roads",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "kitengela-gardens-phase-1": {
+    id: "kitengela-gardens-phase-1",
+    title: "Kitengela Gardens Phase 1",
+    location: "1.5km off tarmac from Kimalat Shell Station",
+    price: 1800000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke//storage/images/f7530ab3-3533-4af8-b000-82d3b2fc22fe.jpg",
+      "https://fanaka.co.ke//storage/images/fc2af9c0-5a36-4944-b71c-6c7e18332e85.jpg",
+      "https://fanaka.co.ke/storage/Buy-and-build-Kitengela-plots-for-sale.jpg"
+    ],
+    description: "Are you searching for the perfect plot of land to build your dream home or make a smart investment in a rapidly growing area? Look no further than Kitengela Gardens Phase 1, offering exceptional Residential and Commercial plots for sale in Kitengela that combine affordability, strategic location, and the assurance of genuine title deeds.",
+    features: [
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "juja-commercial-phase-2": {
+    id: "juja-commercial-phase-2",
+    title: "Juja Commercial Phase 2",
+    location: "5 minutes off Thika Road",
+    price: 4200000,
+    type: "Commercial",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke/storage/8x5 banner 5.jpg",
+      "https://fanaka.co.ke//storage/images/001750ef-69c6-47f3-8eaf-8f81fb29f165.jpg",
+      "https://fanaka.co.ke//storage/images/0e4c7f9f-9aac-4bf6-bb16-ef602bec78a0.jpg"
+    ],
+    description: "Are you looking for a commercial property in a developed area and with high return on investment? Or are you an entrepreneur seeking the strategic location to start your business? We’ve got you! We're excited to offer prime commercial plots in the heart of Juja just touching tarmac.",
+    features: [
+      "Prime location",
+      "Ready title deeds",
+      "Good investment opportunity"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "katani-gardens-phase-7": {
+    id: "katani-gardens-phase-7",
+    title: "Katani Gardens Phase 7",
+    location: "20 Minutes drive from Nairobi CBD",
+    price: 2700000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke/storage/Katani-gardens-Phase-7.jpg",
+      "https://fanaka.co.ke//storage/images/76c59de4-c816-4566-8ded-c7013a50ff81.jpg",
+      "https://fanaka.co.ke//storage/images/b345201e-2a5e-478a-a70c-ff7621a7c9a8.jpg"
+    ],
+    description: "Are you ready to own a piece of one of Nairobi’s most sought-after developments? Katani Gardens Phase 7 is here, offering prime plots in a location that combines convenience, growth potential, and unmatched value. Here’s why this is the opportunity you’ve been waiting for:-Strategic Location – Unbeatable Connectivity, located just 7km off Mombasa Road, Katani Gardens Phase 7 is perfectly positioned for growth.",
+    features: [
+      "Ready for development",
+      "Good access roads",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "prestige-gardens-phase-3": {
+    id: "prestige-gardens-phase-3",
+    title: "Prestige Gardens Phase 3",
+    location: "5 Minutes drive from Kangundo Road",
+    price: 1400000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke//storage/images/2d4b573d-0baf-4730-8731-6f42a6a392ba.webp",
+      "https://fanaka.co.ke//storage/images/ae5cf31d-e808-42e5-aedd-dd01516b05c1.webp",
+      "https://fanaka.co.ke//storage/images/d1aec83e-21d8-43fb-b778-f068179b9173.webp"
+    ],
+    description: "Located just 5 minutes’ drive from Kangundo Road Tarmac, these prime plots in Kamulu offer an unmatched opportunity for:",
+    features: [
+      "Good access roads",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "prime-court-phase-5": {
+    id: "prime-court-phase-5",
+    title: "Prime Court Phase 5",
+    location: "9 minutes drive from Eastern Bypass",
+    price: 1400000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke/storage/Prime 5 -1 .jpg",
+      "https://fanaka.co.ke//storage/images/37d21fd1-ebe8-47b8-9cc4-0b84269c7e5f.jpg",
+      "https://fanaka.co.ke//storage/images/c284357d-1489-46cc-a573-fb817febbb07.jpg"
+    ],
+    description: "Invest in one of the fastest growing satellite town of Ruiru - Kamakis along Eastern Bypass and around Nairobi Metropolitan, just a few minutes drive off Thika Road. It is an ideal location for residential investment.",
+    features: [
+      "Good access roads",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "maple-court-phase-1-kamakis": {
+    id: "maple-court-phase-1-kamakis",
+    title: "Maple Court Phase 1 Kamakis",
+    location: "5km off Eastern Bypass",
+    price: 2400000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke//storage/images/b22a8470-07c7-4b27-88b0-6cf87af72ee9.jpg",
+      "https://fanaka.co.ke//storage/images/a2b7b544-505b-4b1c-8697-5dc6a25ae371.jpg",
+      "https://fanaka.co.ke/storage/1Plots-For-Sale-In-Ruiru_Maple-court.jpg"
+    ],
+    description: "Maple Court is a serviced project by Fanaka Real Estate located at Sillicon Valley estate at Ruiru Kamakis, only 5KM off Eastern Bypass.",
+    features: [
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
+  "enclave-katani-gardens-phase-6": {
+    id: "enclave-katani-gardens-phase-6",
+    title: "Enclave Katani Gardens Phase 6",
+    location: "1.5Km  off Katani Road",
+    price: 2700000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke//storage/images/826dc362-393b-48e6-a4de-1d5d98e394ba.jpg",
+      "https://fanaka.co.ke//storage/images/a1113250-5248-40fd-adfc-9914f046210a.jpg",
+      "https://fanaka.co.ke//storage/images/1a4a70a9-ac5f-4399-a6b8-1f5de84260de.jpg"
+    ],
+    description: "Enclave Katani Gardens Phase 6 is a prime real estate project strategically located between Katani Gardens Phases 1 & 2. Set in a well-developed neighborhood, it offers a unique opportunity for buyers looking for ready-to-build plots in an area where construction is already ongoing.",
+    features: [
+      "Ready for development",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: true
+  },
+  "joska-crest-gardens": {
+    id: "joska-crest-gardens",
+    title: "Joska Crest Gardens",
+    location: "Joska, 7 km from Kangundo Road",
+    price: 1100000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke/storage/joska crest 1.jpg",
+      "https://fanaka.co.ke/storage/joska crest 2.jpg",
+      "https://fanaka.co.ke/storage/joska crest 3.jpg"
+    ],
+    description: "Introducing Joska Crest – the perfect place to build your dream home or invest for the future! 10 minutes’ drive from Joska town along Kangundo road, these prime 50 by 100 plots in Joska offer the ideal opportunity for residential living, future investments, or creating a legacy for your children.Why Joska Crest?",
+    features: [
+      "Good access roads",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: true
+  },
+  "prime-court-phase-4": {
+    id: "prime-court-phase-4",
+    title: "Prime Court Phase 4",
+    location: "15 minutes from Eastern Bypass",
+    price: 999000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke/storage/PRIME 4 1.jpg",
+      "https://fanaka.co.ke/storage/images/1b05092f-2cc3-4105-b8c4-e17b64314fe1.jpg",
+      "https://fanaka.co.ke/storage/PRIME 4 2.jpg"
+    ],
+    description: "Ruiru - Kamakis is one of the fastest growing satellite town along Eastern Bypass and around Nairobi Metropolitan, just a few minutes drive off Thika Road.",
+    features: [
+      "Good access roads",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: true
+  },
+  "katani-gardens-phase-5": {
+    id: "katani-gardens-phase-5",
+    title: "Katani Gardens Phase 5",
+    location: "Syokimau Katani, 1.5km off Tarmac",
+    price: 2600000,
+    type: "Land",
+    status: "Available",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    lotSize: 0.125,
+    yearBuilt: 0,
+    images: [
+      "",
+      "https://fanaka.co.ke/storage/images/80581eb3-39ba-45f9-aa0d-ba321648166d.jpg",
+      "https://fanaka.co.ke/storage/images/96f54a2b-5a13-46d2-b0ff-1d6499b5737f.webp",
+      "https://fanaka.co.ke/storage/w1.webp"
+    ],
+    description: "A remarkable investment opportunity just 7 minutes from Mombasa Road, nestled within the prestigious Twiga Court gated community. Located in a highly developed neighborhood, this prime project offers the perfect blend of convenience, tranquility, and modern living.",
+    features: [
+      "Good access roads",
+      "Favorable for residential construction"
+    ],
+    amenities: [
+      "Nearby schools",
+      "Hospitals and clinics",
+      "Shopping centers",
+      "Public transport access"
+    ],
+    agent: {
+      name: "Mark James",
+      title: "Senior Property Agent",
+      phone: "0729170156",
+      email: "mark.muriithi@vineyardproperties.co.ke",
+      image: "https://ext.same-assets.com/2009473017/3756399664.png"
+    },
+    virtualTour: false,
+    featured: false
+  },
   'lukenya-plot': {
     id: 'lukenya-plot',
     title: 'Scenic Plots for Sale in Lukenya',
