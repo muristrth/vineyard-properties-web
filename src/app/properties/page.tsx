@@ -1,9 +1,8 @@
 'use client';
-
-import { useState } from 'react';
+import Link from 'next/link';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PropertyCard from '@/components/PropertyCard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -13,8 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Search, Filter, MapPin } from 'lucide-react';
-
+import { Search, Filter, MapPin, Phone, Eye, ArrowRight, Star, Users, Award, ChevronDown, Play, Camera, Bed, Bath, Square, X } from 'lucide-react';
 const allProperties = [
 
   {
@@ -29,523 +27,7 @@ const allProperties = [
     type: 'Hotel',
     featured: true,
   },
-  {
-    id: "crest-gardens-phase-1b",
-    title: "Fanaka Crest Gardens Phase 1B",
-    location: "1.5K from Tarmac",
-    price: 1900000,
-    image: "https://fanaka.co.ke//storage/images/84d8cdd7-591c-431a-b4cc-0409a2938b84.webp",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "jabali-court-ruiru-kamakis",
-    title: "Fanaka Jabali Court Ruiru Kamakis",
-    location: "Ruiru Kamakis, 6.5km from Eastern Bypass",
-    price: 2500000,
-    image: "https://fanaka.co.ke/storage/8x5%20jabali%204.webp",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "ahadi-gardens-phase-2-prime-plots-for-sale-in-malaa",
-    title: "Fanaka Ahadi Gardens Phase 2 - Prime Plots for sale in Malaa",
-    location: "2Km off Kangundo Road",
-    price: 1500000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "jujafarm-gardens-phase-2",
-    title: "Jujafarm Gardens Phase 2",
-    location: "3.8km from Jujafarm Shopping Centre",
-    price: 1200000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "crest-gardens-phase-1",
-    title: "Crest Gardens Phase 1",
-    location: "15 min drive to Mombasa Road",
-    price: 2700000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "commercial-plots-for-sale-malaa",
-    title: "Commercial Plots For Sale Malaa",
-    location: "3 Minutes drive from Malaa Shopping Center",
-    price: 2200000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Commercial",
-    featured: false
-  },
-  {
-    id: "mugutha-court",
-    title: "Mugutha Court",
-    location: "4.5 Km off Thika Road",
-    price: 4300000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "katani-gardens-phase-8",
-    title: "Katani Gardens Phase 8",
-    location: "Just 1.5km off Katani Road,",
-    price: 2700000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "amani-gardens-phase-2",
-    title: "Amani Gardens Phase 2",
-    location: "5 Minutes drive from Koma-Kenol tarmac",
-    price: 650000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "prime-court-phase-6",
-    title: "Prime Court Phase 6",
-    location: "10 minutes drive from Eastern Bypass",
-    price: 1295000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "kitengela-gardens-phase-1",
-    title: "Kitengela Gardens Phase 1",
-    location: "1.5km off tarmac from Kimalat Shell Station",
-    price: 1800000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "juja-commercial-phase-2",
-    title: "Juja Commercial Phase 2",
-    location: "5 minutes off Thika Road",
-    price: 4200000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Commercial",
-    featured: false
-  },
-  {
-    id: "katani-gardens-phase-7",
-    title: "Katani Gardens Phase 7",
-    location: "20 Minutes drive from Nairobi CBD",
-    price: 2700000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "prestige-gardens-phase-3",
-    title: "Prestige Gardens Phase 3",
-    location: "5 Minutes drive from Kangundo Road",
-    price: 1400000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "prime-court-phase-5",
-    title: "Prime Court Phase 5",
-    location: "9 minutes drive from Eastern Bypass",
-    price: 1400000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "maple-court-phase-1-kamakis",
-    title: "Maple Court Phase 1 Kamakis",
-    location: "5km off Eastern Bypass",
-    price: 2400000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "enclave-katani-gardens-phase-6",
-    title: "Enclave Katani Gardens Phase 6",
-    location: "1.5Km off Katani Road",
-    price: 2700000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "joska-crest-gardens",
-    title: "Joska Crest Gardens",
-    location: "Joska, 7 km from Kangundo Road",
-    price: 1100000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "prime-court-phase-4",
-    title: "Prime Court Phase 4",
-    location: "15 minutes from Eastern Bypass",
-    price: 999000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "katani-gardens-phase-5",
-    title: "Katani Gardens Phase 5",
-    location: "Syokimau Katani, 1.5km off Tarmac",
-    price: 2600000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "eden-gardens-phase-iv",
-    title: "Eden Gardens Phase iv",
-    location: "Malaa, 2.5 km from Kangundo Road",
-    price: 1200000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "greatview-gardens-phase-2",
-    title: "Greatview Gardens Phase 2",
-    location: "Malaa, 1 km from Kangundo Road",
-    price: 1800000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "juja-commercial-plots",
-    title: "Juja Commercial Plots",
-    location: "Juja Just 1km off Thika Road",
-    price: 5000000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Commercial",
-    featured: true
-  },
-  {
-    id: "katani-gardens-phase-4",
-    title: "Katani Gardens Phase 4",
-    location: "Syokimau Katani, 100 Metres off Tarmac",
-    price: 2300000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "avenue-court-phase-2",
-    title: "Avenue Court Phase 2",
-    location: "2.5km off Eastern Bypass",
-    price: 3700000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "prime-court-phase-3",
-    title: "Prime Court Phase 3",
-    location: "Ruiru Kamakis, 8km from Eastern Bypass",
-    price: 1600000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "juja-springs-gardens-phase-ii",
-    title: "Juja Springs Gardens Phase ii",
-    location: "2.5km from Juja Farm Shopping Center",
-    price: 1400000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "pioneer-court-phase-2",
-    title: "Pioneer Court Phase 2",
-    location: "Ruiru Kamakis, 3km from Eastern Bypass",
-    price: 3300000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "tranquil-gardens-katani",
-    title: "Tranquil Gardens Katani",
-    location: "Katani, 10 minutes from Mombasa Road",
-    price: 1600000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "sunset-gardens-phase-2",
-    title: "Sunset Gardens Phase 2",
-    location: "Malaa, 7.5km from Kangundo Road",
-    price: 649000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "katani-gardens-phase-3",
-    title: "Katani gardens Phase 3",
-    location: "Katani, 7 minutes from Mombasa Road",
-    price: 3200000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "barizi-gardens",
-    title: "Barizi Gardens",
-    location: "Kamulu, just 3.5km from Kangundo Road",
-    price: 1100000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "sifa-court-phase-2",
-    title: "Sifa Court Phase 2",
-    location: "Ruiru Kamakis, 6.5km from Eastern Bypass",
-    price: 2200000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "crown-court-phase-iii",
-    title: "CROWN COURT PHASE III",
-    location: "Ruiru Kamakis 6 kilometers off the Eastern By-pass",
-    price: 2200000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "katani-gardens-phase-2",
-    title: "Katani gardens Phase 2",
-    location: "Katani, 7 minutes from Mombasa Road",
-    price: 1800000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "pine-court-phase-ii",
-    title: "PINE COURT PHASE II",
-    location: "Ruiru Kamakis 300 meters off eastern-by-pass",
-    price: 5500000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "murera-court-along-thika-road",
-    title: "Murera Court Along Thika Road",
-    location: "Ruiru, just 5.5km from Eastern Bypass",
-    price: 1300000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "ruby-gardens-juja-farm",
-    title: "Ruby Gardens | Juja Farm",
-    location: "Juja Farm Town",
-    price: 999000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "juja-springs-gardens",
-    title: "Juja Springs Gardens",
-    location: "Juja Farm Shopping Center",
-    price: 1200000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "oasis-gardens-juja-farm",
-    title: "Oasis Gardens Juja Farm",
-    location: "4 minutes drive from Juja Farm town",
-    price: 899000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "crystal-gardens",
-    title: "Crystal Gardens",
-    location: "Kamulu Town, 5.5km from Total Kamulu",
-    price: 799000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: false
-  },
-  {
-    id: "elite-gardens-phase-1-koma-town",
-    title: "Elite Gardens Phase 1– Koma Town",
-    location: "Koma, just 1.5km from Kangundo Road",
-    price: 799,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  {
-    id: "eden-gardens-phase-iii-malaa-town",
-    title: "Eden Gardens Phase iii – Malaa Town",
-    location: "Kamulu, just 3.5km from Kangundo Road",
-    price: 1200000,
-    image: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    type: "Land",
-    featured: true
-  },
-  
+    
   {
     id: 'carol-wangan-nguthi-kitengela',
     title: 'Old Namanga Plot for Sale in Kitengela Phase 11,Chief Mutonkei',
@@ -1378,11 +860,225 @@ const allProperties = [
   
 ];
 
+interface Property {
+  id: string;
+  title: string;
+  location: string;
+  price: number;
+  image: string;
+  bedrooms: number;
+  bathrooms: number;
+  area: number;
+  type: string;
+  featured: boolean;
+}
+
+interface PropertyCardProps {
+  property: Property;
+  index: number;
+  onImageClick: (imageUrl: string) => void;
+}
+
+const PropertyCard: React.FC<PropertyCardProps> = ({ property, index, onImageClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!cardRef.current) return;
+    
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    
+    setMousePosition({ x: (x - 0.5) * 2, y: (y - 0.5) * 2 });
+  };
+
+  const formatPrice = (price: number) => {
+    if (price >= 1000000000) {
+      return `${(price / 1000000000).toFixed(1)}B`;
+    } else if (price >= 1000000) {
+      return `${(price / 1000000).toFixed(1)}M`;
+    } else if (price >= 1000) {
+      return `${(price / 1000).toFixed(0)}K`;
+    }
+    return price.toString();
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      className="group relative overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
+      style={{
+        transform: isHovered 
+          ? `perspective(1000px) rotateX(${mousePosition.y * 3}deg) rotateY(${mousePosition.x * 3}deg) translateZ(10px)` 
+          : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)',
+        animationDelay: `${index * 100}ms`,
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setMousePosition({ x: 0, y: 0 });
+      }}
+      onMouseMove={handleMouseMove}
+    >
+      {/* Featured Badge */}
+      {property.featured && (
+        <div className="absolute top-4 left-4 z-20 bg-gradient-to-r from-red-500 to-orange-500 px-3 py-1 rounded-full text-white text-xs font-bold shadow-lg">
+          FEATURED
+        </div>
+      )}
+
+      {/* Image Section */}
+      <div className="relative h-64 overflow-hidden">
+        <img
+          src={property.image}
+          alt={property.title}
+          className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110"
+        />
+        
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        {/* Interactive Buttons */}
+        <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <button className="bg-white/95 backdrop-blur-sm p-2 rounded-full shadow-lg hover:scale-110 transition-transform duration-300">
+            <Camera className="w-4 h-4 text-gray-700" />
+          </button>
+          <button 
+            onClick={() => onImageClick(property.image)}
+            className="bg-white/95 backdrop-blur-sm p-2 rounded-full shadow-lg hover:scale-110 transition-transform duration-300"
+          >
+            <Eye className="w-4 h-4 text-gray-700" />
+          </button>
+        </div>
+
+        {/* Price Badge */}
+        <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-2 shadow-xl">
+          <div className="flex items-baseline space-x-1">
+            <span className="text-xl font-black text-gray-900">
+              KSH {formatPrice(property.price)}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Content Section */}
+      <div className="p-6 space-y-4">
+        {/* Title and Location */}
+        <div className="space-y-2">
+          <h3 className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors duration-300">
+            {property.title}
+          </h3>
+          <div className="flex items-center text-gray-600">
+            <MapPin className="w-4 h-4 mr-1 text-red-500" />
+            <span className="text-sm">{property.location}</span>
+          </div>
+        </div>
+
+        {/* Property Details */}
+        {(property.bedrooms > 0 || property.bathrooms > 0 || property.area > 0) && (
+          <div className="flex items-center justify-between text-sm text-gray-600 border-t border-gray-100 pt-4">
+            {property.bedrooms > 0 && (
+              <div className="flex items-center space-x-1">
+                <Bed className="w-4 h-4" />
+                <span className="font-semibold text-gray-900">{property.bedrooms}</span>
+                <span>Beds</span>
+              </div>
+            )}
+            {property.bathrooms > 0 && (
+              <div className="flex items-center space-x-1">
+                <Bath className="w-4 h-4" />
+                <span className="font-semibold text-gray-900">{property.bathrooms}</span>
+                <span>Baths</span>
+              </div>
+            )}
+            {property.area > 0 && (
+              <div className="flex items-center space-x-1">
+                <Square className="w-4 h-4" />
+                <span className="font-semibold text-gray-900">{property.area.toLocaleString()}</span>
+                <span>sqft</span>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Action Buttons */}
+        <div className="flex space-x-3 pt-2">
+          <a
+            href="tel:0729170156"
+            className="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-4 rounded-xl font-bold text-center hover:from-red-600 hover:to-red-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            <Phone className="w-4 h-4 inline mr-2" />
+            Call Now
+          </a>
+          <button className="flex-1 border-2 border-gray-200 text-gray-700 py-3 px-4 rounded-xl font-bold hover:border-red-500 hover:text-red-500 transform hover:scale-105 transition-all duration-300">
+            <Eye 
+              className="w-4 h-4 inline mr-2 cursor-pointer" 
+              onClick={() => onImageClick(property.image)}
+            />
+              <Link href={`/properties/${property.id}`}>View Details</Link>
+          </button>
+        </div>
+      </div>
+
+      {/* 3D Floating Elements */}
+      <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    </div>
+  );
+};
+
+interface ImageModalProps {
+  imageUrl: string | null;
+  onClose: () => void;
+}
+
+const ImageModal: React.FC<ImageModalProps> = ({ imageUrl, onClose }) => {
+  if (!imageUrl) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="relative max-w-4xl max-h-[90vh] w-full">
+        <button
+          onClick={onClose}
+          className="absolute -top-12 right-0 text-white hover:text-red-400 transition-colors duration-300"
+        >
+          <X className="w-8 h-8" />
+        </button>
+        <img
+          src={imageUrl}
+          alt="Property"
+          className="w-full h-full object-contain rounded-2xl shadow-2xl"
+        />
+      </div>
+    </div>
+  );
+};
+
 export default function PropertiesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [propertyType, setPropertyType] = useState('all');
   const [priceRange, setPriceRange] = useState('all');
   const [sortBy, setSortBy] = useState('featured');
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [displayCount, setDisplayCount] = useState(10);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    setIsLoaded(true);
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: (e.clientY / window.innerHeight) * 2 - 1,
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const filteredProperties = allProperties.filter((property) => {
     const matchesSearch =
@@ -1396,17 +1092,17 @@ export default function PropertiesPage() {
     if (priceRange !== 'all') {
       const price = property.price;
       switch (priceRange) {
-        case 'under-600k':
-          matchesPrice = price < 600000;
+        case 'under-10m':
+          matchesPrice = price < 10000000;
           break;
-        case '600k-1m':
-          matchesPrice = price >= 600000 && price < 1000000;
+        case '10m-50m':
+          matchesPrice = price >= 10000000 && price < 50000000;
           break;
-        case '1m-2m':
-          matchesPrice = price >= 1000000 && price < 2000000;
+        case '50m-100m':
+          matchesPrice = price >= 50000000 && price < 100000000;
           break;
-        case 'over-2m':
-          matchesPrice = price >= 2000000;
+        case 'over-100m':
+          matchesPrice = price >= 100000000;
           break;
       }
     }
@@ -1421,163 +1117,284 @@ export default function PropertiesPage() {
       case 'price-high':
         return b.price - a.price;
       case 'newest':
-        return 0; // Would sort by date if available
+        return 0;
       default:
         return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
     }
   });
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
+  const displayedProperties = sortedProperties.slice(0, displayCount);
+  const hasMoreProperties = displayCount < sortedProperties.length;
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-900 to-gray-800 pb-12 pt-20 text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="mb-4 font-radio-canada text-4xl font-bold md:text-5xl">
+  const loadMoreProperties = () => {
+    setDisplayCount(prev => Math.min(prev + 10, sortedProperties.length));
+  };
+
+  const handleImageClick = (imageUrl: string) => {
+    setSelectedImage(imageUrl);
+  };
+
+  const closeImageModal = () => {
+    setSelectedImage(null);
+  };
+
+  return (
+    <div className="min-h-screen bg-white relative overflow-hidden">
+      {/* Animated 3D Background */}
+      <div className="fixed inset-0 pointer-events-none">
+        {/* Floating geometric shapes */}
+        <div 
+          className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-red-100 to-orange-100 rounded-3xl rotate-45 opacity-60"
+          style={{
+            transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * 20}px) rotate(${45 + mousePosition.x * 10}deg)`,
+            transition: 'transform 0.3s ease-out'
+          }}
+        />
+        <div 
+          className="absolute top-1/3 right-20 w-24 h-24 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full opacity-50"
+          style={{
+            transform: `translate(${mousePosition.x * -15}px, ${mousePosition.y * 15}px) scale(${1 + Math.abs(mousePosition.y) * 0.1})`,
+            transition: 'transform 0.3s ease-out'
+          }}
+        />
+        <div 
+          className="absolute bottom-1/4 left-1/4 w-20 h-20 bg-gradient-to-r from-green-100 to-teal-100 rounded-2xl rotate-12 opacity-40"
+          style={{
+            transform: `translate(${mousePosition.x * 25}px, ${mousePosition.y * -20}px) rotate(${12 + mousePosition.y * 15}deg)`,
+            transition: 'transform 0.3s ease-out'
+          }}
+        />
+        <div 
+          className="absolute top-2/3 right-1/3 w-16 h-16 bg-gradient-to-r from-yellow-100 to-pink-100 rounded-full opacity-30"
+          style={{
+            transform: `translate(${mousePosition.x * -30}px, ${mousePosition.y * 25}px)`,
+            transition: 'transform 0.3s ease-out'
+          }}
+        />
+
+        {/* Floating particles */}
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full opacity-30"
+            style={{
+              left: `${10 + (i * 4.5)}%`,
+              top: `${15 + (i * 4)}%`,
+              transform: `translate(${Math.sin(mousePosition.x * i) * 10}px, ${Math.cos(mousePosition.y * i) * 10}px)`,
+              animation: `float ${2 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+              transition: 'transform 0.2s ease-out'
+            }}
+          />
+        ))}
+
+        {/* Large background shapes */}
+        <div 
+          className="absolute -top-32 -right-32 w-64 h-64 bg-gradient-to-br from-red-50 to-orange-50 rounded-full opacity-20"
+          style={{
+            transform: `translate(${mousePosition.x * 30}px, ${mousePosition.y * 30}px) scale(${1 + Math.abs(mousePosition.x) * 0.05})`,
+            transition: 'transform 0.4s ease-out'
+          }}
+        />
+        <div 
+          className="absolute -bottom-32 -left-32 w-80 h-80 bg-gradient-to-br from-blue-50 to-purple-50 rounded-full opacity-15"
+          style={{
+            transform: `translate(${mousePosition.x * -25}px, ${mousePosition.y * -25}px) scale(${1 + Math.abs(mousePosition.y) * 0.05})`,
+            transition: 'transform 0.4s ease-out'
+          }}
+        />
+      </div>
+
+      {/* Header Section */}
+           <Header />
+      <div className="relative z-10 bg-gradient-to-r from-red-500 to-red-600 border-b border-red-400 sticky top-0 mt-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
+                    {/* Title */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl md:text-5xl font-black text-white mb-2">
               Premium Properties
             </h1>
-            <p className="mx-auto max-w-2xl text-xl text-gray-300">
-              Discover exceptional homes and investment opportunities in prime
-              locations
+            <p className="text-red-100 text-lg">
+              Discover exceptional homes and investment opportunities in Kenya
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Search and Filters */}
-      <section className="border-b bg-white py-8">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
+          {/* Search and Filters */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Search */}
             <div className="relative lg:col-span-2">
-              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
-              <Input
-                placeholder="Search properties, locations..."
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-red-400" />
+              <input
+                type="text"
+                placeholder="Search properties..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
+                className="w-full pl-12 pr-4 py-4 bg-white/95 backdrop-blur-sm border border-white/30 rounded-2xl text-gray-900 placeholder-red-400 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all duration-300 shadow-sm hover:shadow-md"
               />
             </div>
 
             {/* Property Type */}
-            <Select value={propertyType} onValueChange={setPropertyType}>
-              <SelectTrigger>
-                <SelectValue placeholder="Property Type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="land">Land</SelectItem>
-                <SelectItem value="house">House</SelectItem>
-                <SelectItem value="apartments">Rental Apartments</SelectItem>
-                <SelectItem value="commercial-land">Commercial Land</SelectItem>
-                <SelectItem value="commercial-property">
-                  Commercial Property
-                </SelectItem>
-                <SelectItem value="rental-houses">Rental Houses</SelectItem>
-              </SelectContent>
-            </Select>
+            <select
+              value={propertyType}
+              onChange={(e) => setPropertyType(e.target.value)}
+              className="px-4 py-4 bg-white/95 backdrop-blur-sm border border-white/30 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all duration-300 shadow-sm hover:shadow-md"
+            >
+              <option value="all">All Types</option>
+              <option value="house">Houses</option>
+              <option value="mansion">Mansions</option>
+              <option value="commercial">Commercial</option>
+              <option value="hotel">Hotels</option>
+            </select>
 
             {/* Price Range */}
-            <Select value={priceRange} onValueChange={setPriceRange}>
-              <SelectTrigger>
-                <SelectValue placeholder="Price Range" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Prices</SelectItem>
-                <SelectItem value="under-600k">Under 500K</SelectItem>
-                <SelectItem value="500k-1m">500K - 1M</SelectItem>
-                <SelectItem value="1m-2m">1M - 2M</SelectItem>
-                <SelectItem value="over-2m">Over 2M</SelectItem>
-              </SelectContent>
-            </Select>
-
-            {/* Sort By */}
-            <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger>
-                <SelectValue placeholder="Sort By" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="featured">Featured First</SelectItem>
-                <SelectItem value="price-low">Price: Low to High</SelectItem>
-                <SelectItem value="price-high">Price: High to Low</SelectItem>
-                <SelectItem value="newest">Newest First</SelectItem>
-              </SelectContent>
-            </Select>
+            <select
+              value={priceRange}
+              onChange={(e) => setPriceRange(e.target.value)}
+              className="px-4 py-4 bg-white/95 backdrop-blur-sm border border-white/30 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all duration-300 shadow-sm hover:shadow-md"
+            >
+              <option value="all">All Prices</option>
+              <option value="under-10m">Under 10M</option>
+              <option value="10m-50m">10M - 50M</option>
+              <option value="50m-100m">50M - 100M</option>
+              <option value="over-100m">Over 100M</option>
+            </select>
           </div>
         </div>
-      </section>
+      </div>
+      
 
-      {/* Properties Grid */}
-      <section className="py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Properties List Section */}
+      <div className="relative z-10 py-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          
           {/* Results Header */}
           <div className="mb-8 flex items-center justify-between">
             <div>
-              <h2 className="font-radio-canada text-2xl font-bold text-gray-900">
-                {sortedProperties.length} Properties Found
+              <h2 className="text-2xl font-bold text-gray-900">
+                Showing {displayedProperties.length} of {sortedProperties.length} Properties
               </h2>
-              <p className="mt-1 text-gray-600">
-                Showing premium properties in your area
+              <p className="text-gray-600">
+                Premium listings in Kenya's top locations
               </p>
             </div>
-            <Button variant="outline" className="hidden items-center md:flex">
-              <MapPin className="mr-2 h-4 w-4" />
-              Map View
-            </Button>
+            
+            {/* Sort Options */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300"
+            >
+              <option value="featured">Featured First</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="newest">Newest First</option>
+            </select>
           </div>
 
           {/* Properties Grid */}
-          {sortedProperties.length > 0 ? (
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {sortedProperties.map((property, index) => (
+          {displayedProperties.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {displayedProperties.map((property, index) => (
                 <div
                   key={property.id}
-                  className="animate-fade-in"
+                  className="animate-slideInUp"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <PropertyCard property={property} />
+                  <PropertyCard 
+                    property={property} 
+                    index={index} 
+                    onImageClick={handleImageClick}
+                  />
                 </div>
               ))}
             </div>
           ) : (
-            <div className="py-16 text-center">
-              <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gray-100">
+            <div className="py-20 text-center">
+              <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-gray-100">
                 <Search className="h-12 w-12 text-gray-400" />
               </div>
-              <h3 className="mb-2 font-radio-canada text-xl font-bold text-gray-900">
+              <h3 className="mb-4 text-2xl font-bold text-gray-900">
                 No Properties Found
               </h3>
-              <p className="mb-6 text-gray-600">
-                Try adjusting your search criteria or browse all available
-                properties.
+              <p className="mb-8 text-gray-600 max-w-md mx-auto">
+                Try adjusting your search criteria or browse all available properties.
               </p>
-              <Button
+              <button
                 onClick={() => {
                   setSearchQuery('');
                   setPropertyType('all');
                   setPriceRange('all');
                 }}
-                className="bg-primary hover:bg-primary/90"
+                className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-2xl font-bold hover:from-red-600 hover:to-red-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Clear Filters
-              </Button>
+              </button>
             </div>
           )}
 
           {/* Load More Button */}
-          {sortedProperties.length > 0 && (
+          {hasMoreProperties && (
             <div className="mt-12 text-center">
-              <Button variant="outline" size="lg" className="px-8">
+              <button 
+                onClick={loadMoreProperties}
+                className="border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-2xl font-bold hover:border-red-500 hover:text-red-500 transform hover:scale-105 transition-all duration-300 bg-white shadow-lg hover:shadow-xl"
+              >
                 Load More Properties
-              </Button>
+              </button>
             </div>
           )}
         </div>
-      </section>
+      </div>
 
-      <Footer />
+      {/* Contact Section */}
+      <div className="relative z-10 bg-gradient-to-r from-red-50 to-orange-50 py-16 mt-16">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            Ready to Find Your Dream Property?
+          </h3>
+          <p className="text-gray-600 mb-8 text-lg">
+            Let our experts help you discover the perfect property in Kenya's premium locations.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="tel:0729170156"
+              className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-2xl font-bold hover:from-red-600 hover:to-red-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <Phone className="w-5 h-5 inline mr-2" />
+              Call Expert Now
+            </a>
+            <button className="border-2 border-red-500 text-red-500 px-8 py-4 rounded-2xl font-bold hover:bg-red-500 hover:text-white transform hover:scale-105 transition-all duration-300">
+              Schedule Viewing
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Image Modal */}
+      <ImageModal imageUrl={selectedImage} onClose={closeImageModal} />
+
+      {/* CSS animations */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          33% { transform: translateY(-8px) rotate(120deg); }
+          66% { transform: translateY(-4px) rotate(240deg); }
+        }
+        
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-slideInUp {
+          animation: slideInUp 0.6s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 }

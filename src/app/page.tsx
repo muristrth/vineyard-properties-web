@@ -27,16 +27,14 @@ export default function HomePage() {
         >
           <HeroSection />
         </motion.div>
-
         <motion.div
           variants={sectionVariant}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <CategoriesSection />
+          <TestimonialsSection />
         </motion.div>
-
         <motion.div
           variants={sectionVariant}
           initial="hidden"
@@ -54,15 +52,14 @@ export default function HomePage() {
         >
           <FeaturedPropertySection />
         </motion.div>
-
         <motion.div
           variants={sectionVariant}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <TestimonialsSection />
-        </motion.div>
+          <CategoriesSection />
+        </motion.div>        
       </main>
       <Footer />
     </div>

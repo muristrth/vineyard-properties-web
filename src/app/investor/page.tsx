@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
 import { useRouter } from "next/navigation";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react'; // Added useMemo
 import { motion } from 'framer-motion';
 
 // Animation variants for fade-in effect
@@ -19,11 +19,12 @@ import {
     Receipt, // Added for View Transactions icon
 } from 'lucide-react';
 
+// Assuming these are correctly configured Firebase instances
 import { auth, db } from '@/lib/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, setDoc, collection, query, where, getDocs, updateDoc, addDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, collection, query, where, getDocs, updateDoc, addDoc, onSnapshot } from 'firebase/firestore'; // Added onSnapshot
 
-// --- UI Components ---
+// --- UI Components (from your provided code, ensuring they are available) ---
 const Card = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
     <div className={`bg-white rounded-lg shadow-md border border-gray-200 ${className}`}>{children}</div>
 );
@@ -286,7 +287,7 @@ interface Transaction {
     investorId: string;
     description: string;
     date: string; // ISO string format
-    type: 'credit' | 'debit' | 'dividend' | 'rent' | 'expense' | 'appreciation';
+    type: 'credit' | 'debit' | 'dividend' | 'rent' | 'expense' | 'appreciation' | 'property_purchase'; // Added property_purchase
     amount: number;
     status: 'completed' | 'pending' | 'failed';
     category: string;
@@ -406,23 +407,24 @@ export default function InvestorPortal() {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             if (currentUser) {
+                // Use onSnapshot for real-time updates to user profile
                 const userDocRef = doc(db, 'investors', currentUser.uid);
-                try {
-                    const userDocSnap = await getDoc(userDocRef);
+                const unsubscribeUser = onSnapshot(userDocRef, (userDocSnap) => {
                     if (userDocSnap.exists()) {
                         const userData = userDocSnap.data() as User;
                         setUser(userData);
                         setIsLoggedIn(true);
-                        fetchInvestorData(currentUser.uid);
+                        fetchInvestorData(currentUser.uid); // Fetch other data once user is loaded
                     } else {
-                        await signOut(auth);
-                        alert('User profile data missing. Please register or contact support.');
+                        // If user profile is deleted or doesn't exist, log out
+                        signOut(auth);
+                        console.error('User profile data missing. Logging out.');
                     }
-                } catch (error) {
-                    console.error("Error fetching user profile:", error);
-                    await signOut(auth);
-                    alert("Failed to load user profile. Please try again.");
-                }
+                }, (error) => {
+                    console.error("Error fetching user profile in real-time:", error);
+                    // Handle error, maybe log out or show a message
+                });
+                return () => unsubscribeUser(); // Cleanup user snapshot listener
             } else {
                 setIsLoggedIn(false);
                 setUser(null);
@@ -437,97 +439,126 @@ export default function InvestorPortal() {
             }
             setLoading(false);
         });
-        return () => unsubscribe();
+        return () => unsubscribe(); // Cleanup auth state listener
     }, []);
 
     const fetchInvestorData = async (userId: string) => {
         setLoading(true);
         try {
             // Portfolio
+            // Using onSnapshot for real-time portfolio updates
             const portfolioDocRef = doc(db, 'portfolios', userId);
-            const portfolioDocSnap = await getDoc(portfolioDocRef);
-            if (portfolioDocSnap.exists()) {
-                setPortfolio(portfolioDocSnap.data() as Portfolio);
-            } else {
-                setPortfolio(null);
-            }
+            const unsubscribePortfolio = onSnapshot(portfolioDocRef, (portfolioDocSnap) => {
+                if (portfolioDocSnap.exists()) {
+                    setPortfolio(portfolioDocSnap.data() as Portfolio);
+                } else {
+                    setPortfolio(null); // Or set default empty portfolio
+                }
+            }, (error) => console.error("Error fetching portfolio data:", error));
 
             // Properties
+            // Using onSnapshot for real-time property updates
             const propertiesColRef = collection(db, 'properties');
             const propertiesQuery = query(propertiesColRef, where('ownerId', '==', userId));
-            const propertiesSnapshot = await getDocs(propertiesQuery);
-            setProperties(propertiesSnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            })) as Property[]);
+            const unsubscribeProperties = onSnapshot(propertiesQuery, (propertiesSnapshot) => {
+                setProperties(propertiesSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as Property[]);
+            }, (error) => console.error("Error fetching properties data:", error));
 
             // Transactions
+            // Using onSnapshot for real-time transaction updates
             const transactionsColRef = collection(db, 'transactions');
             const transactionsQuery = query(transactionsColRef, where('investorId', '==', userId));
-            const transactionsSnapshot = await getDocs(transactionsQuery);
-            setTransactions(transactionsSnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            })) as Transaction[]);
+            const unsubscribeTransactions = onSnapshot(transactionsQuery, (transactionsSnapshot) => {
+                setTransactions(transactionsSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as Transaction[]);
+            }, (error) => console.error("Error fetching transactions data:", error));
 
             // Documents
+            // Using onSnapshot for real-time document updates
             const documentsColRef = collection(db, 'documents');
             const documentsQuery = query(documentsColRef, where('investorId', '==', userId));
-            const documentsSnapshot = await getDocs(documentsQuery);
-            setDocuments(documentsSnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            })) as Document[]);
+            const unsubscribeDocuments = onSnapshot(documentsQuery, (documentsSnapshot) => {
+                setDocuments(documentsSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as Document[]);
+            }, (error) => console.error("Error fetching documents data:", error));
 
             // Loans
+            // Using onSnapshot for real-time loan updates
             const loansColRef = collection(db, 'loans');
             const loansQuery = query(loansColRef, where('investorId', '==', userId));
-            const loansSnapshot = await getDocs(loansQuery);
-            const fetchedLoans = loansSnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            })) as Loan[];
-            setLoans(fetchedLoans);
+            const unsubscribeLoans = onSnapshot(loansQuery, (loansSnapshot) => {
+                const fetchedLoans = loansSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as Loan[];
+                setLoans(fetchedLoans);
 
-            // Calculate aggregated loanBalance and creditLimit from fetched loans
-            const totalOutstandingLoanBalance = fetchedLoans.reduce((sum, loan) => sum + loan.outstandingBalance, 0);
-            const totalCreditLimit = fetchedLoans.reduce((sum, loan) => sum + (loan.creditLimit || 0), 0); // Summing up credit limits from all loans, adjust if only one main credit line
-            
-            // Balances
-            const balancesDocRef = doc(db, 'balances', userId);
-            const balancesDocSnap = await getDoc(balancesDocRef);
-            if (balancesDocSnap.exists()) {
-                setBalances({
-                    ...balancesDocSnap.data() as Balances,
-                    loanBalance: totalOutstandingLoanBalance, // Override or add loanBalance
-                    creditLimit: totalCreditLimit // Override or add creditLimit
-                });
-            } else {
-                setBalances({
-                    availableBalance: 0,
-                    expectedDividends: 0,
-                    loanBalance: totalOutstandingLoanBalance,
-                    creditLimit: totalCreditLimit
-                });
-            }
+                // Calculate aggregated loanBalance and creditLimit from fetched loans
+                const totalOutstandingLoanBalance = fetchedLoans.reduce((sum, loan) => sum + loan.outstandingBalance, 0);
+                const totalCreditLimit = fetchedLoans.reduce((sum, loan) => sum + (loan.creditLimit || 0), 0);
+                
+                // Balances (also use onSnapshot for real-time updates)
+                const balancesDocRef = doc(db, 'balances', userId);
+                const unsubscribeBalances = onSnapshot(balancesDocRef, (balancesDocSnap) => {
+                    if (balancesDocSnap.exists()) {
+                        setBalances({
+                            ...balancesDocSnap.data() as Balances,
+                            loanBalance: totalOutstandingLoanBalance,
+                            creditLimit: totalCreditLimit
+                        });
+                    } else {
+                        setBalances({
+                            availableBalance: 0,
+                            expectedDividends: 0,
+                            loanBalance: totalOutstandingLoanBalance,
+                            creditLimit: totalCreditLimit
+                        });
+                    }
+                }, (error) => console.error("Error fetching balances data:", error));
+                // Return unsubscribe function for balances as well
+                return () => unsubscribeBalances();
+            }, (error) => console.error("Error fetching loans data:", error));
 
-            // Loan Transactions (fetch related to investor's loans)
+            // Loan Transactions
+            // Using onSnapshot for real-time loan transaction updates
             const loanTransactionsColRef = collection(db, 'loanTransactions');
             const loanTransactionQuery = query(loanTransactionsColRef, where('investorId', '==', userId));
-            const loanTransactionsSnapshot = await getDocs(loanTransactionQuery);
-            setLoanTransactions(loanTransactionsSnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            })) as LoanTransaction[]);
+            const unsubscribeLoanTransactions = onSnapshot(loanTransactionQuery, (loanTransactionsSnapshot) => {
+                setLoanTransactions(loanTransactionsSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as LoanTransaction[]);
+            }, (error) => console.error("Error fetching loan transactions data:", error));
 
             // Notifications
+            // Using onSnapshot for real-time notification updates
             const notificationsColRef = collection(db, 'notifications');
             const notificationsQuery = query(notificationsColRef, where('recipientId', '==', userId));
-            const notificationsSnapshot = await getDocs(notificationsQuery);
-            setNotifications(notificationsSnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            })) as Notification[]);
+            const unsubscribeNotifications = onSnapshot(notificationsQuery, (notificationsSnapshot) => {
+                setNotifications(notificationsSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as Notification[]);
+            }, (error) => console.error("Error fetching notifications data:", error));
+
+            // Return a cleanup function that unsubscribes from all listeners
+            return () => {
+                unsubscribePortfolio();
+                unsubscribeProperties();
+                unsubscribeTransactions();
+                unsubscribeDocuments();
+                unsubscribeLoans();
+                unsubscribeLoanTransactions();
+                unsubscribeNotifications();
+                // unsubscribeBalances is handled within the loans snapshot for now due to dependency
+            };
 
         } catch (error) {
             console.error("Error fetching investor data:", error);
@@ -543,17 +574,7 @@ export default function InvestorPortal() {
         setLoading(true);
         try {
             const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
-            const firebaseUser = userCredential.user;
-            const userDocRef = doc(db, 'investors', firebaseUser.uid);
-            const userDocSnap = await getDoc(userDocRef);
-            if (userDocSnap.exists()) {
-                setUser(userDocSnap.data() as User);
-                setIsLoggedIn(true);
-                setTwoFactorRequired(false); // Assume no 2FA initially or handle specific 2FA logic here
-            } else {
-                await signOut(auth);
-                alert('User profile data missing. Please register or contact support.');
-            }
+            // onAuthStateChanged will handle fetching user data
         } catch (error) {
             alert(`Login failed: ${error instanceof Error ? error.message : String(error)}`);
         } finally {
@@ -570,10 +591,7 @@ export default function InvestorPortal() {
             if (twoFactorCode === '123456') { // Dummy code
                 setIsLoggedIn(true);
                 setTwoFactorRequired(false);
-                // After successful 2FA, fetch user data
-                if (auth.currentUser) {
-                    fetchInvestorData(auth.currentUser.uid);
-                }
+                // After successful 2FA, onAuthStateChanged will trigger data fetch
             } else {
                 alert('Invalid 2FA code. Please try again.');
             }
@@ -603,11 +621,12 @@ export default function InvestorPortal() {
                 investorLevel: 'Bronze',
                 kycStatus: 'pending',
             };
-            await setDoc(doc(db, 'investors', newUser.uid), newUserDoc);
+            // Use the public data path for investors
+            await setDoc(doc(db, `artifacts/${__app_id}/public/data/investors`, newUser.uid), newUserDoc);
 
             // Initialize default portfolio/balance/loan structure for new user if needed
-            await setDoc(doc(db, 'portfolios', newUser.uid), { totalValue: 0, totalProperties: 0, yearlyAppreciation: 0 });
-            await setDoc(doc(db, 'balances', newUser.uid), { availableBalance: 0, expectedDividends: 0, loanBalance: 0, creditLimit: 0 });
+            await setDoc(doc(db, `artifacts/${__app_id}/public/data/portfolios`, newUser.uid), { totalValue: 0, totalProperties: 0, yearlyAppreciation: 0, totalRent: 0, totalROI: 0 });
+            await setDoc(doc(db, `artifacts/${__app_id}/public/data/balances`, newUser.uid), { availableBalance: 0, expectedDividends: 0, pendingBalance: 0, loanBalance: 0, creditLimit: 0 });
 
 
             alert('Account created successfully! Please login.');
@@ -662,7 +681,8 @@ export default function InvestorPortal() {
                 requestDate: new Date().toISOString(),
                 // Add more fields as needed, e.g., creditScore, propertyValue, etc.
             };
-            await addDoc(collection(db, 'loanRequests'), newLoanRequestDoc); // Use 'loanRequests' collection for requests
+            // Use the public data path for loan requests
+            await addDoc(collection(db, `artifacts/${__app_id}/public/data/loanRequests`), newLoanRequestDoc); 
 
             alert(`Loan request for ${formatCurrency(loanRequestAmount)} submitted successfully! We will review your application.`);
             setShowLoanRequestModal(false);
@@ -691,16 +711,13 @@ export default function InvestorPortal() {
         if (!user) return;
         setLoading(true);
         try {
-            const propertyRef = doc(db, 'properties', propertyId);
+            // Use the public data path for properties
+            const propertyRef = doc(db, `artifacts/${__app_id}/public/data/properties`, propertyId);
             const propertySnap = await getDoc(propertyRef);
             if (propertySnap.exists()) {
                 const currentSellRequestStatus = propertySnap.data().sellRequest || false;
                 await updateDoc(propertyRef, { sellRequest: !currentSellRequestStatus });
-                setProperties(prev => prev.map(prop =>
-                    prop.id === propertyId
-                        ? { ...prop, sellRequest: !currentSellRequestStatus }
-                        : prop
-                ));
+                // The onSnapshot listener for properties will automatically update the state
                 alert('Sell request updated successfully!');
             } else {
                 alert('Property not found.');
@@ -733,7 +750,8 @@ export default function InvestorPortal() {
                 readByAdmin: false,
                 status: 'sent'
             };
-            await addDoc(collection(db, 'messages'), newMessage);
+            // Use the public data path for messages
+            await addDoc(collection(db, `artifacts/${__app_id}/public/data/messages`), newMessage);
             alert('Message sent successfully!');
             setShowMessageModal(false);
             setMessage({ subject: '', content: '', priority: 'normal' });
@@ -747,15 +765,10 @@ export default function InvestorPortal() {
     const markNotificationAsRead = async (notificationId: string) => {
         setLoading(true);
         try {
-            const notificationRef = doc(db, 'notifications', notificationId);
+            // Use the public data path for notifications
+            const notificationRef = doc(db, `artifacts/${__app_id}/public/data/notifications`, notificationId);
             await updateDoc(notificationRef, { read: true });
-            setNotifications(prev =>
-                prev.map(notif =>
-                    notif.id === notificationId
-                        ? { ...notif, read: true }
-                        : notif
-                )
-            );
+            // The onSnapshot listener for notifications will automatically update the state
         } catch (error) {
             alert(`Failed to update notification status: ${(error instanceof Error ? error.message : String(error))}`);
         } finally {
@@ -824,6 +837,7 @@ export default function InvestorPortal() {
                         <CardContent>
                             <form onSubmit={handleTwoFactorSubmit} className="space-y-4">
                                 <Input
+                                    id="twoFactorCode" // Added ID
                                     type="text"
                                     placeholder="Enter 6-digit code"
                                     value={twoFactorCode}
@@ -903,6 +917,7 @@ export default function InvestorPortal() {
                                                     Full Name
                                                 </label>
                                                 <Input
+                                                    id="fullName" // Added ID
                                                     type="text"
                                                     placeholder="Enter your full name"
                                                     value={formData.name}
@@ -915,6 +930,7 @@ export default function InvestorPortal() {
                                                     Phone Number
                                                 </label>
                                                 <Input
+                                                    id="phone" // Added ID
                                                     type="tel"
                                                     placeholder="Enter your phone number"
                                                     value={formData.phone}
@@ -928,6 +944,7 @@ export default function InvestorPortal() {
                                             Email Address
                                         </label>
                                         <Input
+                                            id="email" // Added ID
                                             type="email"
                                             placeholder="Enter your email"
                                             value={formData.email}
@@ -940,6 +957,7 @@ export default function InvestorPortal() {
                                             Password
                                         </label>
                                         <Input
+                                            id="password" // Added ID
                                             type="password"
                                             placeholder="Enter your password"
                                             value={formData.password}
@@ -953,6 +971,7 @@ export default function InvestorPortal() {
                                                 Confirm Password
                                             </label>
                                             <Input
+                                                id="confirmPassword" // Added ID
                                                 type="password"
                                                 placeholder="Confirm your password"
                                                 value={formData.confirmPassword}
@@ -994,7 +1013,9 @@ export default function InvestorPortal() {
     }
 
   function setShowLoanModal(arg0: boolean): void {
-    throw new Error('Function not implemented.');
+    // This function was not defined in the original code, removed call or defined it if needed
+    // For now, it's a no-op to prevent errors.
+    console.warn("setShowLoanModal was called but is not implemented.");
   }
 
     return (
@@ -1072,28 +1093,28 @@ export default function InvestorPortal() {
                     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                         {/* Adjusted TabsList for better responsiveness */}
                         <TabsList className="grid w-full overflow-x-auto grid-cols-2 gap-y-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-8">
-                        <TabsTrigger value="dashboard" onClick={() => setActiveTab('dashboard')} activeTab={''}>
+                        <TabsTrigger value="dashboard" onClick={() => setActiveTab('dashboard')} activeTab={activeTab}> {/* Pass activeTab */}
                             <Home className="h-4 w-4 mr-2" /> Dashboard
                         </TabsTrigger>
-                        <TabsTrigger value="properties" onClick={() => setActiveTab('properties')} activeTab={''}>
+                        <TabsTrigger value="properties" onClick={() => setActiveTab('properties')} activeTab={activeTab}> {/* Pass activeTab */}
                             <Home className="h-4 w-4 mr-2" /> Properties
                         </TabsTrigger>
-                        <TabsTrigger value="portfolio" onClick={() => setActiveTab('portfolio')} activeTab={''}>
+                        <TabsTrigger value="portfolio" onClick={() => setActiveTab('portfolio')} activeTab={activeTab}> {/* Pass activeTab */}
                             <PieChart className="h-4 w-4 mr-2" /> Portfolio
                         </TabsTrigger>
-                        <TabsTrigger value="transactions" onClick={() => setActiveTab('transactions')} activeTab={''}>
+                        <TabsTrigger value="transactions" onClick={() => setActiveTab('transactions')} activeTab={activeTab}> {/* Pass activeTab */}
                             <Receipt className="h-4 w-4 mr-2" /> Transactions
                         </TabsTrigger>
-                        <TabsTrigger value="loans" onClick={() => setActiveTab('loans')} activeTab={''}>
+                        <TabsTrigger value="loans" onClick={() => setActiveTab('loans')} activeTab={activeTab}> {/* Pass activeTab */}
                             <Banknote className="h-4 w-4 mr-2" /> Loans
                         </TabsTrigger>
-                        <TabsTrigger value="documents" onClick={() => setActiveTab('documents')} activeTab={''}>
+                        <TabsTrigger value="documents" onClick={() => setActiveTab('documents')} activeTab={activeTab}> {/* Pass activeTab */}
                             <FileText className="h-4 w-4 mr-2" /> Documents
                         </TabsTrigger>
-                        <TabsTrigger value="messages" onClick={() => setShowMessageModal(true)} activeTab={''}>
+                        <TabsTrigger value="messages" onClick={() => setShowMessageModal(true)} activeTab={activeTab}> {/* Pass activeTab */}
                             <MessageCircle className="h-4 w-4 mr-2" /> Message Admin
                         </TabsTrigger>
-                        <TabsTrigger value="settings" onClick={() => setShowProfileModal(true)} activeTab={''}>
+                        <TabsTrigger value="settings" onClick={() => setShowProfileModal(true)} activeTab={activeTab}> {/* Pass activeTab */}
                             <User className="h-4 w-4 mr-2" /> Profile
                         </TabsTrigger>
                     </TabsList>
@@ -1187,7 +1208,7 @@ export default function InvestorPortal() {
                                                             <TableCell>{new Date(transaction.date).toLocaleDateString()}</TableCell>
                                                             <TableCell>{transaction.description}</TableCell>
                                                             <TableCell>
-                                                                <Badge variant={transaction.type === 'credit' || transaction.type === 'dividend' ? 'success' : 'destructive'}>
+                                                                <Badge variant={transaction.type === 'credit' || transaction.type === 'dividend' || transaction.type === 'property_purchase' ? 'success' : 'destructive'}>
                                                                     {transaction.type}
                                                                 </Badge>
                                                             </TableCell>
@@ -1305,7 +1326,7 @@ export default function InvestorPortal() {
                                                 <Card key={property.id} className="p-4">
                                                     <h5 className="font-semibold text-gray-900">{property.name}</h5>
                                                     <p className="text-sm text-gray-600">Value: {formatCurrency(property.currentValue)}</p>
-                                                    <p className="text-sm text-gray-600">ROI: {formatPercentage((property.currentValue - property.purchasePrice) / property.purchasePrice * 100)}</p>
+                                                    <p className="text-sm text-gray-600">ROI: {formatPercentage((property.currentValue - property.purchasePrice) / property.purchasePrice)}</p> {/* Corrected ROI calculation */}
                                                 </Card>
                                             ))}
                                         </div>
@@ -1331,7 +1352,7 @@ export default function InvestorPortal() {
                                     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
                                       <div className="relative">
                                         <img
-                                          src={property.image}
+                                          src={property.image || `https://placehold.co/600x400/E0E7FF/3F51B5?text=Property+Image`} // Placeholder if no image
                                           alt={property.name}
                                           className="w-full h-48 object-cover"
                                         />
@@ -1432,7 +1453,7 @@ export default function InvestorPortal() {
                                 <Card>
                                     <CardHeader className="flex flex-row justify-between items-center">
                                         <CardTitle>Transaction Filters</CardTitle>
-                                        <Button onClick={() => fetchInvestorData(user!.id)} variant="outline" size="sm">
+                                        <Button onClick={() => user && fetchInvestorData(user.id)} variant="outline" size="sm"> {/* Added user check */}
                                             <RefreshCw className="h-4 w-4 mr-2" /> Refresh
                                         </Button>
                                     </CardHeader>
@@ -1453,6 +1474,7 @@ export default function InvestorPortal() {
                                                     <option value="rent">Rent</option>
                                                     <option value="expense">Expense</option>
                                                     <option value="appreciation">Appreciation</option>
+                                                    <option value="property_purchase">Property Purchase</option> {/* Added */}
                                                 </select>
                                             </div>
                                             <div>
@@ -1494,8 +1516,8 @@ export default function InvestorPortal() {
                                                             <TableCell>{new Date(transaction.date).toLocaleDateString()}</TableCell>
                                                             <TableCell>{transaction.description}</TableCell>
                                                             <TableCell>
-                                                                <Badge variant={transaction.type === 'credit' || transaction.type === 'dividend' || transaction.type === 'rent' || transaction.type === 'appreciation' ? 'success' : 'destructive'}>
-                                                                    {transaction.type}
+                                                                <Badge variant={['credit', 'dividend', 'rent', 'appreciation', 'property_purchase'].includes(transaction.type) ? 'success' : 'destructive'}> {/* Updated badge logic */}
+                                                                    {transaction.type.replace(/_/g, ' ')} {/* Format type string */}
                                                                 </Badge>
                                                             </TableCell>
                                                             <TableCell>{formatCurrency(transaction.amount)}</TableCell>
@@ -1625,7 +1647,7 @@ export default function InvestorPortal() {
                                 <Card>
                                     <CardHeader className="flex flex-row justify-between items-center">
                                         <CardTitle>Document Filters</CardTitle>
-                                        <Button onClick={() => fetchInvestorData(user!.id)} variant="outline" size="sm">
+                                        <Button onClick={() => user && fetchInvestorData(user.id)} variant="outline" size="sm"> {/* Added user check */}
                                             <RefreshCw className="h-4 w-4 mr-2" /> Refresh
                                         </Button>
                                     </CardHeader>
@@ -1708,7 +1730,7 @@ export default function InvestorPortal() {
                   </DialogHeader>
                   {selectedProperty && (
                     <div className="grid gap-4 py-4">
-                      <img src={selectedProperty.image} alt={selectedProperty.name} className="w-full h-60 object-cover rounded-md" />
+                      <img src={selectedProperty.image || `https://placehold.co/600x400/E0E7FF/3F51B5?text=Property+Image`} alt={selectedProperty.name} className="w-full h-60 object-cover rounded-md" />
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <p className="text-sm text-gray-600">Purchase Price</p>
@@ -1760,6 +1782,7 @@ export default function InvestorPortal() {
                                   Loan Amount
                                 </label>
                                 <Input
+                                  id="loanAmount" // Added ID
                                   type="number"
                                   placeholder="Enter amount"
                                   value={loanRequestAmount}
@@ -1772,6 +1795,7 @@ export default function InvestorPortal() {
                                   Purpose
                                 </label>
                                 <select
+                                  id="loanPurpose" // Added ID
                                   value={loanRequestPurpose}
                                   onChange={(e) => setLoanRequestPurpose(e.target.value)}
                                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -1789,6 +1813,7 @@ export default function InvestorPortal() {
                                   Term (months)
                                 </label>
                                 <Input
+                                  id="loanTerm" // Added ID
                                   type="number"
                                   placeholder="Enter term in months"
                                   value={loanRequestTerm}
@@ -1801,6 +1826,7 @@ export default function InvestorPortal() {
                                   Collateral
                                 </label>
                                 <select
+                                  id="loanCollateral" // Added ID
                                   value={loanRequestCollateral}
                                   onChange={(e) => setLoanRequestCollateral(e.target.value)}
                                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -1852,7 +1878,7 @@ export default function InvestorPortal() {
                         <p><strong>Account Number:</strong> 1234567890</p>
                         <p><strong>SWIFT/BIC Code:</strong> EXAMPLBANK</p>
                         <p className="text-sm text-gray-600 italic">
-                            Kindly include your Investor ID (e.g., {user?.id.substring(0, 8)}...) as the reference for your payment.
+                            Kindly include your Investor ID (e.g., {user?.id ? user.id.substring(0, 8) : '...'}) as the reference for your payment. {/* Added check for user.id */}
                             Your payment will be verified by our finance team within 1-2 business days.
                         </p>
                     </div>

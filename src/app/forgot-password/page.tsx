@@ -4,7 +4,9 @@
 import { useState } from "react";
 import { getAuth, sendPasswordResetEmail, AuthError } from "firebase/auth"; // Import AuthError
 import { useRouter } from "next/navigation";
-import { app } from "@/lib/firebase"; // Import 'app' from your firebase config
+import { auth, db } from '@/lib/firebase';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc, setDoc, collection, query, where, getDocs, updateDoc, addDoc, onSnapshot } from 'firebase/firestore';
 
 // Assume you have Header, Footer, Button, Input, Card components or use basic HTML
 import Header from '@/components/Header';

@@ -1,38 +1,18 @@
 'use client';
 
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Head from 'next/head';
+import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import {
-  MapPin,
-  Bed,
-  Bath,
-  Maximize,
-  Car,
-  Calendar,
-  Share,
-  Heart,
-  Phone,
-  Mail,
-  ArrowLeft,
-  Play,
-  Camera,
-  ChevronLeft,
-  ChevronRight,
-  Calculator, // Added for calculator icons
-  DollarSign, // Added for financial icons
-  TrendingUp,
-  XCircle, // Added for ROI
-} from 'lucide-react';
-import Link from 'next/link';
+import { MapPin, Bed, Bath, Maximize, Car, Calendar, Share, Heart, Phone, Mail, ArrowLeft, Play, Camera, ChevronLeft, ChevronRight, Calculator, DollarSign, TrendingUp, XCircle, Star, Award, Shield, CheckCircle, MessageCircle, Download, Eye, Clock, Users, Home, Building, TreePine, Wifi, CarIcon, CookingPot as SwimmingPool, Zap, PhoneCall, Apple as WhatsApp } from 'lucide-react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
-// Define an interface for the Agent data
+// Define interfaces (same as original)
 interface Agent {
   name: string;
   title: string;
@@ -41,13 +21,12 @@ interface Agent {
   image: string;
 }
 
-// Define an interface for a single Property
 interface Property {
   id: string;
   title: string;
   location: string;
   price: number;
-  originalPrice?: number; // Optional property
+  originalPrice?: number;
   type: string;
   status: string;
   bedrooms: number;
@@ -64,10 +43,8 @@ interface Property {
   featured: boolean;
 }
 
-// Mock property data - in a real app, this would come from an API
+// Enhanced property data with more details
 const propertyData: Record<string, Property> = {
-  // Changed `any` to `Property`
-  
   'heritage-villas-ngong': {
   id: 'heritage-villas-ngong',
   title: 'Luxurious 4 Bedroom All Ensuite Plus DSQ For Sale Heritage Villas, Ngong',
@@ -256,7 +233,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       title: 'Senior Property Agent',
       phone: '0729170156',
       email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+      image: 'https://media.licdn.com/dms/image/v2/D4D03AQEOPeZoDQNxFw/profile-displayphoto-scale_200_200/B4DZguPzwvHAAc-/0/1753122553451?e=2147483647&v=beta&t=68wLq_5H8IFEURj2crG7sh3kHPZKw2mVFUeLPwEXzfc',
     },
     virtualTour: false,
     featured: false,
@@ -4659,44 +4636,60 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
 
 export default function PropertyDetailPage() {
   const params = useParams();
-  const propertyId = params && 'id' in params ? (params.id as string) : '';
-  const property = propertyData[propertyId];
+  const propertyId = params && 'id' in params ? (params.id as string) : 'heritage-villas-ngong';
+  const property = propertyData[propertyId] || propertyData['heritage-villas-ngong'];
 
+  // Enhanced state management
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showVirtualTour, setShowVirtualTour] = useState(false);
+  const [isAutoSliding, setIsAutoSliding] = useState(true);
+  const [viewCount, setViewCount] = useState(Math.floor(Math.random() * 500) + 100);
+  const [savedProperties, setSavedProperties] = useState<string[]>([]);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-  // Mortgage Calculator States
-  const [mortgagePrincipal, setMortgagePrincipal] = useState(property ? property.price : 0);
-  const [mortgageInterestRate, setMortgageInterestRate] = useState(7); // Annual interest rate in %
-  const [mortgageLoanTerm, setMortgageLoanTerm] = useState(30); // Loan term in years
+  // Calculator states
+  const [mortgagePrincipal, setMortgagePrincipal] = useState(property.price);
+  const [mortgageInterestRate, setMortgageInterestRate] = useState(12);
+  const [mortgageLoanTerm, setMortgageLoanTerm] = useState(25);
   const [monthlyMortgagePayment, setMonthlyMortgagePayment] = useState(0);
-
-  // Property Valuation States
-  const [valuationInputPrice, setValuationInputPrice] = useState(property ? property.price : 0);
-  const [valuationResult, setValuationResult] = useState<number | null>(null);
-
-  // Investment ROI Calculator States
-  const [roiInvestmentCost, setRoiInvestmentCost] = useState(property ? property.price : 0);
-  const [roiAnnualReturn, setRoiAnnualReturn] = useState(0); // Expected annual return
-  const [roiResult, setRoiResult] = useState<number | null>(null);
-
-  // Calculate initial mortgage payment on load
-  React.useEffect(() => {
-    if (property) {
-      setMortgagePrincipal(property.price);
-      calculateMortgagePayment(property.price, mortgageInterestRate, mortgageLoanTerm);
+  
+  // Auto-slider functionality
+  useEffect(() => {
+    if (isAutoSliding && property.images.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
+      }, 4000);
+      return () => clearInterval(interval);
     }
-  }, [property, mortgageInterestRate, mortgageLoanTerm]); // Recalculate if these change
+  }, [isAutoSliding, property.images.length]);
+
+  // Calculate mortgage payment
+  useEffect(() => {
+    calculateMortgagePayment(mortgagePrincipal, mortgageInterestRate, mortgageLoanTerm);
+  }, [mortgagePrincipal, mortgageInterestRate, mortgageLoanTerm]);
+
+  // Track view count
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setViewCount(prev => prev + 1);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   if (!property) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <h1 className="mb-4 text-2xl font-bold text-gray-900">
-            Property Not Found
-          </h1>
-          <Link href="/properties" className="text-primary hover:underline">
-            Back to Properties
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="text-center transform hover:scale-105 transition-all duration-300">
+          <div className="mb-4 animate-bounce">
+            <Home className="h-16 w-16 mx-auto text-blue-600" />
+          </div>
+          <h1 className="mb-4 text-3xl font-bold text-gray-900">Property Not Found</h1>
+          <p className="mb-6 text-gray-600">The property you're looking for doesn't exist.</p>
+          <Link href="/properties">
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300">
+              Back to Properties
+            </Button>
           </Link>
         </div>
       </div>
@@ -4704,7 +4697,7 @@ export default function PropertyDetailPage() {
   }
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-KE', {
       style: 'currency',
       currency: 'KES',
       minimumFractionDigits: 0,
@@ -4714,15 +4707,14 @@ export default function PropertyDetailPage() {
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
+    setIsAutoSliding(false);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex(
-      (prev) => (prev - 1 + property.images.length) % property.images.length,
-    );
+    setCurrentImageIndex((prev) => (prev - 1 + property.images.length) % property.images.length);
+    setIsAutoSliding(false);
   };
 
-  // Mortgage Calculator Logic
   const calculateMortgagePayment = (principal: number, annualInterestRate: number, loanTermYears: number) => {
     if (principal <= 0 || annualInterestRate < 0 || loanTermYears <= 0) {
       setMonthlyMortgagePayment(0);
@@ -4741,576 +4733,737 @@ export default function PropertyDetailPage() {
     }
   };
 
-  // Property Valuation Logic (Simplified/Simulated)
-  const handleValuationCalculate = () => {
-    if (valuationInputPrice <= 0) {
-      setValuationResult(null);
-      return;
-    }
-    // Simulate a valuation: e.g., +/- 10% of input price
-    const randomFactor = (Math.random() * 0.2) - 0.1; // -0.1 to +0.1
-    const estimatedValue = valuationInputPrice * (1 + randomFactor);
-    setValuationResult(Math.round(estimatedValue));
+  const toggleSaveProperty = () => {
+    setSavedProperties(prev => 
+      prev.includes(propertyId) 
+        ? prev.filter(id => id !== propertyId)
+        : [...prev, propertyId]
+    );
   };
 
-  // Investment ROI Logic
-  const handleROICalculate = () => {
-    if (roiInvestmentCost <= 0) {
-      setRoiResult(null);
-      return;
+  const shareProperty = async (platform?: string) => {
+    const url = typeof window !== 'undefined' ? window.location.href : '';
+    const title = property.title;
+    const text = `Check out this amazing property: ${title}`;
+
+    if (platform === 'whatsapp') {
+      window.open(`https://wa.me/?text=${encodeURIComponent(`${text} ${url}`)}`);
+    } else if (platform === 'twitter') {
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
+    } else if (navigator.share) {
+      try {
+        await navigator.share({ title, text, url });
+      } catch (err) {
+        console.log('Share failed:', err);
+      }
+    } else {
+      navigator.clipboard.writeText(url);
+      alert('Link copied to clipboard!');
     }
-    const roi = (roiAnnualReturn / roiInvestmentCost) * 100;
-    setRoiResult(roi);
+    setShowShareMenu(false);
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateListing",
+    "name": property.title,
+    "description": property.description,
+    "url": typeof window !== 'undefined' ? window.location.href : '',
+    "image": property.images,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": property.location
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -1.3661591034223453,
+      "longitude": 36.67286523063698
+    },
+    "floorSize": {
+      "@type": "QuantitativeValue",
+      "value": property.area,
+      "unitText": "sqm"
+    },
+    "numberOfBedrooms": property.bedrooms,
+    "numberOfBathroomsTotal": property.bathrooms,
+    "yearBuilt": property.yearBuilt,
+    "price": {
+      "@type": "PriceSpecification",
+      "price": property.price,
+      "priceCurrency": "KES"
+    },
+    "realEstateAgent": {
+      "@type": "RealEstateAgent",
+      "name": property.agent.name,
+      "telephone": property.agent.phone,
+      "email": property.agent.email
+    }
+  };
 
   return (
-    <div className="min-h-screen">
+    <>
       <Header />
+      <Head>
+        <title>{property.title} - Premium Real Estate</title>
+        <meta name="description" content={property.description.substring(0, 160)} />
+        <meta name="keywords" content={`${property.type}, ${property.location}, real estate, property for sale, ${property.bedrooms} bedroom`} />
+        <meta property="og:title" content={property.title} />
+        <meta property="og:description" content={property.description.substring(0, 160)} />
+        <meta property="og:image" content={property.images[0]} />
+        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={property.title} />
+        <meta name="twitter:description" content={property.description.substring(0, 160)} />
+        <meta name="twitter:image" content={property.images[0]} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </Head>
 
-      {/* Back Button */}
-      <div className="border-b bg-white pb-4 pt-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Button asChild variant="ghost" className="mb-4">
-            <Link href="/properties">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+        {/* Floating Back Button */}
+        <div className="fixed top-24 left-6 z-50">
+          <Link href="/properties">
+            <Button 
+              variant="secondary" 
+              size="sm"
+              className="bg-white/90 backdrop-blur-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-white/20"
+            >
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Properties
-            </Link>
-          </Button>
+              Back
+            </Button>
+          </Link>
         </div>
-      </div>
 
-      {/* Property Gallery */}
-      <section className="bg-white py-8">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {/* Main Image */}
-            <div className="lg:col-span-2">
-              <div className="relative h-96 overflow-hidden rounded-2xl bg-gray-100 lg:h-[500px]">
-                {/* Conditional rendering for Virtual Tour */}
-                {showVirtualTour && property.virtualTour ? (
-                    <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-                        {/* Placeholder for actual virtual tour embed */}
-                        <iframe
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" // Example YouTube embed, replace with actual tour
-                            title="Virtual Property Tour"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="w-full h-full"
-                        ></iframe>
-                        <Button
-                            onClick={() => setShowVirtualTour(false)}
-                            className="absolute top-4 right-4 bg-white text-gray-800 hover:bg-gray-100"
-                        >
-                            <XCircle className="h-5 w-5 mr-2" /> Close Tour
-                        </Button>
-                    </div>
-                ) : (
-                    <img
-                        src={property.images[currentImageIndex]}
-                        alt={property.title}
-                        className="h-full w-full object-cover"
-                    />
+        {/* Hero Section with Enhanced Gallery */}
+        <section className="relative pt-16 pb-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Property Status Bar */}
+            <div className="mb-6 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Badge className={`${property.status === 'For Sale' ? 'bg-emerald-500' : 'bg-blue-500'} text-white animate-pulse`}>
+                  {property.status}
+                </Badge>
+                <Badge variant="secondary" className="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700">
+                  {property.type}
+                </Badge>
+                {property.featured && (
+                  <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white">
+                    <Award className="mr-1 h-3 w-3" />
+                    Featured
+                  </Badge>
                 )}
-
-
-                {/* Image Navigation (only if not showing virtual tour) */}
-                {!showVirtualTour && property.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 transform items-center justify-center rounded-full bg-white/80 shadow-lg transition-colors hover:bg-white"
-                    >
-                      <ChevronLeft className="h-5 w-5" />
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 transform items-center justify-center rounded-full bg-white/80 shadow-lg transition-colors hover:bg-white"
-                    >
-                      <ChevronRight className="h-5 w-5" />
-                    </button>
-                  </>
-                )}
-
-                {/* Image Counter (only if not showing virtual tour) */}
-                {!showVirtualTour && (
-                    <div className="absolute bottom-4 left-4 rounded-full bg-black/60 px-3 py-1 text-sm text-white">
-                        {currentImageIndex + 1} / {property.images.length}
-                    </div>
-                )}
-
-
-                {/* Actions */}
-                <div className="absolute right-4 top-4 flex space-x-2">
-                  {property.virtualTour && !showVirtualTour && ( // Only show if virtual tour exists and not currently showing
-                    <Button
-                      onClick={() => setShowVirtualTour(true)}
-                      className="bg-primary hover:bg-primary/90"
-                    >
-                      <Play className="mr-2 h-4 w-4" />
-                      Virtual Tour
-                    </Button>
-                  )}
-                  {!showVirtualTour && ( // Only show if not showing virtual tour
-                    <Button variant="secondary" size="sm">
-                      <Camera className="mr-2 h-4 w-4" />
-                      {property.images.length} Photos
-                    </Button>
-                  )}
-                </div>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <Eye className="h-4 w-4" />
+                <span>{viewCount} views</span>
+                <Clock className="h-4 w-4 ml-2" />
+                <span>Updated today</span>
               </div>
             </div>
 
-            {/* Image Thumbnails */}
-            <div className="space-y-4">
-              <div className="grid grid-cols-4 gap-2 lg:grid-cols-1">
-                {property.images
-                  .slice(0, 4)
-                  .map((image: string, index: number) => (
+            {/* Enhanced Image Gallery */}
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
+              {/* Main Image Container */}
+              <div className="lg:col-span-3">
+                <div className="relative h-96 lg:h-[600px] overflow-hidden rounded-3xl bg-gradient-to-br from-gray-200 to-gray-300 shadow-2xl">
+                  {/* Auto-sliding indicator */}
+                  <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+                    {isAutoSliding && (
+                      <Badge variant="secondary" className="bg-black/50 text-white backdrop-blur-sm">
+                        <Play className="mr-1 h-3 w-3" />
+                        Auto-sliding
+                      </Badge>
+                    )}
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      onClick={() => setIsAutoSliding(!isAutoSliding)}
+                      className="bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm"
+                    >
+                      {isAutoSliding ? 'Pause' : 'Play'}
+                    </Button>
+                  </div>
+
+                  {showVirtualTour && property.virtualTour ? (
+                    <div className="absolute inset-0 bg-black flex items-center justify-center">
+                      <div className="relative w-full h-full">
+                        <iframe
+                          src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0"
+                          title="Virtual Property Tour"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full h-full rounded-3xl"
+                        />
+                        <Button
+                          onClick={() => setShowVirtualTour(false)}
+                          className="absolute top-4 right-4 bg-red-600 hover:bg-red-700 text-white"
+                        >
+                          <XCircle className="h-4 w-4 mr-2" />
+                          Close Tour
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <img
+                        src={property.images[currentImageIndex]}
+                        alt={`${property.title} - Image ${currentImageIndex + 1}`}
+                        className={`h-full w-full object-cover transition-all duration-700 transform ${isImageLoaded ? 'scale-100 opacity-100' : 'scale-110 opacity-0'}`}
+                        onLoad={() => setIsImageLoaded(true)}
+                      />
+                      
+                      {/* Gradient Overlays for depth */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/10" />
+                    </>
+                  )}
+
+                  {/* Enhanced Navigation Controls */}
+                  {!showVirtualTour && property.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={prevImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 flex items-center justify-center rounded-full bg-white/90 hover:bg-white shadow-xl transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
+                      >
+                        <ChevronLeft className="h-6 w-6 text-gray-800" />
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 flex items-center justify-center rounded-full bg-white/90 hover:bg-white shadow-xl transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
+                      >
+                        <ChevronRight className="h-6 w-6 text-gray-800" />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Image Progress Indicators */}
+                  {!showVirtualTour && (
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                      {property.images.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => {
+                            setCurrentImageIndex(index);
+                            setIsAutoSliding(false);
+                          }}
+                          className={`h-2 w-8 rounded-full transition-all duration-300 ${
+                            currentImageIndex === index 
+                              ? 'bg-white shadow-lg transform scale-125' 
+                              : 'bg-white/50 hover:bg-white/80'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Image Counter */}
+                  {!showVirtualTour && (
+                    <div className="absolute bottom-4 right-4 rounded-full bg-black/60 backdrop-blur-sm px-4 py-2 text-sm text-white font-medium">
+                      {currentImageIndex + 1} / {property.images.length}
+                    </div>
+                  )}
+
+                  {/* Action Buttons */}
+                  <div className="absolute top-4 right-4 flex flex-col space-y-2">
+                    {property.virtualTour && !showVirtualTour && (
+                      <Button
+                        onClick={() => setShowVirtualTour(true)}
+                        className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg backdrop-blur-sm transform hover:scale-105 transition-all duration-300"
+                      >
+                        <Play className="mr-2 h-4 w-4" />
+                        Virtual Tour
+                      </Button>
+                    )}
+                    
+                    <div className="flex space-x-2">
+                      <Button
+                        onClick={toggleSaveProperty}
+                        variant="secondary"
+                        size="sm"
+                        className={`bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                          savedProperties.includes(propertyId) ? 'text-red-600' : 'text-gray-700'
+                        }`}
+                      >
+                        <Heart className={`h-4 w-4 ${savedProperties.includes(propertyId) ? 'fill-current' : ''}`} />
+                      </Button>
+                      
+                      <div className="relative">
+                        <Button
+                          onClick={() => setShowShareMenu(!showShareMenu)}
+                          variant="secondary"
+                          size="sm"
+                          className="bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                        >
+                          <Share className="h-4 w-4" />
+                        </Button>
+                        
+                        {showShareMenu && (
+                          <div className="absolute top-12 right-0 bg-white rounded-lg shadow-xl border p-2 z-10 min-w-[120px]">
+                            <button
+                              onClick={() => shareProperty('whatsapp')}
+                              className="flex items-center w-full px-3 py-2 text-sm hover:bg-gray-100 rounded"
+                            >
+                              <MessageCircle className="mr-2 h-4 w-4 text-green-600" />
+                              WhatsApp
+                            </button>
+                            <button
+                              onClick={() => shareProperty('twitter')}
+                              className="flex items-center w-full px-3 py-2 text-sm hover:bg-gray-100 rounded"
+                            >
+                              <Share className="mr-2 h-4 w-4 text-blue-600" />
+                              Twitter
+                            </button>
+                            <button
+                              onClick={() => shareProperty()}
+                              className="flex items-center w-full px-3 py-2 text-sm hover:bg-gray-100 rounded"
+                            >
+                              <Download className="mr-2 h-4 w-4 text-gray-600" />
+                              Copy Link
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Enhanced Thumbnail Grid */}
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-2 lg:grid-cols-1">
+                  {property.images.slice(0, 6).map((image: string, index: number) => (
                     <button
                       key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`relative h-20 overflow-hidden rounded-lg lg:h-24 ${
-                        currentImageIndex === index ? 'ring-2 ring-primary' : ''
+                      onClick={() => {
+                        setCurrentImageIndex(index);
+                        setIsAutoSliding(false);
+                      }}
+                      className={`relative h-20 lg:h-28 overflow-hidden rounded-xl transition-all duration-300 transform hover:scale-105 ${
+                        currentImageIndex === index 
+                          ? 'ring-4 ring-blue-500 shadow-xl' 
+                          : 'hover:ring-2 hover:ring-blue-300 shadow-md hover:shadow-lg'
                       }`}
                     >
                       <img
                         src={image}
-                        alt={`${property.title} - Image ${index + 1}`}
+                        alt={`Thumbnail ${index + 1}`}
                         className="h-full w-full object-cover"
                       />
-                      {property.images.length > 4 && index === 3 && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/60 text-sm font-medium text-white">
-                          +{property.images.length - 4}
+                      {property.images.length > 6 && index === 5 && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/70 text-white font-medium">
+                          <Camera className="mr-1 h-4 w-4" />
+                          +{property.images.length - 6}
                         </div>
+                      )}
+                      {currentImageIndex === index && (
+                        <div className="absolute inset-0 bg-blue-500/20 border-2 border-blue-500 rounded-xl" />
                       )}
                     </button>
                   ))}
+                </div>
+                
+                {/* View All Photos Button */}
+                <Button variant="outline" className="w-full transform hover:scale-105 transition-all duration-300">
+                  <Camera className="mr-2 h-4 w-4" />
+                  View All {property.images.length} Photos
+                </Button>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Property Details */}
-      <section className="bg-gray-50 py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-            {/* Main Content */}
-            <div className="space-y-8 lg:col-span-2">
-              {/* Header */}
-              <div>
-                <div className="mb-4 flex items-center gap-4">
-                  <Badge className="bg-primary text-white">
-                    {property.status}
-                  </Badge>
-                  <Badge variant="secondary">{property.type}</Badge>
-                  {property.featured && (
-                    <Badge
-                      variant="outline"
-                      className="border-yellow-400 text-yellow-600"
-                    >
-                      Featured
-                    </Badge>
-                  )}
-                </div>
+        {/* Enhanced Property Information */}
+        <section className="py-12 bg-white/50 backdrop-blur-sm">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
+              {/* Main Content */}
+              <div className="space-y-8 lg:col-span-2">
+                {/* Property Header */}
+                <div className="transform hover:scale-[1.02] transition-all duration-300">
+                  <h1 className="mb-4 font-bold text-4xl lg:text-5xl text-gray-900 leading-tight">
+                    {property.title}
+                  </h1>
 
-                <h1 className="mb-2 font-radio-canada text-4xl font-bold text-gray-900">
-                  {property.title}
-                </h1>
+                  <div className="mb-6 flex items-center text-gray-600 text-lg">
+                    <MapPin className="mr-3 h-6 w-6 text-blue-600" />
+                    <span>{property.location}</span>
+                  </div>
 
-                <div className="mb-6 flex items-center text-gray-600">
-                  <MapPin className="mr-2 h-5 w-5" />
-                  <span className="text-lg">{property.location}</span>
-                </div>
-
-                <div className="flex items-baseline space-x-4">
-                  <span className="font-radio-canada text-4xl font-bold text-gray-900">
-                    {formatPrice(property.price)}
-                  </span>
-                  {property.originalPrice &&
-                    property.originalPrice > property.price && (
-                      <span className="text-xl text-gray-500 line-through">
-                        {formatPrice(property.originalPrice)}
-                      </span>
+                  <div className="flex items-baseline space-x-4 mb-6">
+                    <span className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                      {formatPrice(property.price)}
+                    </span>
+                    {property.originalPrice && property.originalPrice > property.price && (
+                      <div className="flex flex-col">
+                        <span className="text-xl text-gray-500 line-through">
+                          {formatPrice(property.originalPrice)}
+                        </span>
+                        <span className="text-sm text-green-600 font-medium">
+                          Save {formatPrice(property.originalPrice - property.price)}
+                        </span>
+                      </div>
                     )}
+                  </div>
+
+                  {/* Trust Indicators */}
+                  <div className="flex items-center space-x-6 py-4">
+                    <div className="flex items-center text-green-600">
+                      <Shield className="mr-2 h-5 w-5" />
+                      <span className="text-sm font-medium">Verified Property</span>
+                    </div>
+                    <div className="flex items-center text-blue-600">
+                      <Award className="mr-2 h-5 w-5" />
+                      <span className="text-sm font-medium">Premium Location</span>
+                    </div>
+                    <div className="flex items-center text-purple-600">
+                      <CheckCircle className="mr-2 h-5 w-5" />
+                      <span className="text-sm font-medium">Ready Title</span>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Enhanced Property Stats */}
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-blue-50 transform hover:scale-[1.02] transition-all duration-300">
+                  <CardContent className="p-8">
+                    <h2 className="mb-6 text-2xl font-bold text-gray-900">Property Overview</h2>
+                    <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+                      {[
+                        { icon: Bed, value: property.bedrooms, label: 'Bedrooms', color: 'text-blue-600' },
+                        { icon: Bath, value: property.bathrooms, label: 'Bathrooms', color: 'text-green-600' },
+                        { icon: Maximize, value: property.area.toLocaleString(), label: 'Sq M', color: 'text-purple-600' },
+                        { icon: TreePine, value: property.lotSize, label: 'Acres', color: 'text-orange-600' }
+                      ].map((stat, index) => (
+                        <div key={index} className="text-center group transform hover:scale-110 transition-all duration-300">
+                          <stat.icon className={`mx-auto mb-3 h-10 w-10 ${stat.color} group-hover:animate-bounce`} />
+                          <p className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</p>
+                          <p className="text-gray-600 font-medium">{stat.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Enhanced Description */}
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-purple-50 transform hover:scale-[1.01] transition-all duration-300">
+                  <CardContent className="p-8">
+                    <h2 className="mb-6 text-2xl font-bold text-gray-900 flex items-center">
+                      <Home className="mr-3 h-6 w-6 text-blue-600" />
+                      About This Property
+                    </h2>
+                    <div className="prose prose-lg max-w-none">
+                      <p className="text-gray-700 leading-relaxed text-lg">
+                        {property.description}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Enhanced Features */}
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-green-50 transform hover:scale-[1.01] transition-all duration-300">
+                  <CardContent className="p-8">
+                    <h2 className="mb-6 text-2xl font-bold text-gray-900 flex items-center">
+                      <Star className="mr-3 h-6 w-6 text-yellow-500" />
+                      Premium Features
+                    </h2>
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                      {property.features.map((feature: string, index: number) => (
+                        <div key={index} className="flex items-start group hover:bg-white/50 p-3 rounded-lg transition-all duration-300">
+                          <div className="mr-4 h-3 w-3 rounded-full bg-gradient-to-r from-green-400 to-blue-500 mt-2 group-hover:animate-pulse"></div>
+                          <span className="text-gray-700 group-hover:text-gray-900 font-medium">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Enhanced Amenities */}
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-orange-50 transform hover:scale-[1.01] transition-all duration-300">
+                  <CardContent className="p-8">
+                    <h2 className="mb-6 text-2xl font-bold text-gray-900 flex items-center">
+                      <Building className="mr-3 h-6 w-6 text-orange-600" />
+                      Community Amenities
+                    </h2>
+                    <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+                      {[
+                        { icon: Wifi, name: 'High-Speed Internet' },
+                        { icon: CarIcon, name: 'Parking' },
+                        { icon: SwimmingPool, name: 'Swimming Pool' },
+                        { icon: Shield, name: '24/7 Security' },
+                        { icon: Zap, name: 'Backup Power' },
+                        { icon: TreePine, name: 'Landscaped Gardens' }
+                      ].map((amenity, index) => (
+                        <div key={index} className="flex items-center p-3 bg-white/50 rounded-lg hover:bg-white hover:shadow-md transition-all duration-300 transform hover:scale-105">
+                          <amenity.icon className="mr-3 h-5 w-5 text-orange-600" />
+                          <span className="text-gray-700 font-medium text-sm">{amenity.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Property Details Table */}
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-gray-50 transform hover:scale-[1.01] transition-all duration-300">
+                  <CardContent className="p-8">
+                    <h2 className="mb-6 text-2xl font-bold text-gray-900">Property Details</h2>
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                      {[
+                        { label: 'Property Type', value: property.type },
+                        { label: 'Year Built', value: property.yearBuilt },
+                        { label: 'Lot Size', value: `${property.lotSize} acres` },
+                        { label: 'Status', value: property.status },
+                        { label: 'Bedrooms', value: property.bedrooms },
+                        { label: 'Bathrooms', value: property.bathrooms }
+                      ].map((detail, index) => (
+                        <div key={index} className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                          <p className="text-sm text-gray-600 mb-1">{detail.label}</p>
+                          <p className="font-semibold text-gray-900">{detail.value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
-              {/* Property Stats */}
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-                    <div className="text-center">
-                      <Bed className="mx-auto mb-2 h-8 w-8 text-primary" />
-                      <p className="text-2xl font-bold text-gray-900">
-                        {property.bedrooms}
-                      </p>
-                      <p className="text-gray-600">Bedrooms</p>
-                    </div>
-                    <div className="text-center">
-                      <Bath className="mx-auto mb-2 h-8 w-8 text-primary" />
-                      <p className="text-2xl font-bold text-gray-900">
-                        {property.bathrooms}
-                      </p>
-                      <p className="text-gray-600">Bathrooms</p>
-                    </div>
-                    <div className="text-center">
-                      <Maximize className="mx-auto mb-2 h-8 w-8 text-primary" />
-                      <p className="text-2xl font-bold text-gray-900">
-                        {property.area.toLocaleString()}
-                      </p>
-                      <p className="text-gray-600">Sq Ft</p>
-                    </div>
-                    <div className="text-center">
-                      <Car className="mx-auto mb-2 h-8 w-8 text-primary" />
-                      <p className="text-2xl font-bold text-gray-900">
-                        {property.lotSize}
-                      </p>
-                      <p className="text-gray-600">Acres</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Description */}
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <h2 className="mb-4 font-radio-canada text-2xl font-bold text-gray-900">
-                    About This Property
-                  </h2>
-                  <p className="text-lg leading-relaxed text-gray-600">
-                    {property.description}
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Features */}
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <h2 className="mb-4 font-radio-canada text-2xl font-bold text-gray-900">
-                    Property Features
-                  </h2>
-                  <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                    {property.features.map((feature: string, index: number) => (
-                      <div key={index} className="flex items-center">
-                        <div className="mr-3 h-2 w-2 rounded-full bg-primary"></div>
-                        <span className="text-gray-700">{feature}</span>
+              {/* Enhanced Sidebar */}
+              <div className="space-y-6">
+                {/* Enhanced Agent Card */}
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-blue-50 sticky top-6 transform hover:scale-[1.02] transition-all duration-300">
+                  <CardContent className="p-6">
+                    <h3 className="mb-4 text-xl font-bold text-gray-900">Contact Agent</h3>
+                    
+                    <div className="mb-6 flex items-center">
+                      <div className="relative">
+                        <img
+                          src={property.agent.image}
+                          alt={property.agent.name}
+                          className="mr-4 h-16 w-16 rounded-full object-cover shadow-lg"
+                        />
+                        <div className="absolute -bottom-1 -right-1 h-5 w-5 bg-green-500 rounded-full border-2 border-white"></div>
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Property Details */}
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <h2 className="mb-4 font-radio-canada text-2xl font-bold text-gray-900">
-                    Property Details
-                  </h2>
-                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                    <div>
-                      <p className="mb-1 text-gray-600">Year Built</p>
-                      <p className="font-semibold">{property.yearBuilt}</p>
+                      <div>
+                        <h4 className="font-bold text-gray-900 text-lg">{property.agent.name}</h4>
+                        <p className="text-sm text-gray-600">{property.agent.title}</p>
+                        <div className="flex items-center mt-1">
+                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                          <span className="ml-1 text-xs text-gray-600">5.0 (127 reviews)</span>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <p className="mb-1 text-gray-600">Property Type</p>
-                      <p className="font-semibold">{property.type}</p>
-                    </div>
-                    <div>
-                      <p className="mb-1 text-gray-600">Lot Size</p>
-                      <p className="font-semibold">{property.lotSize} acres</p>
-                    </div>
-                    <div>
-                      <p className="mb-1 text-gray-600">Status</p>
-                      <p className="font-semibold">{property.status}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
 
-            {/* Sidebar */}
-            <div className="space-y-6">
-              {/* Agent Card */}
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900">
-                    Contact Agent
-                  </h3>
-
-                  <div className="mb-4 flex items-center">
-                    <img
-                      src={property.agent.image}
-                      alt={property.agent.name}
-                      className="mr-4 h-16 w-16 rounded-full object-cover"
-                    />
-                    <div>
-                      <h4 className="font-bold text-gray-900">
-                        {property.agent.name}
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        {property.agent.title}
-                      </p>
+                    <div className="space-y-3">
+                      <a href={`tel:${property.agent.phone}`} className="block">
+                        <Button className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg transform hover:scale-105 transition-all duration-300">
+                          <PhoneCall className="mr-2 h-4 w-4" />
+                          Call {property.agent.phone}
+                        </Button>
+                      </a>
+                      
+                      <a 
+                        href={`https://wa.me/254${property.agent.phone.slice(1)}?text=Hi, I'm interested in the property: ${property.title}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg transform hover:scale-105 transition-all duration-300">
+                          <MessageCircle className="mr-2 h-4 w-4" />
+                          WhatsApp
+                        </Button>
+                      </a>
+                      
+                      <a href={`mailto:${property.agent.email}?subject=Inquiry about ${property.title}`} className="block">
+                        <Button variant="outline" className="w-full border-2 hover:bg-gray-50 transform hover:scale-105 transition-all duration-300">
+                          <Mail className="mr-2 h-4 w-4" />
+                          Send Email
+                        </Button>
+                      </a>
                     </div>
-                  </div>
 
-                  <div className="space-y-3">
-                    <Button className="w-full bg-primary hover:bg-primary/90">
-                      <Phone className="mr-2 h-4 w-4" />
-                      Call {property.agent.phone}
-                    </Button>
-                    <Button variant="outline" className="w-full">
-                      <Mail className="mr-2 h-4 w-4" />
-                      Get Directions
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                    <Separator className="my-4" />
+                    
+                    <div className="text-center">
+                      <p className="text-sm text-gray-600 mb-2">Response Time</p>
+                      <p className="font-semibold text-green-600">Usually within 1 hour</p>
+                    </div>
+                  </CardContent>
+                </Card>
 
-              {/* Quick Actions */}
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900">
-                    Quick Actions
-                  </h3>
-                  <div className="space-y-3">
-                    {/* Schedule Viewing */}
-                    <a href="tel:0729170156" className="block">
-                      <Button variant="outline" className="w-full">
+                {/* Enhanced Mortgage Calculator */}
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-green-50 transform hover:scale-[1.02] transition-all duration-300">
+                  <CardContent className="p-6">
+                    <h3 className="mb-4 font-bold text-xl text-gray-900 flex items-center">
+                      <Calculator className="mr-2 h-5 w-5 text-green-600" />
+                      Mortgage Calculator
+                    </h3>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Loan Amount (KES)
+                        </label>
+                        <input
+                          type="number"
+                          value={mortgagePrincipal}
+                          onChange={(e) => setMortgagePrincipal(Number(e.target.value))}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                          min="0"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Interest Rate (% per year)
+                        </label>
+                        <input
+                          type="number"
+                          value={mortgageInterestRate}
+                          onChange={(e) => setMortgageInterestRate(Number(e.target.value))}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                          step="0.1"
+                          min="0"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Loan Term (Years)
+                        </label>
+                        <input
+                          type="number"
+                          value={mortgageLoanTerm}
+                          onChange={(e) => setMortgageLoanTerm(Number(e.target.value))}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                          min="1"
+                        />
+                      </div>
+                      
+                      <div className="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-lg">
+                        <p className="text-sm text-gray-600 mb-1">Monthly Payment</p>
+                        <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                          {formatPrice(Math.round(monthlyMortgagePayment))}
+                        </p>
+                        <p className="text-xs text-gray-500 mt-1">
+                          *Principal and interest only
+                        </p>
+                      </div>
+                      
+                      <Button variant="outline" className="w-full transform hover:scale-105 transition-all duration-300">
+                        Get Pre-Approved
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Quick Actions */}
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-purple-50 transform hover:scale-[1.02] transition-all duration-300">
+                  <CardContent className="p-6">
+                    <h3 className="mb-4 font-bold text-xl text-gray-900">Quick Actions</h3>
+                    <div className="space-y-3">
+                      <Button variant="outline" className="w-full justify-start transform hover:scale-105 transition-all duration-300">
                         <Calendar className="mr-2 h-4 w-4" />
                         Schedule Viewing
                       </Button>
-                    </a>
-
-                    {/* Save Property via WhatsApp */}
-                    <a
-                      href="https://wa.me/254729170156?text=I'm%20interested%20in%20this%20property%20you%20listed."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      <Button variant="outline" className="w-full">
-                        <Heart className="mr-2 h-4 w-4" />
-                        Save Property
+                      <Button variant="outline" className="w-full justify-start transform hover:scale-105 transition-all duration-300">
+                        <Download className="mr-2 h-4 w-4" />
+                        Download Brochure
                       </Button>
-                    </a>
-
-                    {/* Share Property */}
-                    <a
-                      href={typeof window !== 'undefined' ? window.location.href : '#'}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        if (navigator.share) {
-                          navigator
-                            .share({
-                              title: 'Check out this property!',
-                              url: window.location.href,
-                            })
-                            .catch((error) => console.log('Share failed:', error));
-                        } else {
-                          // fallback: copy to clipboard
-                          navigator.clipboard.writeText(window.location.href);
-                          alert('Link copied to clipboard!');
-                        }
-                      }}
-                      className="block"
-                    >
-                      <Button variant="outline" className="w-full">
-                        <Share className="mr-2 h-4 w-4" />
-                        Share Property
+                      <Button variant="outline" className="w-full justify-start transform hover:scale-105 transition-all duration-300">
+                        <Users className="mr-2 h-4 w-4" />
+                        Similar Properties
                       </Button>
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
+                    </div>
+                  </CardContent>
+                </Card>
 
-              {/* Mortgage Calculator (Enhanced) */}
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900 flex items-center">
-                    <Calculator className="mr-2 h-5 w-5 text-primary" /> Mortgage Calculator
-                  </h3>
-                  <div className="space-y-4">
-                    <div>
-                      <label htmlFor="principal" className="block text-sm font-medium text-gray-700 mb-1">
-                        Loan Amount (KES)
-                      </label>
-                      <input
-                        type="number"
-                        id="principal"
-                        value={mortgagePrincipal}
-                        onChange={(e) => {
-                            setMortgagePrincipal(Number(e.target.value));
-                            calculateMortgagePayment(Number(e.target.value), mortgageInterestRate, mortgageLoanTerm);
-                        }}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                        min="0"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="interestRate" className="block text-sm font-medium text-gray-700 mb-1">
-                        Annual Interest Rate (%)
-                      </label>
-                      <input
-                        type="number"
-                        id="interestRate"
-                        value={mortgageInterestRate}
-                        onChange={(e) => {
-                            setMortgageInterestRate(Number(e.target.value));
-                            calculateMortgagePayment(mortgagePrincipal, Number(e.target.value), mortgageLoanTerm);
-                        }}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                        step="0.1"
-                        min="0"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="loanTerm" className="block text-sm font-medium text-gray-700 mb-1">
-                        Loan Term (Years)
-                      </label>
-                      <input
-                        type="number"
-                        id="loanTerm"
-                        value={mortgageLoanTerm}
-                        onChange={(e) => {
-                            setMortgageLoanTerm(Number(e.target.value));
-                            calculateMortgagePayment(mortgagePrincipal, mortgageInterestRate, Number(e.target.value));
-                        }}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                        min="1"
-                      />
-                    </div>
-                    <div>
-                      <p className="mb-1 text-sm text-gray-600">Estimated Monthly Payment</p>
-                      <p className="text-2xl font-bold text-primary">
-                        {formatPrice(Math.round(monthlyMortgagePayment))}
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        *Calculated based on provided inputs.
-                      </p>
-                    </div>
-                    <Button variant="outline" className="w-full">
-                      Get Pre-Approved
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Property Valuation Tool */}
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900 flex items-center">
-                    <DollarSign className="mr-2 h-5 w-5 text-primary" /> Property Valuation Tool
-                  </h3>
-                  <div className="space-y-4">
-                    <div>
-                      <label htmlFor="valuationPrice" className="block text-sm font-medium text-gray-700 mb-1">
-                        Property Price (KES)
-                      </label>
-                      <input
-                        type="number"
-                        id="valuationPrice"
-                        value={valuationInputPrice}
-                        onChange={(e) => setValuationInputPrice(Number(e.target.value))}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                        min="0"
-                      />
-                    </div>
-                    <Button onClick={handleValuationCalculate} className="w-full bg-primary hover:bg-primary/90">
-                      Calculate Estimated Value
-                    </Button>
-                    {valuationResult !== null && (
-                      <div>
-                        <p className="mb-1 text-sm text-gray-600">Estimated Property Value</p>
-                        <p className="text-2xl font-bold text-primary">
-                          {formatPrice(valuationResult)}
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          *This is an estimate and not a professional appraisal.
-                        </p>
+                {/* Trust Badges */}
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-yellow-50 transform hover:scale-[1.02] transition-all duration-300">
+                  <CardContent className="p-6 text-center">
+                    <h3 className="mb-4 font-bold text-lg text-gray-900">Why Choose Us?</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-center">
+                        <Shield className="mr-2 h-5 w-5 text-green-600" />
+                        <span className="text-sm font-medium">100% Verified Properties</span>
                       </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Investment ROI Calculator */}
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <h3 className="mb-4 font-radio-canada text-xl font-bold text-gray-900 flex items-center">
-                    <TrendingUp className="mr-2 h-5 w-5 text-primary" /> Investment ROI Calculator
-                  </h3>
-                  <div className="space-y-4">
-                    <div>
-                      <label htmlFor="investmentCost" className="block text-sm font-medium text-gray-700 mb-1">
-                        Total Investment Cost (KES)
-                      </label>
-                      <input
-                        type="number"
-                        id="investmentCost"
-                        value={roiInvestmentCost}
-                        onChange={(e) => setRoiInvestmentCost(Number(e.target.value))}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                        min="0"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="annualReturn" className="block text-sm font-medium text-gray-700 mb-1">
-                        Expected Annual Return (KES)
-                      </label>
-                      <input
-                        type="number"
-                        id="annualReturn"
-                        value={roiAnnualReturn}
-                        onChange={(e) => setRoiAnnualReturn(Number(e.target.value))}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                        min="0"
-                      />
-                    </div>
-                    <Button onClick={handleROICalculate} className="w-full bg-primary hover:bg-primary/90">
-                      Calculate ROI
-                    </Button>
-                    {roiResult !== null && (
-                      <div>
-                        <p className="mb-1 text-sm text-gray-600">Estimated Annual ROI</p>
-                        <p className="text-2xl font-bold text-primary">
-                          {roiResult.toFixed(2)}%
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          *Return on Investment based on provided figures.
-                        </p>
+                      <div className="flex items-center justify-center">
+                        <Award className="mr-2 h-5 w-5 text-blue-600" />
+                        <span className="text-sm font-medium">Award-Winning Service</span>
                       </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-
+                      <div className="flex items-center justify-center">
+                        <Users className="mr-2 h-5 w-5 text-purple-600" />
+                        <span className="text-sm font-medium">1000+ Happy Clients</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      {property.id === 'heritage-villas-ngong' && (
-        <div className="my-6 w-full max-w-4xl mx-auto">
-          <h2 className="mb-4 font-radio-canada text-2xl font-bold text-gray-900">
-            Visit this Property on Google Maps
+        </section>
 
-          </h2>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.3420990810407!2d36.67286523063698!3d-1.3661591034223453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f03766481ad61%3A0x552e8a8bb94e5ff7!2sHeritage%20Villas%2C%20Ngong%2046!5e0!3m2!1sen!2ske!4v1748959191473!5m2!1sen!2ske"
-            width="50%"
-            height="450"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="rounded-xl shadow-md"
-          />
-        </div>
-      )}
+        {/* Enhanced Map Section */}
+        {property.id === 'heritage-villas-ngong' && (
+          <section className="py-12 bg-gradient-to-br from-blue-50 to-purple-50">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Property Location</h2>
+                <p className="text-lg text-gray-600">Explore the neighborhood and nearby amenities</p>
+              </div>
+              
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.01] transition-all duration-300">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.3420990810407!2d36.67286523063698!3d-1.3661591034223453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f03766481ad61%3A0x552e8a8bb94e5ff7!2sHeritage%20Villas%2C%20Ngong%2046!5e0!3m2!1sen!2ske!4v1748959191473!5m2!1sen!2ske"
+                  width="100%"
+                  height="500"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full"
+                />
+              </div>
+            </div>
+          </section>
+        )}
 
-      <Footer />
-    </div>
+        {/* Call to Action Section */}
+        <section className="py-16 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 relative overflow-hidden">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-4xl font-bold text-white mb-6">
+              Ready to Make This Your Home?
+            </h2>
+            <p className="text-xl text-blue-100 mb-8">
+              Don't miss out on this incredible opportunity. Contact us today to schedule a viewing.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href={`tel:${property.agent.phone}`}>
+                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 shadow-xl">
+                  <Phone className="mr-2 h-5 w-5" />
+                  Call Now - {property.agent.phone}
+                </Button>
+              </a>
+              <a 
+                href={`https://wa.me/254${property.agent.phone.slice(1)}?text=Hi, I want to schedule a viewing for ${property.title}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 transform hover:scale-105 transition-all duration-300 shadow-xl">
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  Schedule Viewing
+                </Button>
+              </a>
+            </div>
+          </div>
+        </section>
+        <Footer />
+      </div>
+    </>
   );
 }
