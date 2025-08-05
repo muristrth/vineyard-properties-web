@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { auth, db } from '@/lib/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, setDoc, collection, query, where, getDocs, updateDoc, addDoc, onSnapshot } from 'firebase/firestore';
-
+import { app } from '@/lib/firebase';
 // Assume you have Header, Footer, Button, Input, Card components or use basic HTML
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';

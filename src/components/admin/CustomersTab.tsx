@@ -94,7 +94,7 @@ export default function CustomersTab() {
         registrationDate: '2024-01-15'
       },
       // Add more mock customers for different blocks
-      ...Array.from({ length: 50 }, (_, i) => ({
+      /*...Array.from({ length: 50 }, (_, i) => ({
         id: (i + 2).toString(),
         plotNo: `${12715 + i}-${111 + i}`,
         date: `2024-0${Math.floor(Math.random() * 12) + 1}-${Math.floor(Math.random() * 28) + 1}`,
@@ -106,11 +106,11 @@ export default function CustomersTab() {
         email: `customer${i + 2}@email.com`,
         landBlock: landBlocks[Math.floor(Math.random() * landBlocks.length)],
         purchaseAmount: Math.floor(Math.random() * 3000000) + 500000,
-        paymentStatus: ['Paid', 'Pending', 'Partial'][Math.floor(Math.random() * 3)] as any,
+        paymentStatus: ['Paid', 'Pending', 'Partial'][Math.floor(Math.random() * 3)] as 'Paid' | 'Pending' | 'Partial',
         kraPin: `A${String(i).padStart(9, '0')}P`,
         nextOfKin: `NEXT OF KIN ${i + 2}`,
         registrationDate: `2024-0${Math.floor(Math.random() * 12) + 1}-${Math.floor(Math.random() * 28) + 1}`
-      }))
+      }))*/
     ];
     setCustomers(mockCustomers);
     setFilteredCustomers(mockCustomers);

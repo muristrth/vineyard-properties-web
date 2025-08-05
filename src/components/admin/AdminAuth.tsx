@@ -37,8 +37,12 @@ export default function AdminAuth({ children }: AdminAuthProps) {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-    } catch (error: any) {
-      setError(error.message || 'Login failed');
+    } catch (error) {
+      if (error && typeof error === 'object' && 'message' in error) {
+        setError((error as { message: string }).message);
+      } else {
+        setError('Login failed');
+      }
     } finally {
       setIsLoggingIn(false);
     }

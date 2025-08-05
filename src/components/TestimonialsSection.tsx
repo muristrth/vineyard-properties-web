@@ -93,7 +93,7 @@ export default function TestimonialsSection() {
     setIsAutoPlaying(false);
   };
 
-  const startVirtualTour = (testimonial: any) => {
+  const startVirtualTour = (_testimonial: { id: number; image: string; quote: string; name: string; role: string; rating: number; location: string; propertyType: string; } | undefined) => {
     setIsVirtualTourActive(true);
     setTimeout(() => setIsVirtualTourActive(false), 8000);
   };
@@ -185,12 +185,12 @@ export default function TestimonialsSection() {
               <Quote className="w-16 h-16 text-blue-500/20 absolute -top-4 -left-4" />
               <div className="relative z-10 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20">
                 <blockquote className="text-xl md:text-2xl font-light italic text-gray-800 leading-relaxed mb-6">
-                  "{currentTestimonial.quote}"
+                  "{currentTestimonial ? currentTestimonial.quote : ''}"
                 </blockquote>
                 
                 {/* Rating Stars */}
                 <div className="flex items-center space-x-1 mb-4">
-                  {[...Array(currentTestimonial.rating)].map((_, i) => (
+                  {[...Array(currentTestimonial?.rating ?? 0)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-current animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
                   ))}
                 </div>
@@ -199,12 +199,12 @@ export default function TestimonialsSection() {
                 <div className="border-t border-gray-200 pt-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-lg font-semibold text-gray-900">{currentTestimonial.name}</p>
-                      <p className="text-sm text-gray-600">{currentTestimonial.role}</p>
-                      <p className="text-xs text-gray-500 mt-1">📍 {currentTestimonial.location}</p>
+                      <p className="text-lg font-semibold text-gray-900">{currentTestimonial?.name}</p>
+                      <p className="text-sm text-gray-600">{currentTestimonial?.role}</p>
+                      <p className="text-xs text-gray-500 mt-1">📍 {currentTestimonial?.location}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-medium text-blue-600">{currentTestimonial.propertyType}</p>
+                      <p className="text-sm font-medium text-blue-600">{currentTestimonial?.propertyType}</p>
                       <div className="flex items-center mt-1">
                         <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" />
                         <span className="text-xs text-gray-500">Verified Purchase</span>
@@ -276,8 +276,8 @@ export default function TestimonialsSection() {
               <div className="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-shadow duration-500">
                 <div className="relative h-[500px] w-full">
                   <img
-                    src={currentTestimonial.image}
-                    alt={`Property testimonial from ${currentTestimonial.name}`}
+                    src={currentTestimonial?.image}
+                    alt={`Property testimonial from ${currentTestimonial?.name ?? ''}`}
                     className="h-full w-full object-cover transition-all duration-1000"
                     style={{
                       filter: isVirtualTourActive ? 'brightness(1.1) contrast(1.1)' : 'brightness(1)',
@@ -299,7 +299,7 @@ export default function TestimonialsSection() {
                 </button>
 
                 <button
-                  onClick={() => setSelectedImage(currentTestimonial.image)}
+                  onClick={() => setSelectedImage(currentTestimonial?.image ?? null)}
                   className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 flex items-center space-x-2 z-10"
                 >
                   <Eye className="w-4 h-4 text-green-600" />
@@ -311,8 +311,8 @@ export default function TestimonialsSection() {
                   <div className="flex items-center space-x-3">
                     <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse" />
                     <div>
-                      <p className="text-sm font-medium text-gray-700">{currentTestimonial.propertyType}</p>
-                      <p className="text-xs text-gray-500">📍 {currentTestimonial.location}</p>
+                      <p className="text-sm font-medium text-gray-700">{currentTestimonial?.propertyType}</p>
+                      <p className="text-xs text-gray-500">📍 {currentTestimonial?.location}</p>
                     </div>
                   </div>
                 </div>

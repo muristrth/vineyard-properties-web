@@ -143,8 +143,7 @@ export default function DashboardOverview() {
                   <p className="text-sm font-medium text-gray-600">{kpi.title}</p>
                   <p className="text-2xl font-bold text-gray-900 mt-1">{kpi.value}</p>
                   <p className={`text-sm mt-1 ${
-                    kpi.changeType === 'positive' ? 'text-green-600' : 
-                    kpi.changeType === 'negative' ? 'text-red-600' : 'text-gray-600'
+                    kpi.changeType === 'positive' ? 'text-green-600' : 'text-gray-600'
                   }`}>
                     {kpi.change} from last month
                   </p>

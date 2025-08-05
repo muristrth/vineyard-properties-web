@@ -114,7 +114,7 @@ export default function LandAssetsTab() {
         status: 'Active'
       },
       // Add more blocks...
-      ...Array.from({ length: 17 }, (_, i) => ({
+      /*...Array.from({ length: 17 }, (_, i) => ({
         id: (i + 4).toString(),
         blockName: `LAND BLOCK ${i + 4}`,
         location: `Location ${i + 4}`,
@@ -132,8 +132,8 @@ export default function LandAssetsTab() {
           lat: -1.2921 + (Math.random() - 0.5) * 0.5, 
           lng: 36.8219 + (Math.random() - 0.5) * 0.5 
         },
-        status: ['Active', 'Sold Out', 'Development'][Math.floor(Math.random() * 3)] as any
-      }))
+        status: ['Active', 'Sold Out', 'Development'][Math.floor(Math.random() * 3)] as
+      }))*/
     ];
 
     const mockResaleProperties: ResaleProperty[] = [

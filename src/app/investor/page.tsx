@@ -406,10 +406,11 @@ export default function InvestorPortal() {
     // --- Data Fetching ---
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            let unsubscribeUser: (() => void) | undefined;
             if (currentUser) {
                 // Use onSnapshot for real-time updates to user profile
                 const userDocRef = doc(db, 'investors', currentUser.uid);
-                const unsubscribeUser = onSnapshot(userDocRef, (userDocSnap) => {
+                unsubscribeUser = onSnapshot(userDocRef, (userDocSnap) => {
                     if (userDocSnap.exists()) {
                         const userData = userDocSnap.data() as User;
                         setUser(userData);
@@ -424,7 +425,6 @@ export default function InvestorPortal() {
                     console.error("Error fetching user profile in real-time:", error);
                     // Handle error, maybe log out or show a message
                 });
-                return () => unsubscribeUser(); // Cleanup user snapshot listener
             } else {
                 setIsLoggedIn(false);
                 setUser(null);
@@ -438,11 +438,13 @@ export default function InvestorPortal() {
                 setNotifications([]);
             }
             setLoading(false);
+            // Always return a cleanup function (or undefined)
+            return unsubscribeUser;
         });
         return () => unsubscribe(); // Cleanup auth state listener
     }, []);
 
-    const fetchInvestorData = async (userId: string) => {
+    const fetchInvestorData = async (userId: string): Promise<void> => {
         setLoading(true);
         try {
             // Portfolio
@@ -549,20 +551,12 @@ export default function InvestorPortal() {
             }, (error) => console.error("Error fetching notifications data:", error));
 
             // Return a cleanup function that unsubscribes from all listeners
-            return () => {
-                unsubscribePortfolio();
-                unsubscribeProperties();
-                unsubscribeTransactions();
-                unsubscribeDocuments();
-                unsubscribeLoans();
-                unsubscribeLoanTransactions();
-                unsubscribeNotifications();
-                // unsubscribeBalances is handled within the loans snapshot for now due to dependency
-            };
-
+            // (not used in this context, but ensures all code paths return)
+            return;
         } catch (error) {
             console.error("Error fetching investor data:", error);
             alert("Failed to load investor data. Please try again.");
+            return;
         } finally {
             setLoading(false);
         }
@@ -622,11 +616,14 @@ export default function InvestorPortal() {
                 kycStatus: 'pending',
             };
             // Use the public data path for investors
-            await setDoc(doc(db, `artifacts/${__app_id}/public/data/investors`, newUser.uid), newUserDoc);
-
-            // Initialize default portfolio/balance/loan structure for new user if needed
-            await setDoc(doc(db, `artifacts/${__app_id}/public/data/portfolios`, newUser.uid), { totalValue: 0, totalProperties: 0, yearlyAppreciation: 0, totalRent: 0, totalROI: 0 });
-            await setDoc(doc(db, `artifacts/${__app_id}/public/data/balances`, newUser.uid), { availableBalance: 0, expectedDividends: 0, pendingBalance: 0, loanBalance: 0, creditLimit: 0 });
+            // Replace 'your_app_id' with your actual app ID or use an environment variable if available
+            const appId = process.env.NEXT_PUBLIC_APP_ID || 'your_app_id';
+            
+                        await setDoc(doc(db, `artifacts/${appId}/public/data/investors`, newUser.uid), newUserDoc);
+            
+                        // Initialize default portfolio/balance/loan structure for new user if needed
+                        await setDoc(doc(db, `artifacts/${appId}/public/data/portfolios`, newUser.uid), { totalValue: 0, totalProperties: 0, yearlyAppreciation: 0, totalRent: 0, totalROI: 0 });
+                        await setDoc(doc(db, `artifacts/${appId}/public/data/balances`, newUser.uid), { availableBalance: 0, expectedDividends: 0, pendingBalance: 0, loanBalance: 0, creditLimit: 0 });
 
 
             alert('Account created successfully! Please login.');
@@ -670,6 +667,7 @@ export default function InvestorPortal() {
 
         setLoading(true);
         try {
+            const appId = process.env.NEXT_PUBLIC_APP_ID || 'your_app_id';
             const newLoanRequestDoc = {
                 investorId: user.id,
                 senderEmail: user.email,
@@ -682,7 +680,7 @@ export default function InvestorPortal() {
                 // Add more fields as needed, e.g., creditScore, propertyValue, etc.
             };
             // Use the public data path for loan requests
-            await addDoc(collection(db, `artifacts/${__app_id}/public/data/loanRequests`), newLoanRequestDoc); 
+            await addDoc(collection(db, `artifacts/${appId}/public/data/loanRequests`), newLoanRequestDoc); 
 
             alert(`Loan request for ${formatCurrency(loanRequestAmount)} submitted successfully! We will review your application.`);
             setShowLoanRequestModal(false);
@@ -712,7 +710,8 @@ export default function InvestorPortal() {
         setLoading(true);
         try {
             // Use the public data path for properties
-            const propertyRef = doc(db, `artifacts/${__app_id}/public/data/properties`, propertyId);
+            const appId = process.env.NEXT_PUBLIC_APP_ID || 'your_app_id';
+            const propertyRef = doc(db, `artifacts/${appId}/public/data/properties`, propertyId);
             const propertySnap = await getDoc(propertyRef);
             if (propertySnap.exists()) {
                 const currentSellRequestStatus = propertySnap.data().sellRequest || false;
@@ -751,7 +750,8 @@ export default function InvestorPortal() {
                 status: 'sent'
             };
             // Use the public data path for messages
-            await addDoc(collection(db, `artifacts/${__app_id}/public/data/messages`), newMessage);
+            const appId = process.env.NEXT_PUBLIC_APP_ID || 'your_app_id';
+            await addDoc(collection(db, `artifacts/${appId}/public/data/messages`), newMessage);
             alert('Message sent successfully!');
             setShowMessageModal(false);
             setMessage({ subject: '', content: '', priority: 'normal' });
@@ -766,7 +766,8 @@ export default function InvestorPortal() {
         setLoading(true);
         try {
             // Use the public data path for notifications
-            const notificationRef = doc(db, `artifacts/${__app_id}/public/data/notifications`, notificationId);
+            const appId = process.env.NEXT_PUBLIC_APP_ID || 'your_app_id';
+            const notificationRef = doc(db, `artifacts/${appId}/public/data/notifications`, notificationId);
             await updateDoc(notificationRef, { read: true });
             // The onSnapshot listener for notifications will automatically update the state
         } catch (error) {

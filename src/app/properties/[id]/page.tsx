@@ -11,6 +11,7 @@ import { Separator } from '@/components/ui/separator';
 import { MapPin, Bed, Bath, Maximize, Car, Calendar, Share, Heart, Phone, Mail, ArrowLeft, Play, Camera, ChevronLeft, ChevronRight, Calculator, DollarSign, TrendingUp, XCircle, Star, Award, Shield, CheckCircle, MessageCircle, Download, Eye, Clock, Users, Home, Building, TreePine, Wifi, CarIcon, CookingPot as SwimmingPool, Zap, PhoneCall, Apple as WhatsApp } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { PropertyQuickActions } from '@/components/QuickActions';
 
 // Define interfaces (same as original)
 interface Agent {
@@ -21,7 +22,7 @@ interface Agent {
   image: string;
 }
 
-interface Property {
+export interface Property {
   id: string;
   title: string;
   location: string;
@@ -41,78 +42,88 @@ interface Property {
   agent: Agent;
   virtualTour: boolean;
   featured: boolean;
+  downloadUrl: string;
+}
+
+export interface ViewingRequest {
+  propertyId: string;
+  name: string;
+  email: string;
+  phone: string;
+  preferredDate: string;
+  preferredTime: string;
+  message?: string;
 }
 
 // Enhanced property data with more details
 const propertyData: Record<string, Property> = {
   'heritage-villas-ngong': {
-  id: 'heritage-villas-ngong',
-  title: 'Luxurious 4 Bedroom All Ensuite Plus DSQ For Sale Heritage Villas, Ngong',
-  location: 'Ngong, Ngong ward, Kajiado North, Kajiado, Rift Valley, Kenya',
-  price: 27500000,
-  type: 'House',
-  status: 'For Sale',
-  bedrooms: 4,
-  bathrooms: 5,
-  area: 240,
-  lotSize: 0.125,
-  yearBuilt: 2025,
-  images: [
-    '/p17 heritage/IMG-20250421-WA0093.jpg',
-    '/p17 heritage/IMG-20250421-WA0092.jpg',
-    '/p17 heritage/IMG-20250421-WA0091.jpg',
-    '/p17 heritage/IMG-20250421-WA0094.jpg',
-    '/p17 heritage/IMG-20250421-WA0095.jpg',
-    '/p17 heritage/IMG-20250421-WA0096.jpg',
-    '/p17 heritage/IMG-20250421-WA0097.jpg',
-    '/p17 heritage/IMG-20250421-WA0098.jpg',
-    '/p17 heritage/IMG-20250421-WA0098.jpg',
-    '/p17 heritage/IMG-20250421-WA0099.jpg',
-    '/p17 heritage/IMG-20250421-WA00100.jpg',
-    '/p17 heritage/IMG-20250421-WA00101.jpg',
-  ],
-  description: `Heritage Villas Ngong – Unrivaled Luxury in the Ngong Hills
+    id: 'heritage-villas-ngong',
+    title: 'Luxurious 4 Bedroom All Ensuite Plus DSQ For Sale Heritage Villas, Ngong',
+    location: 'Ngong, Ngong ward, Kajiado North, Kajiado, Rift Valley, Kenya',
+    price: 27500000,
+    type: 'House',
+    status: 'For Sale',
+    bedrooms: 4,
+    bathrooms: 5,
+    area: 240,
+    lotSize: 0.125,
+    yearBuilt: 2025,
+    images: [
+      '/p17 heritage/IMG-20250421-WA0093.jpg',
+      '/p17 heritage/IMG-20250421-WA0092.jpg',
+      '/p17 heritage/IMG-20250421-WA0091.jpg',
+      '/p17 heritage/IMG-20250421-WA0094.jpg',
+      '/p17 heritage/IMG-20250421-WA0095.jpg',
+      '/p17 heritage/IMG-20250421-WA0096.jpg',
+      '/p17 heritage/IMG-20250421-WA0097.jpg',
+      '/p17 heritage/IMG-20250421-WA0098.jpg',
+      '/p17 heritage/IMG-20250421-WA0098.jpg',
+      '/p17 heritage/IMG-20250421-WA0099.jpg',
+      '/p17 heritage/IMG-20250421-WA00100.jpg',
+      '/p17 heritage/IMG-20250421-WA00101.jpg',
+    ],
+    description: `Heritage Villas Ngong – Unrivaled Luxury in the Ngong Hills
 Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas offers an exclusive sanctuary of refined living for the discerning homeowner. This gated enclave occupies a manicured 6-acre estate and is limited to just 46 bespoke villas, ensuring ultimate privacy and prestige. Each home is a masterpiece of architectural elegance, boasting soaring double-volume living spaces and floor-to-ceiling windows that capture sweeping panoramic views of the iconic Ngong Hills. Every design detail, from imported finishes to seamless indoor-outdoor flow, has been curated to create a serene retreat where luxury meets nature.`,
-  features: [
-    'Exclusive 6-Acre Enclave: Only 46 ultra-luxury villas',
-    'Panoramic Ngong Hills Vistas with private balconies',
-    'Dramatic Double-Volume Living and open-plan design',
-    '100 SQM rooftop terrace per villa',
-    'Solar water heating system for energy efficiency',
-    'En-suite guest bedroom in every villa',
-    'High-end fittings and imported finishes',
-    'Minutes from Nairobi’s CBD and SGR station',
-  ],
-  amenities: [
-    'Prime connectivity to top schools and hospitals',
-    'Efficient access to SGR station & Nairobi CBD',
-    'Secure gated community',
-    'Lush landscaped gardens and scenic walkways',
-  ],
-  agent: {
-    name: 'Mark James',
-    title: 'Senior Property Agent',
-    phone: '0729170156',
-    email: 'mark.muriithi@vineyardproperties.co.ke',
-    image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+    features: [
+      'Exclusive 6-Acre Enclave: Only 46 ultra-luxury villas',
+      'Panoramic Ngong Hills Vistas with private balconies',
+      'Dramatic Double-Volume Living and open-plan design',
+      '100 SQM rooftop terrace per villa',
+      'Solar water heating system for energy efficiency',
+      'En-suite guest bedroom in every villa',
+      'High-end fittings and imported finishes',
+      'Minutes from Nairobis CBD and SGR station',
+    ],
+    amenities: [
+      'Prime connectivity to top schools and hospitals',
+      'Efficient access to SGR station & Nairobi CBD',
+      'Secure gated community',
+      'Lush landscaped gardens and scenic walkways',
+    ],
+    agent: {
+      name: 'Mark James',
+      title: 'Senior Property Agent',
+      phone: '0729170156',
+      email: 'mark.muriithi@vineyardproperties.co.ke',
+      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
+    },
+    virtualTour: true,
+    featured: true,
+    downloadUrl: '/brochures/heritage-villas-ngong-brochure.pdf'
   },
-  
-  virtualTour: true, // Set to true for demonstration
-  featured: true,
-
-},
-'kitengela-plots-near-new-life-academy': {
+  'kitengela-plots-near-new-life-academy': {
     id: 'kitengela-plots-near-new-life-academy',
     title: 'Plots for Sale Near New Life Academy, Kitengela',
     location: 'Kitengela, Kajiado County, Rift Valley, Kenya',
-    price: 1800000, // This is an average, consider making it a range or clarifying it's a starting price
+    price: 1800000,
     type: 'Land',
     status: 'For Sale',
     bedrooms: 0,
     bathrooms: 0,
-    area: 465, // 50x100 sq ft = 5000 sq ft, approx 465 sq meters
-    lotSize: 0.125, // 50x100 ft is 0.114 acres, approximating to 0.125 acres
-    yearBuilt: 0, // Not applicable for land
+    area: 465,
+    lotSize: 0.125,
+    yearBuilt: 0,
     images: [
       '/p/20190207_094225.jpg',
       '/p/20190207_094318.jpg',
@@ -141,6 +152,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/kitengela-plots-brochure.pdf'
   },
   'uchumi-house-cbd': {
     id: 'uchumi-house-cbd',
@@ -149,11 +161,11 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     price: 570000000,
     type: 'Commercial Building',
     status: 'For Sale',
-    bedrooms: 0, // Not applicable for commercial building
-    bathrooms: 0, // Not applicable for commercial building
-    area: 4491, // in square meters
-    lotSize: 0.2893, // in acres
-    yearBuilt: 0, // Year built not provided, can be omitted or set to 0
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 4491,
+    lotSize: 0.2893,
+    yearBuilt: 0,
     images: [
       '/p43 uchumi/Screenshot 2025-07-05 114627.png',
       '/p43 uchumi/Screenshot 2025-07-05 114636.png',
@@ -184,6 +196,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/uchumi-house-cbd-brochure.pdf'
   },
   'langata-house-jambo-estate': {
     id: 'langata-house-jambo-estate',
@@ -192,11 +205,11 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     price: 30000000,
     type: 'House',
     status: 'For Sale',
-    bedrooms: 5, // 4 bedrooms in main house + 1 ensuite in extension
-    bathrooms: 4, // Assuming at least 3 in main house + 1 in extension, adjust if more specific info is available
-    area: 203, // in sq.m
-    lotSize: 0.0845, // in acres
-    yearBuilt: 1977, // Lease from 1977
+    bedrooms: 5,
+    bathrooms: 4,
+    area: 203,
+    lotSize: 0.0845,
+    yearBuilt: 1977,
     images: [
       '/p41 langata/Screenshot 2025-07-05 115338.png',
       '/p41 langata/Screenshot 2025-07-05 115352.png',
@@ -237,8 +250,9 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/langata-jambo-estate-brochure.pdf'
   },
-'carol-wangan-nguthi-kitengela': {
+  'carol-wangan-nguthi-kitengela': {
     id: 'carol-wangan-nguthi-kitengela',
     title: 'Spacious Plot for Sale in Kitengela',
     location: 'Kitengela, Kajiado County, Kenya',
@@ -248,8 +262,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     bedrooms: 0,
     bathrooms: 0,
     area: 0,
-    lotSize: 0.125, // Assuming 1/8th acre for a typical plot
-    yearBuilt: 0, // Not applicable for a plot
+    lotSize: 0.125,
+    yearBuilt: 0,
     images: [
       'https://i.roamcdn.net/prop/brk/listing-thumb-400w/08ad908aa8bb4740ee829379cf70ded5/-/prod-property-core-backend-media-brk/7612881/abf7c089-79a0-483f-80d4-dbe90d72fb6f.jpg',
       '/p kite 11/Screenshot 2024-02-12 090319.png',
@@ -278,6 +292,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/carol-wangan-kitengela-brochure.pdf'
   },
   "crest-gardens-phase-1b": {
     id: "crest-gardens-phase-1b",
@@ -314,7 +329,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/crest-gardens-phase-1b-brochure.pdf'
   },
   "jabali-court-ruiru-kamakis": {
     id: "jabali-court-ruiru-kamakis",
@@ -352,11 +368,12 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/jabali-court-ruiru-kamakis-brochure.pdf'
   },
   "ahadi-gardens-phase-2-prime-plots-for-sale-in-malaa": {
     id: "ahadi-gardens-phase-2-prime-plots-for-sale-in-malaa",
-    title: "Ahadi Gardens Phase 2 -  Prime Plots for sale in  Malaa",
+    title: "Ahadi Gardens Phase 2 -  Prime Plots for sale in  Malaa",
     location: "2Km off Kangundo Road",
     price: 1500000,
     type: "Land",
@@ -391,7 +408,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: true
+    featured: true,
+    downloadUrl: '/brochures/ahadi-gardens-phase-2-malaa-brochure.pdf'
   },
   "jujafarm-gardens-phase-2": {
     id: "jujafarm-gardens-phase-2",
@@ -431,7 +449,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/jujafarm-gardens-phase-2-brochure.pdf'
   },
   "crest-gardens-phase-1": {
     id: "crest-gardens-phase-1",
@@ -451,7 +470,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       "https://fanaka.co.ke//storage/images/a74054e3-454c-4398-b5f0-34dffbedcfd3.webp",
       "https://fanaka.co.ke//storage/images/6585da8a-5d44-4bd6-9a7b-e2df2d40dcac.webp"
     ],
-    description: "At Crest Gardens Phase 1, we don’t just sell land—we create thriving communities where families build, live, and grow. With Katani Gardens Phases 1, 2 & 6 already SOLD OUT, this is your chance to secure a prime plot in the next hotspot!",
+    description: "At Crest Gardens Phase 1, we don't just sell land—we create thriving communities where families build, live, and grow. With Katani Gardens Phases 1, 2 & 6 already SOLD OUT, this is your chance to secure a prime plot in the next hotspot!",
     features: [
       "Ready for development",
       "Favorable for residential construction"
@@ -470,7 +489,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/crest-gardens-phase-1-brochure.pdf'
   },
   "commercial-plots-for-sale-malaa": {
     id: "commercial-plots-for-sale-malaa",
@@ -510,7 +530,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/commercial-plots-malaa-brochure.pdf'
   },
   "mugutha-court": {
     id: "mugutha-court",
@@ -549,12 +570,13 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: true
+    featured: true,
+    downloadUrl: '/brochures/mugutha-court-brochure.pdf'
   },
   "katani-gardens-phase-8": {
     id: "katani-gardens-phase-8",
     title: "Katani Gardens Phase 8",
-    location: "Just 1.5km off Katani  Road,",
+    location: "Just 1.5km off Katani  Road,",
     price: 2700000,
     type: "Land",
     status: "Available",
@@ -588,7 +610,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: true
+    featured: true,
+    downloadUrl: '/brochures/katani-gardens-phase-8-brochure.pdf'
   },
   "amani-gardens-phase-2": {
     id: "amani-gardens-phase-2",
@@ -608,7 +631,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       "https://fanaka.co.ke//storage/images/d11f1239-1d5b-4af7-ae0f-67ba0b9b64f2.jpg",
       "https://fanaka.co.ke//storage/images/d441ed81-eca1-45c8-b04d-f66291cc8086.jpg"
     ],
-    description: "Introducing Amani Gardens Phase 2  an ideal ready-to-build affordable residential project in Koma Town, just after Malaa Town.",
+    description: "Introducing Amani Gardens Phase 2  an ideal ready-to-build affordable residential project in Koma Town, just after Malaa Town.",
     features: [
       "Ready for development",
       "Favorable for residential construction"
@@ -627,7 +650,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: true
+    featured: true,
+    downloadUrl: '/brochures/amani-gardens-phase-2-brochure.pdf'
   },
   "prime-court-phase-6": {
     id: "prime-court-phase-6",
@@ -666,7 +690,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/prime-court-phase-6-brochure.pdf'
   },
   "kitengela-gardens-phase-1": {
     id: "kitengela-gardens-phase-1",
@@ -704,7 +729,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/kitengela-gardens-phase-1-brochure.pdf'
   },
   "juja-commercial-phase-2": {
     id: "juja-commercial-phase-2",
@@ -724,7 +750,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       "https://fanaka.co.ke//storage/images/001750ef-69c6-47f3-8eaf-8f81fb29f165.jpg",
       "https://fanaka.co.ke//storage/images/0e4c7f9f-9aac-4bf6-bb16-ef602bec78a0.jpg"
     ],
-    description: "Are you looking for a commercial property in a developed area and with high return on investment? Or are you an entrepreneur seeking the strategic location to start your business? We’ve got you! We're excited to offer prime commercial plots in the heart of Juja just touching tarmac.",
+    description: "Are you looking for a commercial property in a developed area and with high return on investment? Or are you an entrepreneur seeking the strategic location to start your business? We've got you! We're excited to offer prime commercial plots in the heart of Juja just touching tarmac.",
     features: [
       "Prime location",
       "Ready title deeds",
@@ -744,7 +770,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/juja-commercial-phase-2-brochure.pdf'
   },
   "katani-gardens-phase-7": {
     id: "katani-gardens-phase-7",
@@ -764,7 +791,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       "https://fanaka.co.ke//storage/images/76c59de4-c816-4566-8ded-c7013a50ff81.jpg",
       "https://fanaka.co.ke//storage/images/b345201e-2a5e-478a-a70c-ff7621a7c9a8.jpg"
     ],
-    description: "Are you ready to own a piece of one of Nairobi’s most sought-after developments? Katani Gardens Phase 7 is here, offering prime plots in a location that combines convenience, growth potential, and unmatched value. Here’s why this is the opportunity you’ve been waiting for:-Strategic Location – Unbeatable Connectivity, located just 7km off Mombasa Road, Katani Gardens Phase 7 is perfectly positioned for growth.",
+    description: "Are you ready to own a piece of one of Nairobi's most sought-after developments? Katani Gardens Phase 7 is here, offering prime plots in a location that combines convenience, growth potential, and unmatched value. Here's why this is the opportunity you've been waiting for:-Strategic Location – Unbeatable Connectivity, located just 7km off Mombasa Road, Katani Gardens Phase 7 is perfectly positioned for growth.",
     features: [
       "Ready for development",
       "Good access roads",
@@ -784,7 +811,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/katani-gardens-phase-7-brochure.pdf'
   },
   "prestige-gardens-phase-3": {
     id: "prestige-gardens-phase-3",
@@ -804,7 +832,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       "https://fanaka.co.ke//storage/images/ae5cf31d-e808-42e5-aedd-dd01516b05c1.webp",
       "https://fanaka.co.ke//storage/images/d1aec83e-21d8-43fb-b778-f068179b9173.webp"
     ],
-    description: "Located just 5 minutes’ drive from Kangundo Road Tarmac, these prime plots in Kamulu offer an unmatched opportunity for:",
+    description: "Located just 5 minutes' drive from Kangundo Road Tarmac, these prime plots in Kamulu offer an unmatched opportunity for:",
     features: [
       "Good access roads",
       "Favorable for residential construction"
@@ -823,7 +851,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/prestige-gardens-phase-3-brochure.pdf'
   },
   "prime-court-phase-5": {
     id: "prime-court-phase-5",
@@ -862,7 +891,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/prime-court-phase-5-brochure.pdf'
   },
   "maple-court-phase-1-kamakis": {
     id: "maple-court-phase-1-kamakis",
@@ -900,12 +930,13 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/maple-court-phase-1-kamakis-brochure.pdf'
   },
   "enclave-katani-gardens-phase-6": {
     id: "enclave-katani-gardens-phase-6",
     title: "Enclave Katani Gardens Phase 6",
-    location: "1.5Km  off Katani Road",
+    location: "1.5Km  off Katani Road",
     price: 2700000,
     type: "Land",
     status: "Available",
@@ -939,7 +970,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: true
+    featured: true,
+    downloadUrl: '/brochures/enclave-katani-gardens-phase-6-brochure.pdf'
   },
   "joska-crest-gardens": {
     id: "joska-crest-gardens",
@@ -959,7 +991,7 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       "https://fanaka.co.ke/storage/joska crest 2.jpg",
       "https://fanaka.co.ke/storage/joska crest 3.jpg"
     ],
-    description: "Introducing Joska Crest – the perfect place to build your dream home or invest for the future! 10 minutes’ drive from Joska town along Kangundo road, these prime 50 by 100 plots in Joska offer the ideal opportunity for residential living, future investments, or creating a legacy for your children.Why Joska Crest?",
+    description: "Introducing Joska Crest – the perfect place to build your dream home or invest for the future! 10 minutes' drive from Joska town along Kangundo road, these prime 50 by 100 plots in Joska offer the ideal opportunity for residential living, future investments, or creating a legacy for your children.Why Joska Crest?",
     features: [
       "Good access roads",
       "Favorable for residential construction"
@@ -978,7 +1010,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: true
+    featured: true,
+    downloadUrl: '/brochures/joska-crest-gardens-brochure.pdf'
   },
   "prime-court-phase-4": {
     id: "prime-court-phase-4",
@@ -1017,7 +1050,8 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: true
+    featured: true,
+    downloadUrl: '/brochures/prime-court-phase-4-brochure.pdf'
   },
   "katani-gardens-phase-5": {
     id: "katani-gardens-phase-5",
@@ -1056,20 +1090,21 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
       image: "https://ext.same-assets.com/2009473017/3756399664.png"
     },
     virtualTour: false,
-    featured: false
+    featured: false,
+    downloadUrl: '/brochures/katani-gardens-phase-5-brochure.pdf'
   },
   'lukenya-plot': {
     id: 'lukenya-plot',
     title: 'Scenic Plots for Sale in Lukenya',
-    location: 'Lukenya, Machakos County, Kenya', // Based on Lukenya, Mua Hills
+    location: 'Lukenya, Machakos County, Kenya',
     price: 380000,
     type: 'Land',
-    status: 'Available', // Assuming it's available for sale
+    status: 'Available',
     bedrooms: 0,
     bathrooms: 0,
-    area: 505, // m2 as specified
-    lotSize: 0.125, // Assuming 1/8th acre from the description
-    yearBuilt: 0, // Not applicable for a plot
+    area: 505,
+    lotSize: 0.125,
+    yearBuilt: 0,
     images: [
         '/p/20190123_113658.jpg',
         '/p/20190123_113704.jpg',
@@ -1096,19 +1131,19 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     amenities: [
         'Proximity to Lukenya Schools',
         'Near Kusyombunguo Guest house',
-        'Opposite a commercial poultry farm', // While not a typical amenity, it's a nearby landmark
-        // Add other general amenities if known (e.g., shops, clinics in the wider Lukenya area)
+        'Opposite a commercial poultry farm',
     ],
     agent: {
-        name: 'Mark James', // Using the same agent as the example, replace if different
+        name: 'Mark James',
         title: 'Senior Property Agent',
         phone: '0729170156',
         email: 'mark.muriithi@vineyardproperties.co.ke',
         image: 'https://ext.same-assets.com/2009473017/3756399664.png',
     },
     virtualTour: false,
-    featured: false, // Set to true if you want this property to be featured
-},
+    featured: false,
+    downloadUrl: '/brochures/lukenya-plot-brochure.pdf'
+  },
   'Thorngroove-Kitengela': {
     id: 'Thorngroove-Kitengela',
     title: 'Thorngroove 1/8 Acre Plot for Sale in Kitengela',
@@ -1149,6 +1184,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/thorngroove-kitengela-brochure.pdf'
   },
   '1/8 Acre Plot in Epz Tank, Kitengela': {
     id: '1/8 Acre Plot in Epz Tank, Kitengela',
@@ -1188,6 +1224,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/epz-tank-kitengela-brochure.pdf'
   },
   'solomon-ndungu-kitengela': {
     id: 'solomon-ndungu-kitengela',
@@ -1227,6 +1264,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/solomon-ndungu-kitengela-brochure.pdf'
   },
   'omulindi-mukoto-kitengela': {
     id: 'omulindi-mukoto-kitengela',
@@ -1266,6 +1304,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/omulindi-mukoto-kitengela-brochure.pdf'
   },
   'mary-mutembei-kitengela': {
     id: 'mary-mutembei-kitengela',
@@ -1305,6 +1344,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/mary-mutembei-kitengela-brochure.pdf'
   },
   'peter-ngunyi-kitengela': {
     id: 'peter-ngunyi-kitengela',
@@ -1345,6 +1385,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/peter-ngunyi-kitengela-brochure.pdf'
   },
   'robert-nyaroo-joska': {
     id: 'robert-nyaroo-joska',
@@ -1384,6 +1425,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/robert-nyaroo-joska-brochure.pdf'
   },
   'peter-ngobu-kantafu': {
     id: 'peter-ngobu-kantafu',
@@ -1395,7 +1437,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     bedrooms: 0,
     bathrooms: 0,
     area: 0,
-    lotSize: 0.25, // Assuming this might be a quarter acre given the higher price
+    lotSize: 0.25,
     yearBuilt: 0,
     images: [
       '/p/20180707_105416.jpg',
@@ -1423,6 +1465,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/peter-ngobu-kantafu-brochure.pdf'
   },
   'frank-ombongi-kantafu': {
     id: 'frank-ombongi-kantafu',
@@ -1462,6 +1505,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/frank-ombongi-kantafu-brochure.pdf'
   },
   'nancy-njambi-kitengela': {
     id: 'nancy-njambi-kitengela',
@@ -1502,6 +1546,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/nancy-njambi-kitengela-brochure.pdf'
   },
   'teresia-magiri-kantafu': {
     id: 'teresia-magiri-kantafu',
@@ -1513,7 +1558,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     bedrooms: 0,
     bathrooms: 0,
     area: 0,
-    lotSize: 0.25, // Assuming two plots, so quarter acre
+    lotSize: 0.25,
     yearBuilt: 0,
     images: [
       '/p/20180707_105836.jpg',
@@ -1541,6 +1586,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/teresia-magiri-kantafu-brochure.pdf'
   },
   'catherine-wairimu-kitengela': {
     id: 'catherine-wairimu-kitengela',
@@ -1580,6 +1626,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/catherine-wairimu-kitengela-brochure.pdf'
   },
   'teresia-njeri-maina-kitengela': {
     id: 'teresia-njeri-maina-kitengela',
@@ -1620,6 +1667,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/teresia-njeri-maina-kitengela-brochure.pdf'
   },
   'githagia-maina-kitengela': {
     id: 'githagia-maina-kitengela',
@@ -1627,7 +1675,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     location: 'Kitengela, Kajiado County, Kenya',
     price: 1100000,
     type: 'Land',
-    status: '0722611353', // This seems to be a phone number, assuming it means "available" or "contact for details"
+    status: '0722611353',
     bedrooms: 0,
     bathrooms: 0,
     area: 0,
@@ -1654,12 +1702,13 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     agent: {
       name: 'Mark James',
       title: 'Senior Property Agent',
-      phone: '0729170156', // Assuming this is the agent's number if not the status
+      phone: '0729170156',
       email: 'mark.muriithi@vineyardproperties.co.ke',
       image: 'https://ext.same-assets.com/2009473017/3756399664.png',
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/githagia-maina-kitengela-brochure.pdf'
   },
   'hilda-joska-kantafu-road': {
     id: 'hilda-joska-kantafu-road',
@@ -1667,11 +1716,11 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     location: 'Joska, Kangundo Road, Machakos County, Kenya',
     price: 3000000,
     type: 'Land',
-    status: '0722760529', // Assuming this is a phone number for direct contact
+    status: '0722760529',
     bedrooms: 0,
     bathrooms: 0,
     area: 0,
-    lotSize: 1.74, // In acres
+    lotSize: 1.74,
     yearBuilt: 0,
     images: [
       '/p/20180707_114638.jpg',
@@ -1693,12 +1742,13 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     agent: {
       name: 'Mark James',
       title: 'Senior Property Agent',
-      phone: '0729170156', // Assuming this is the agent's number if not the status
+      phone: '0729170156',
       email: 'mark.muriithi@vineyardproperties.co.ke',
       image: 'https://ext.same-assets.com/2009473017/3756399664.png',
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/hilda-joska-kantafu-road-brochure.pdf'
   },
   'njeru-ngai-kantafu': {
     id: 'njeru-ngai-kantafu',
@@ -1706,11 +1756,11 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     location: 'Kantafu, Machakos County, Kenya',
     price: 1100000,
     type: 'Land',
-    status: '0722455100', // Assuming this is a phone number
+    status: '0722455100',
     bedrooms: 0,
     bathrooms: 0,
     area: 0,
-    lotSize: 0.25, // Assuming two plots make a quarter acre
+    lotSize: 0.25,
     yearBuilt: 0,
     images: [
       '/p/20180707_114707.jpg',
@@ -1732,12 +1782,13 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     agent: {
       name: 'Mark James',
       title: 'Senior Property Agent',
-      phone: '0729170156', // Assuming this is the agent's number if not the status
+      phone: '0729170156',
       email: 'mark.muriithi@vineyardproperties.co.ke',
       image: 'https://ext.same-assets.com/2009473017/3756399664.png',
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/njeru-ngai-kantafu-brochure.pdf'
   },
   'pauline-mwaura-kantafu': {
     id: 'pauline-mwaura-kantafu',
@@ -1745,7 +1796,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     location: 'Kantafu, Machakos County, Kenya',
     price: 700000,
     type: 'Land',
-    status: '0722234859', // Assuming this is a phone number
+    status: '0722234859',
     bedrooms: 0,
     bathrooms: 0,
     area: 0,
@@ -1771,12 +1822,13 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     agent: {
       name: 'Mark James',
       title: 'Senior Property Agent',
-      phone: '0729170156', // Assuming this is the agent's number if not the status
+      phone: '0729170156',
       email: 'mark.muriithi@vineyardproperties.co.ke',
       image: 'https://ext.same-assets.com/2009473017/3756399664.png',
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/pauline-mwaura-kantafu-brochure.pdf'
   },
   'kauriki-waihenya-joska': {
     id: 'kauriki-waihenya-joska',
@@ -1816,6 +1868,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/kauriki-waihenya-joska-brochure.pdf'
   },
   'ruth-njeri-njiraini-kitengela': {
     id: 'ruth-njeri-njiraini-kitengela',
@@ -1827,7 +1880,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     bedrooms: 0,
     bathrooms: 0,
     area: 0,
-    lotSize: 0.25, // Assuming two plots
+    lotSize: 0.25,
     yearBuilt: 0,
     images: [
       '/p/20180707_114924.jpg',
@@ -1855,6 +1908,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/ruth-njeri-njiraini-kitengela-brochure.pdf'
   },
   'celia-wairimu-joska': {
     id: 'celia-wairimu-joska',
@@ -1894,6 +1948,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/celia-wairimu-joska-brochure.pdf'
   },
   'lucy-mumbi-utawala': {
     id: 'lucy-mumbi-utawala',
@@ -1934,6 +1989,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/lucy-mumbi-utawala-brochure.pdf'
   },
   'faith-ntinyari-kantafu': {
     id: 'faith-ntinyari-kantafu',
@@ -1973,6 +2029,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/faith-ntinyari-kantafu-brochure.pdf'
   },
   'liza-nyambura-kitengela': {
     id: 'liza-nyambura-kitengela',
@@ -2013,8 +2070,9 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/liza-nyambura-kitengela-brochure.pdf'
   },
-"panari-hotel": {
+  "panari-hotel": {
     "id": "5-star-hotel-nairobi",
     "title": "5-Star Executive The Panari Hotel for Sale in Nairobi West",
     "location": "Mombasa Road, Nairobi",
@@ -2072,10 +2130,10 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
       "email": "info@gaithomarketingmasters.com",
       "image": "https://images.openai.com/thumbnails/6e502fcccbd8109ef0bada70a01636b9.jpeg"
     },
-    "virtualTour": true, // Set to true for demonstration
-    "featured": true
+    "virtualTour": true,
+    "featured": true,
+    downloadUrl: '/brochures/panari-hotel-brochure.pdf'
   },
-
   'plot-nrbwest': {
     id: 'plot-nrbwest',
     title: '1/4 Acre Prime Plot in Nairobi West Shopping Centre',
@@ -2121,6 +2179,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/plot-nrbwest-brochure.pdf'
   },
   'kiambu-windsor': {
     id: 'kiambu-windsor',
@@ -2142,7 +2201,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
       'https://austinerealtors.co.ke/wp-content/smush-webp/2024/02/CDDC6A32-6F34-4E61-B5E1-7D7A0FB8C0F7-1170x640.jpeg.webp',
     ],
     description:
-      'Windsor Villas is a new development of 4 elegant houses on approximately 2 acres of land located on Mushroom road. On offer is villas sitting on half an acre in leafy Kiambu popular for it’s sought after views and serene country living. Nearby social amenities include the Ciata Mall, The Paradise Lost, and Windsor Golf Club.',
+      'Windsor Villas is a new development of 4 elegant houses on approximately 2 acres of land located on Mushroom road. On offer is villas sitting on half an acre in leafy Kiambu popular for its sought after views and serene country living. Nearby social amenities include the Ciata Mall, The Paradise Lost, and Windsor Golf Club.',
     features: [
       'A spacious lounge with a beautiful terrace overlooking the back garden',
       ' 4 parking spaces',
@@ -2168,6 +2227,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/kiambu-windsor-brochure.pdf'
   },
   'mlolongo-warehouse': {
     id: 'mlolongo-warehouse',
@@ -2217,6 +2277,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/mlolongo-warehouse-brochure.pdf'
   },
   'ridgeways-mansion': {
     id: 'ridgeways-mansion',
@@ -2275,6 +2336,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: true,
     featured: true,
+    downloadUrl: '/brochures/ridgeways-mansion-brochure.pdf'
   },
   'emali-land': {
     id: 'emali-land',
@@ -2322,6 +2384,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/emali-land-brochure.pdf'
   },
   'muthaiga-mansion': {
     id: 'muthaiga-mansion',
@@ -2349,8 +2412,8 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
       'Swimming pool',
       'Landscaped gardens',
       'Staff quarters',
-      'Wine cellar', // Added for demo
-      'Elevator', // Added for demo
+      'Wine cellar',
+      'Elevator',
       'Generator',
       'Security system',
       'Garage parking',
@@ -2372,6 +2435,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: true,
     featured: true,
+    downloadUrl: '/brochures/muthaiga-mansion-brochure.pdf'
   },
   'edenville-villa': {
     id: 'edenville-villa',
@@ -2427,6 +2491,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/edenville-villa-brochure.pdf'
   },
   'muthaiga-land': {
     id: 'muthaiga-land',
@@ -2482,6 +2547,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/muthaiga-land-brochure.pdf'
   },
   'kitengela-plot': {
     id: 'kitengela-plot',
@@ -2532,6 +2598,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/kitengela-plot-brochure.pdf'
   },
   'karen-6acres': {
     id: 'karen-6acres',
@@ -2579,6 +2646,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/karen-6acres-brochure.pdf'
   },
   'syokimau-industrial': {
     id: 'syokimau-industrial',
@@ -2626,6 +2694,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: true,
     featured: true,
+    downloadUrl: '/brochures/syokimau-industrial-brochure.pdf'
   },
   'cbd-commercial': {
     id: 'cbd-commercial',
@@ -2673,6 +2742,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/cbd-commercial-brochure.pdf'
   },
   'westlands-land': {
     id: 'westlands-land',
@@ -2719,6 +2789,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/westlands-land-brochure.pdf'
   },
   'isinya-land': {
     id: 'isinya-land',
@@ -2764,6 +2835,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/isinya-land-brochure.pdf'
   },
   'neema-gardens': {
     id: 'neema-gardens',
@@ -2809,6 +2881,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/neema-gardens-brochure.pdf'
   },
   'kinoo-plot': {
     id: 'kinoo-plot',
@@ -2853,6 +2926,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/kinoo-plot-brochure.pdf'
   },
   'joska-plots': {
     id: 'joska-plots',
@@ -2898,6 +2972,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/joska-plots-brochure.pdf'
   },
   'utawala-plots': {
     id: 'utawala-plots',
@@ -2943,6 +3018,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/utawala-plots-brochure.pdf'
   },
   'syokimau-5acres': {
     id: 'syokimau-5acres',
@@ -2988,6 +3064,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/syokimau-5acres-brochure.pdf'
   },
   'kisaju-10acres': {
     id: 'kisaju-10acres',
@@ -3033,6 +3110,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/kisaju-10acres-brochure.pdf'
   },
   'syokimau-katani': {
     id: 'syokimau-katani',
@@ -3078,6 +3156,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/syokimau-katani-brochure.pdf'
   },
   'kitengela-bungalow': {
     id: 'kitengela-bungalow',
@@ -3123,6 +3202,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/kitengela-bungalow-brochure.pdf'
   },
   'kiambu-road-10acres': {
     id: 'kiambu-road-10acres',
@@ -3168,6 +3248,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/kiambu-road-10acres-brochure.pdf'
   },
   'karen-mansion': {
     id: 'karen-mansion',
@@ -3219,6 +3300,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: true,
     featured: true,
+    downloadUrl: '/brochures/karen-mansion-brochure.pdf'
   },
   'lavington-land': {
     id: 'lavington-land',
@@ -3264,6 +3346,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/lavington-land-brochure.pdf'
   },
   'cbd-building': {
     id: 'cbd-building',
@@ -3304,6 +3387,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/cbd-building-brochure.pdf'
   },
   'athi-river-maisonette': {
     id: 'athi-river-maisonette',
@@ -3349,6 +3433,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/athi-river-maisonette-brochure.pdf'
   },
   'lavington-quarter-acre': {
     id: 'lavington-quarter-acre',
@@ -3394,6 +3479,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/lavington-quarter-acre-brochure.pdf'
   },
   'thika-commercial': {
     id: 'thika-commercial',
@@ -3439,6 +3525,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/thika-commercial-brochure.pdf'
   },
   'karen-villa': {
     id: 'karen-villa',
@@ -3487,6 +3574,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: true,
     featured: true,
+    downloadUrl: '/brochures/karen-villa-brochure.pdf'
   },
   'kiambu-road-house': {
     id: 'kiambu-road-house',
@@ -3535,6 +3623,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/kiambu-road-house-brochure.pdf'
   },
   'chyuna-estate': {
     id: 'chyuna-estate',
@@ -3577,6 +3666,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/chyuna-estate-brochure.pdf'
   },
   'nairobi-warehouse': {
     id: 'nairobi-warehouse',
@@ -3624,6 +3714,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: true,
+    downloadUrl: '/brochures/nairobi-warehouse-brochure.pdf'
   },
   'ngong-plots': {
     id: 'ngong-plots',
@@ -3669,6 +3760,7 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: false,
     featured: false,
+    downloadUrl: '/brochures/ngong-plots-brochure.pdf'
   },
   'mombasa-industrial': {
     id: 'mombasa-industrial',
@@ -3716,923 +3808,9 @@ Located approximately 15km off Mombasa Road, branching at the diversion to Luken
     },
     virtualTour: true,
     featured: true,
+    downloadUrl: '/brochures/mombasa-industrial-brochure.pdf'
   },
-  'redhill-land': {
-    id: 'redhill-land',
-    title: '7.9 acres vacant land for sale in Redhill',
-    location: 'Nairobi, Redhill',
-    price: 750000000,
-    type: 'Residential Land',
-    status: 'For Sale',
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    lotSize: 7.9,
-    yearBuilt: 0,
-    images: [
-      'https://ext.same-assets.com/3634728786/3300708784.jpeg',
-      'https://ext.same-assets.com/3634728786/2893186496.jpeg',
-      'https://ext.same-assets.com/3634728786/3348063986.jpeg',
-    ],
-    description:
-      'Discover a rare opportunity to own 7.9 acres of pristine land in the highly sought-after Rosslyn neighborhood. Nestled close to the road, this expansive property offers unparalleled convenience with seamless access to major roads.',
-    features: [
-      '7.9 acres',
-      'Rosslyn neighborhood',
-      'Close to road',
-      'Major road access',
-      'Pristine land',
-      'Development potential',
-      'Convenient location',
-      'Clear title',
-      'All utilities nearby',
-      'Investment opportunity',
-    ],
-    amenities: [
-      'Prime Location',
-      'Road Access',
-      'Development Ready',
-      'Investment Grade',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: true,
-  },
-  'muthaiga-5bedroom': {
-    id: 'muthaiga-5bedroom',
-    title: '5 bedroom house for sale in Muthaiga',
-    location: 'Nairobi, Muthaiga',
-    price: 600000000,
-    type: 'Luxury House',
-    status: 'For Sale',
-    bedrooms: 5,
-    bathrooms: 4,
-    area: 542,
-    lotSize: 2.8,
-    yearBuilt: 2014,
-    images: [
-      'https://ext.same-assets.com/3634728786/3519000104.jpeg',
-      'https://ext.same-assets.com/3634728786/4125891741.jpeg',
-      'https://ext.same-assets.com/3634728786/4032461120.jpeg',
-    ],
-    description:
-      'Introducing a captivating masterpiece nestled within Muthaiga, this lovely 5-bedroom house sits majestically on 2.8 acres of sheer bliss. Boasting bedrooms that offer a harmonious blend of comfort and luxury, this enchanting home provides an idyllic retreat.',
-    features: [
-      '5 bedrooms',
-      '4 bathrooms',
-      '2.8 acres',
-      'Muthaiga location',
-      'Swimming pool',
-      'Beautiful gardens',
-      'Staff quarters',
-      'Security system',
-      'Generator backup',
-      'Luxury finishes',
-    ],
-    amenities: [
-      'Swimming Pool',
-      'Large Grounds',
-      'Muthaiga Location',
-      'Luxury Features',
-      'Security',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: true,
-    featured: true,
-  },
-  'karen-9acres': {
-    id: 'karen-9acres',
-    title: '9 acres vacant land for sale in Karen',
-    location: 'Nairobi, Karen',
-    price: 540000000,
-    type: 'Residential Land',
-    status: 'Under Offer',
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    lotSize: 9,
-    yearBuilt: 0,
-    images: [
-      'https://ext.same-assets.com/3634728786/204887299.jpeg',
-      'https://ext.same-assets.com/3634728786/3303940439.jpeg',
-      'https://ext.same-assets.com/3634728786/3143503855.jpeg',
-    ],
-    description:
-      'Discover this exceptional 9-acre parcel of land, perfectly positioned for redevelopment. Strategically located along a main road, this property offers unmatched visibility, accessibility, and versatility.',
-    features: [
-      '9 acres',
-      'Karen location',
-      'Main road frontage',
-      'Redevelopment potential',
-      'High visibility',
-      'Excellent access',
-      'Strategic location',
-      'Investment grade',
-      'Clear title',
-      'All utilities',
-    ],
-    amenities: [
-      'Road Frontage',
-      'Karen Location',
-      'High Visibility',
-      'Development Ready',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: true,
-  },
-  'kikambala-beach': {
-    id: 'kikambala-beach',
-    title: '15 acres vacant land for sale in Kikambala',
-    location: 'Kilifi, Kikambala',
-    price: 420000000,
-    type: 'Beach Land',
-    status: 'For Sale',
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    lotSize: 15,
-    yearBuilt: 0,
-    images: [
-      'https://ext.same-assets.com/3634728786/1077470987.jpeg',
-      'https://ext.same-assets.com/3634728786/479723351.jpeg',
-      'https://ext.same-assets.com/3634728786/4241474228.jpeg',
-    ],
-    description:
-      'Discover an unparalleled opportunity with this 15-acre parcel of land on the stunning Kikambala Beach. Boasting expansive beachfrontage and pristine white sandy beaches, this property offers breathtaking views of the Indian Ocean.',
-    features: [
-      '15 acres beachfront',
-      'Kikambala Beach',
-      'White sandy beach',
-      'Indian Ocean views',
-      'Beach frontage',
-      'Tourism potential',
-      'Development opportunity',
-      'Clear title',
-      'Strategic location',
-      'Investment grade',
-    ],
-    amenities: [
-      'Beach Frontage',
-      'Ocean Views',
-      'Tourism Potential',
-      'Prime Location',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: true,
-  },
-  'kileleshwa-apartment': {
-    id: 'kileleshwa-apartment',
-    title: '3 bedroom apartment for sale in Kileleshwa',
-    location: 'Nairobi, Kileleshwa',
-    price: 18000000,
-    type: 'Apartment',
-    status: 'For Sale',
-    bedrooms: 3,
-    bathrooms: 2,
-    area: 120,
-    lotSize: 0,
-    yearBuilt: 2020,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Modern 3-bedroom apartment in the heart of Kileleshwa. Spacious living areas with contemporary finishes and excellent amenities.',
-    features: [
-      '3 bedrooms',
-      '2 bathrooms',
-      'Modern kitchen',
-      'Balcony',
-      'Parking space',
-      'Swimming pool',
-      'Gym',
-      'Security',
-      'Lift access',
-      'Generator backup',
-    ],
-    amenities: ['Swimming Pool', 'Gym', 'Security', 'Lift Access'],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: false,
-  },
-  'runda-townhouse': {
-    id: 'runda-townhouse',
-    title: '4 bedroom townhouse for sale in Runda',
-    location: 'Nairobi, Runda',
-    price: 45000000,
-    type: 'Townhouse',
-    status: 'For Sale',
-    bedrooms: 4,
-    bathrooms: 3,
-    area: 250,
-    lotSize: 0.125,
-    yearBuilt: 2019,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Elegant 4-bedroom townhouse in prestigious Runda estate. Modern design with beautiful finishes and access to estate amenities.',
-    features: [
-      '4 bedrooms',
-      '3 bathrooms',
-      'Double garage',
-      'Private garden',
-      'Modern kitchen',
-      'Swimming pool',
-      'Club house',
-      'Security',
-      'Generator',
-      'Water backup',
-    ],
-    amenities: ['Swimming Pool', 'Club House', 'Security', 'Runda Estate'],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: true,
-    featured: true,
-  },
-  'westgate-mall-shop': {
-    id: 'westgate-mall-shop',
-    title: 'Retail shop for sale at Westgate Mall',
-    location: 'Nairobi, Westlands',
-    price: 25000000,
-    type: 'Commercial Retail',
-    status: 'For Sale',
-    bedrooms: 0,
-    bathrooms: 1,
-    area: 85,
-    lotSize: 0,
-    yearBuilt: 2013,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Prime retail space at Westgate Mall. High foot traffic location perfect for retail business with excellent visibility.',
-    features: [
-      '85 sqm retail space',
-      'Westgate Mall',
-      'High foot traffic',
-      'Prime location',
-      'AC installed',
-      'Parking available',
-      'Security',
-      'Mall amenities',
-      'Investment opportunity',
-      'Rental potential',
-    ],
-    amenities: ['Mall Location', 'High Traffic', 'Security', 'Parking'],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: false,
-  },
-  'nyali-beachfront': {
-    id: 'nyali-beachfront',
-    title: '5 bedroom beachfront villa in Nyali',
-    location: 'Mombasa, Nyali',
-    price: 180000000,
-    type: 'Beach Villa',
-    status: 'For Sale',
-    bedrooms: 5,
-    bathrooms: 4,
-    area: 400,
-    lotSize: 0.5,
-    yearBuilt: 2017,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Spectacular 5-bedroom beachfront villa in Nyali with direct beach access. Perfect for luxury living or holiday home investment.',
-    features: [
-      '5 bedrooms',
-      '4 bathrooms',
-      'Beachfront location',
-      'Swimming pool',
-      'Direct beach access',
-      'Ocean views',
-      'Mature gardens',
-      'Staff quarters',
-      'Generator',
-      'Security',
-    ],
-    amenities: ['Beach Access', 'Ocean Views', 'Swimming Pool', 'Security'],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: true,
-    featured: true,
-  },
-  'nakuru-farm': {
-    id: 'nakuru-farm',
-    title: '200 acres dairy farm for sale in Nakuru',
-    location: 'Nakuru, Nakuru County',
-    price: 150000000,
-    type: 'Dairy Farm',
-    status: 'For Sale',
-    bedrooms: 3,
-    bathrooms: 2,
-    area: 200,
-    lotSize: 200,
-    yearBuilt: 2010,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Fully operational 200-acre dairy farm in Nakuru County. Includes farmhouse, dairy facilities, and excellent water sources.',
-    features: [
-      '200 acres',
-      'Dairy facilities',
-      'Farmhouse',
-      'Water sources',
-      'Fertile land',
-      'Good climate',
-      'Access roads',
-      'Electricity',
-      'Staff quarters',
-      'Equipment included',
-    ],
-    amenities: [
-      'Dairy Facilities',
-      'Water Sources',
-      'Agricultural Land',
-      'Infrastructure',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: false,
-  },
-  'thika-factory': {
-    id: 'thika-factory',
-    title: 'Manufacturing factory for sale in Thika',
-    location: 'Kiambu, Thika',
-    price: 800000000,
-    type: 'Industrial Factory',
-    status: 'For Sale',
-    bedrooms: 0,
-    bathrooms: 4,
-    area: 5000,
-    lotSize: 2,
-    yearBuilt: 2005,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Fully equipped manufacturing factory in Thika Industrial area. Includes machinery, offices, and all necessary infrastructure.',
-    features: [
-      '5000 sqm factory',
-      '2 acres land',
-      'Manufacturing equipment',
-      'Office spaces',
-      'Power backup',
-      'Water treatment',
-      'Security',
-      'Access roads',
-      'Railway access',
-      'Investment opportunity',
-    ],
-    amenities: [
-      'Manufacturing Setup',
-      'Industrial Zone',
-      'Infrastructure',
-      'Railway Access',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: true,
-  },
-  'gigiri-penthouse': {
-    id: 'gigiri-penthouse',
-    title: 'Luxury penthouse for sale in Gigiri',
-    location: 'Nairobi, Gigiri',
-    price: 85000000,
-    type: 'Penthouse',
-    status: 'For Sale',
-    bedrooms: 4,
-    bathrooms: 3,
-    area: 350,
-    lotSize: 0,
-    yearBuilt: 2021,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Stunning luxury penthouse in Gigiri with panoramic city views. Premium finishes and exclusive amenities in diplomatic zone.',
-    features: [
-      '4 bedrooms',
-      '3 bathrooms',
-      'Panoramic views',
-      'Terrace garden',
-      'Swimming pool',
-      'Gym',
-      'Concierge',
-      'Parking bays',
-      'Generator backup',
-    ],
-    amenities: ['City Views', 'Swimming Pool', 'Gym', 'Concierge Service'],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: true,
-    featured: true,
-  },
-  'eldoret-maisonette': {
-    id: 'eldoret-maisonette',
-    title: '4 bedroom maisonette for sale in Eldoret',
-    location: 'Uasin Gishu, Eldoret',
-    price: 12000000,
-    type: 'Maisonette',
-    status: 'For Sale',
-    bedrooms: 4,
-    bathrooms: 3,
-    area: 220,
-    lotSize: 0.125,
-    yearBuilt: 2018,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Modern 4-bedroom maisonette in Eldoret town. Well-designed family home with spacious rooms and modern amenities.',
-    features: [
-      '4 bedrooms',
-      '3 bathrooms',
-      'Modern design',
-      'Spacious rooms',
-      'Parking space',
-      'Garden area',
-      'Security',
-      'Water backup',
-      'Quality finishes',
-      'Good neighborhood',
-    ],
-    amenities: [
-      'Modern Design',
-      'Security',
-      'Garden Space',
-      'Quality Finishes',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: false,
-  },
-  'nanyuki-cottage': {
-    id: 'nanyuki-cottage',
-    title: 'Mountain cottage for sale in Nanyuki',
-    location: 'Laikipia, Nanyuki',
-    price: 35000000,
-    type: 'Cottage',
-    status: 'For Sale',
-    bedrooms: 3,
-    bathrooms: 2,
-    area: 180,
-    lotSize: 1,
-    yearBuilt: 2016,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Charming mountain cottage in Nanyuki with stunning views of Mount Kenya. Perfect retreat with rustic charm and modern amenities.',
-    features: [
-      '3 bedrooms',
-      '2 bathrooms',
-      'Mountain views',
-      '1 acre land',
-      'Fireplace',
-      'Mature gardens',
-      'Staff quarters',
-      'Water sources',
-      'Generator',
-      'Peaceful location',
-    ],
-    amenities: [
-      'Mountain Views',
-      'Large Grounds',
-      'Peaceful Location',
-      'Natural Setting',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: false,
-  },
-  'kisumu-commercial': {
-    id: 'kisumu-commercial',
-    title: 'Commercial building for sale in Kisumu CBD',
-    location: 'Kisumu, Kisumu Central',
-    price: 120000000,
-    type: 'Commercial Building',
-    status: 'For Sale',
-    bedrooms: 0,
-    bathrooms: 6,
-    area: 1200,
-    lotSize: 0.125,
-    yearBuilt: 2012,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      '5-storey commercial building in Kisumu CBD. Excellent rental income with prime location and high occupancy rates.',
-    features: [
-      '5 storeys',
-      '1200 sqm total',
-      'CBD location',
-      'High occupancy',
-      'Rental income',
-      'Lift access',
-      'Parking available',
-      'Generator backup',
-      'Investment grade',
-      'Lake proximity',
-    ],
-    amenities: [
-      'CBD Location',
-      'Rental Income',
-      'Lift Access',
-      'Lake Proximity',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: false,
-  },
-  'machakos-villa': {
-    id: 'machakos-villa',
-    title: 'Executive villa for sale in Machakos',
-    location: 'Machakos, Machakos Town',
-    price: 28000000,
-    type: 'Executive Villa',
-    status: 'For Sale',
-    bedrooms: 4,
-    bathrooms: 3,
-    area: 280,
-    lotSize: 0.25,
-    yearBuilt: 2019,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Executive 4-bedroom villa in Machakos town. Modern design with spacious living areas and beautiful landscaping.',
-    features: [
-      '4 bedrooms',
-      '3 bathrooms',
-      'Executive design',
-      'Spacious living',
-      'Modern kitchen',
-      'Beautiful landscaping',
-      'Security',
-      'Water backup',
-      'Generator ready',
-      'Good neighborhood',
-    ],
-    amenities: [
-      'Executive Design',
-      'Beautiful Landscaping',
-      'Security',
-      'Modern Features',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: false,
-  },
-  'meru-mansion': {
-    id: 'meru-mansion',
-    title: '6 bedroom mansion for sale in Meru',
-    location: 'Meru, Meru County',
-    price: 65000000,
-    type: 'Mansion',
-    status: 'For Sale',
-    bedrooms: 6,
-    bathrooms: 5,
-    area: 500,
-    lotSize: 1.5,
-    yearBuilt: 2015,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Magnificent 6-bedroom mansion in Meru with panoramic views. Luxury family home with extensive grounds and premium finishes.',
-    features: [
-      '6 bedrooms',
-      '5 bathrooms',
-      'Panoramic views',
-      '1.5 acres',
-      'Swimming pool',
-      'Staff quarters',
-      'Generator',
-      'Security system',
-      'Beautiful gardens',
-      'Premium finishes',
-    ],
-    amenities: [
-      'Swimming Pool',
-      'Panoramic Views',
-      'Large Grounds',
-      'Premium Features',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: true,
-    featured: true,
-  },
-  'malindi-beach-house': {
-    id: 'malindi-beach-house',
-    title: 'Beach house for sale in Malindi',
-    location: 'Kilifi, Malindi',
-    price: 95000000,
-    type: 'Beach House',
-    status: 'For Sale',
-    bedrooms: 4,
-    bathrooms: 3,
-    area: 300,
-    lotSize: 0.5,
-    yearBuilt: 2018,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Stunning beach house in Malindi with direct beach access. Perfect for holiday home or rental investment with ocean views.',
-    features: [
-      '4 bedrooms',
-      '3 bathrooms',
-      'Beach access',
-      'Ocean views',
-      'Swimming pool',
-      'Tropical gardens',
-      'Staff quarters',
-      'Security',
-      'Rental potential',
-      'Tourism location',
-    ],
-    amenities: [
-      'Beach Access',
-      'Ocean Views',
-      'Swimming Pool',
-      'Tourism Location',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: true,
-    featured: true,
-  },
-  'naivasha-resort': {
-    id: 'naivasha-resort',
-    title: 'Lakefront resort for sale in Naivasha',
-    location: 'Nakuru, Naivasha',
-    price: 500000000,
-    type: 'Resort Property',
-    status: 'For Sale',
-    bedrooms: 20,
-    bathrooms: 25,
-    area: 2000,
-    lotSize: 5,
-    yearBuilt: 2008,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Established lakefront resort in Naivasha with 20 rooms and extensive facilities. Prime tourism investment opportunity.',
-    features: [
-      '20 guest rooms',
-      'Lakefront location',
-      'Restaurant facilities',
-      'Conference halls',
-      'Swimming pool',
-      '5 acres land',
-      'Tourism license',
-      'Staff accommodation',
-      'Boat landing',
-      'Investment opportunity',
-    ],
-    amenities: [
-      'Lakefront Location',
-      'Tourism Facilities',
-      'Conference Facilities',
-      'Investment Grade',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: true,
-    featured: true,
-  },
-  'rongai-bungalow': {
-    id: 'rongai-bungalow',
-    title: '3 bedroom bungalow for sale in Rongai',
-    location: 'Kajiado, Rongai',
-    price: 8500000,
-    type: 'Bungalow',
-    status: 'For Sale',
-    bedrooms: 3,
-    bathrooms: 2,
-    area: 150,
-    lotSize: 0.125,
-    yearBuilt: 2020,
-    images: [
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-      '/* Image placeholder - add your image here */',
-    ],
-    description:
-      'Affordable 3-bedroom bungalow in Rongai. Perfect starter home with modern amenities and good transport connections.',
-    features: [
-      '3 bedrooms',
-      '2 bathrooms',
-      'Modern amenities',
-      'Good transport',
-      'Affordable pricing',
-      'Garden space',
-      'Parking',
-      'Security',
-      'Water backup',
-      'Ready to move',
-    ],
-    amenities: [
-      'Affordable Housing',
-      'Transport Links',
-      'Modern Amenities',
-      'Garden Space',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: false,
-    featured: false,
-  },
-
-  'futuristic-haven': {
-    id: 'futuristic-haven',
-    title: 'Futuristic Haven',
-    location: 'Palm Springs, CA 92262',
-    price: 4750000,
-    type: 'Modern Architecture',
-    status: 'For Sale',
-    bedrooms: 5,
-    bathrooms: 4,
-    area: 2800,
-    lotSize: 1.2,
-    yearBuilt: 2024,
-    images: [
-      'https://ext.same-assets.com/2009473017/1082928151.svg',
-      'https://ext.same-assets.com/2009473017/299352832.jpeg',
-      'https://ext.same-assets.com/2009473017/923357109.jpeg',
-    ],
-    description:
-      'A masterpiece of modern architecture featuring cutting-edge design and sustainable living. This futuristic haven represents the pinnacle of luxury living with smart home integration, energy-efficient systems, and breathtaking desert views.',
-    features: [
-      'Smart home automation',
-      'Solar energy system',
-      'Infinity pool',
-      'Home theater',
-      'Wine cellar',
-      'Elevator',
-      'Security system',
-      'Landscaped gardens',
-    ],
-    amenities: [
-      'Private Pool',
-      'Mountain Views',
-      'Desert Landscape',
-      'Privacy',
-      'Luxury Finishes',
-    ],
-    agent: {
-      name: 'Mark James',
-      title: 'Senior Property Agent',
-      phone: '0729170156',
-      email: 'mark.muriithi@vineyardproperties.co.ke',
-      image: 'https://ext.same-assets.com/2009473017/3756399664.png',
-    },
-    virtualTour: true,
-    featured: true,
-  },
-};
+}
 
 export default function PropertyDetailPage() {
   const params = useParams();
@@ -4649,20 +3827,22 @@ export default function PropertyDetailPage() {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   // Calculator states
-  const [mortgagePrincipal, setMortgagePrincipal] = useState(property.price);
+  const [mortgagePrincipal, setMortgagePrincipal] = useState(property?.price ?? 0);
   const [mortgageInterestRate, setMortgageInterestRate] = useState(12);
   const [mortgageLoanTerm, setMortgageLoanTerm] = useState(25);
   const [monthlyMortgagePayment, setMonthlyMortgagePayment] = useState(0);
   
   // Auto-slider functionality
   useEffect(() => {
-    if (isAutoSliding && property.images.length > 1) {
+    if (property && isAutoSliding && property.images.length > 1) {
       const interval = setInterval(() => {
         setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
       }, 4000);
       return () => clearInterval(interval);
     }
-  }, [isAutoSliding, property.images.length]);
+    // Explicitly return undefined if no cleanup is needed
+    return undefined;
+  }, [isAutoSliding, property && property.images.length]);
 
   // Calculate mortgage payment
   useEffect(() => {
@@ -5231,7 +4411,7 @@ export default function PropertyDetailPage() {
               {/* Enhanced Sidebar */}
               <div className="space-y-6">
                 {/* Enhanced Agent Card */}
-                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-blue-50 sticky top-6 transform hover:scale-[1.02] transition-all duration-300">
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-blue-50 top-6 transform hover:scale-[1.02] duration-300">
                   <CardContent className="p-6">
                     <h3 className="mb-4 text-xl font-bold text-gray-900">Contact Agent</h3>
                     
@@ -5361,26 +4541,7 @@ export default function PropertyDetailPage() {
                   </CardContent>
                 </Card>
 
-                {/* Quick Actions */}
-                <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-purple-50 transform hover:scale-[1.02] transition-all duration-300">
-                  <CardContent className="p-6">
-                    <h3 className="mb-4 font-bold text-xl text-gray-900">Quick Actions</h3>
-                    <div className="space-y-3">
-                      <Button variant="outline" className="w-full justify-start transform hover:scale-105 transition-all duration-300">
-                        <Calendar className="mr-2 h-4 w-4" />
-                        Schedule Viewing
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start transform hover:scale-105 transition-all duration-300">
-                        <Download className="mr-2 h-4 w-4" />
-                        Download Brochure
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start transform hover:scale-105 transition-all duration-300">
-                        <Users className="mr-2 h-4 w-4" />
-                        Similar Properties
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                <PropertyQuickActions property={property} />
 
                 {/* Trust Badges */}
                 <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-yellow-50 transform hover:scale-[1.02] transition-all duration-300">
@@ -5433,7 +4594,7 @@ export default function PropertyDetailPage() {
         )}
 
         {/* Call to Action Section */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 relative overflow-hidden">
+        <section className="py-16 bg-gradient-to-r from-blue-600 via-red-600 to-blue-800 relative overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl font-bold text-white mb-6">
