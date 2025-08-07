@@ -112,6 +112,214 @@ Nestled amidst the lush, rolling landscapes of the Ngong Hills, Heritage Villas 
     featured: true,
     downloadUrl: '/brochures/heritage-villas-ngong-brochure.pdf'
   },
+  'lynwood-court-westlands': {
+    id: 'lynwood-court-westlands',
+    title: 'Prime Commercial Investment - Lynwood Court Office Development',
+    bedrooms: 0,
+    bathrooms: 0,
+    location: 'Waiyaki Way, Westlands, Nairobi',
+    price: 400000000,
+    type: 'Commercial',
+    status: 'For Sale',
+    area: 41232, // sq.ft gross lettable area
+    lotSize: 0.67, // acres
+    yearBuilt: 2011,
+    images: [
+      'https://content.knightfrank.com/property/kecom311/images/e80477fd-d2ca-43da-a099-44a0f81bd29b-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/kecom311/images/2fa7cde3-d125-4566-b49a-5c43aff3402d-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/kecom311/images/dc5d4e09-31ab-4888-8bb5-eaf711ea637f-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/kecom311/images/c813df28-2029-492b-b30e-5e6387a508a5-0.jpg?cio=true&w=1200'
+    ],
+    description: `This prime investment comprises a six storey modern office development built to international design standards. Lynwood Court has total gross lettable area of circa 41,232 sq.ft and a total of 65 parking bays over ground level and basement. Completed in 2011, the development is set on 0.67 acres currently held under one Leasehold title of 99 years, with 78 years unexpired.`,
+    features: [
+      'Six storey modern office development',
+      '41,232 sq.ft gross lettable office space', 
+      '65 car parking bays (ground level and basement)',
+      'Leasehold title of 99 years (78 years unexpired)',
+      'Built to international design standards',
+      'Prime Westlands location',
+      'Proximity to Sanlam Tower and Goodman Tower',
+      'Improved accessibility via Nairobi Express Way'
+    ],
+    amenities: [
+      'Passenger lift',
+      '24 hour access',
+      'On-site security',
+      'Standby Generator', 
+      'Sprinkler system',
+      'Open plan offices',
+      'Reception area',
+      'Professional lighting'
+    ],
+    agent: {
+      name: 'Richard Ngunjiri',
+      title: 'Senior Commercial Agent',
+      phone: '0720000000',
+      email: 'richard.ngunjiri@vineyardproperties.co.ke',
+      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400'
+    },
+    featured: true,
+    virtualTour: false,
+    downloadUrl: '/brochures/heritage-villas-ngong-brochure.pdf'
+  },
+
+  'best-western-meridian-hotel': {
+    id: 'best-western-meridian-hotel',
+    title: 'Best Western Plus Meridian Hotel - Prime CBD Location',
+    location: 'Murang\'a Road, Nairobi CBD',
+    price: 1292184056, // Converted from USD to KES
+    type: 'Hotel',
+    status: 'For Sale',
+    bedrooms: 119, // Hotel rooms
+    bathrooms: 119, // Assuming one bathroom per room minimum
+    area: 25000, // Estimated based on 6 storey building
+    lotSize: 0.37, // acres
+    yearBuilt: 1990, // Estimated based on description
+    images: [
+      'https://content.knightfrank.com/property/hub2547666/images/a531920b-a627-43ed-905e-eacd1b941068-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/hub2547666/images/82c7a8ae-a715-41ff-a906-e892f78acc0a-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/hub2547666/images/8a0ac1f8-1e08-4827-ac66-409773bed6b1-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/hub2547666/images/6e44e03d-9fd9-49b2-aaa0-61334d1a321c-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/hub2547666/images/c59d11e2-6a4b-4700-97e4-6149f4473726-0.jpg?cio=true&w=1200'
+    ],
+    description: `The Best Western Plus Meridian Hotel is a landmark property within the periphery of Nairobi CBD and has historically been regarded as one of the most significant hotels within the city. This 6 storey Hotel building comprises 119 rooms, 3.5 star rating with conference facilities, basement car parking, restaurant, bar and lounge, coffee shop, spa and wellness center, fitness centre and outdoor pool on the roof top.`,
+    features: [
+      '119 Hotel Rooms - 3.5 Star Rating',
+      '6 storey landmark hotel building',
+      'Conference facilities for corporate events',
+      'Basement and ground floor parking',
+      'Restaurant, bar and lounge facilities',
+      'Coffee shop for casual dining',
+      'Full spa and wellness center',
+      'Modern fitness centre'
+    ],
+    amenities: [
+      'Rooftop outdoor swimming pool',
+      'Full service restaurant',
+      'Bar and cocktail lounge', 
+      'Conference and event venue',
+      'Spa and wellness facilities',
+      'Fitness center and gym',
+      'CCTV surveillance system',
+      '2 passenger lifts + 1 service lift',
+      'Electronic card access system',
+      'Fire detection system',
+      'Standby power generator',
+      'Borehole water supply'
+    ],
+    agent: {
+      name: 'Richard Ngunjiri', 
+      title: 'Hotel Investment Specialist',
+      phone: '0720000000',
+      email: 'richard.ngunjiri@vineyardproperties.co.ke',
+      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400'
+    },
+    featured: true,
+    virtualTour: true,
+    downloadUrl: '/brochures/best-western-meridian-hotel-brochure.pdf'
+  },
+
+  'buffalo-mall-naivasha': {
+    id: 'buffalo-mall-naivasha',
+    title: 'Buffalo Mall & 9-Acre Development Land - Premier Retail Investment',
+    bedrooms: 0,
+    bathrooms: 0,
+    location: 'Moi South Lake Road, Naivasha',
+    price: 646092028, // Converted from USD to KES
+    type: 'Retail',
+    status: 'For Sale',
+    area: 58965, // sq.ft gross lettable area
+    lotSize: 14.5, // acres (including the 9-acre adjacent land)
+    yearBuilt: 2010, // Estimated
+    images: [
+      'https://content.knightfrank.com/property/hub2429185/images/79bb901f-3dba-41b8-9601-d462f09fa400-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/hub2429185/images/d52cc1be-f7b5-44af-9899-4993fbef9d32-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/hub2429185/images/1dab0404-50f6-4502-83f3-bcd333726e64-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/hub2429185/images/a0e19b97-d614-4437-80da-93869ce1b11b-0.jpg?cio=true&w=1200'
+    ],
+    description: `Buffalo Mall stands as the premier shopping destination in Naivasha, strategically situated to capitalise on the town's burgeoning economic growth and tourist appeal. The property comprises approximately 58,965 square feet Gross Lettable Area (GLA) retail mall and an adjoining 9 acres land parcel. The mall currently boasts a 70% occupancy rate with 33 flexible retail units.`,
+    features: [
+      'Premier shopping destination in Naivasha',
+      '58,965 sq.ft gross lettable area',
+      '33 flexible retail units of various sizes',
+      '70% current occupancy rate',
+      '9-acre adjacent development land included',
+      'Dual access from major highways',
+      '99-year leasehold title from 2004',
+      'Excellent investment yield potential (11-16%)'
+    ],
+    amenities: [
+      'Strategic highway location',
+      'Dual access roads',
+      '24-hour security',
+      'Ample car parking',
+      'Disabled facilities',
+      'Modern toilet facilities',
+      'Flexible unit configurations',
+      'High foot traffic location'
+    ],
+    agent: {
+      name: 'Nelly Njuki',
+      title: 'Retail Investment Specialist', 
+      phone: '0730000000',
+      email: 'nelly.njuki@vineyardproperties.co.ke',
+      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400'
+    },
+    featured: true,
+    virtualTour: false,
+    downloadUrl: '/brochures/buffalo-mall-naivasha-brochure.pdf'
+  },
+
+  'basl-house-nairobi-cbd': {
+    id: 'basl-house-nairobi-cbd',
+    title: 'BASL House - Prime CBD Commercial Investment',
+    location: 'Kumasi Road, Nairobi CBD', 
+    price: 190000000,
+    type: 'Commercial',
+    status: 'For Sale',
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 18988, // sq.ft gross lettable area
+    lotSize: 0.17, // acres
+    yearBuilt: 1985, // Estimated
+    images: [
+      'https://content.knightfrank.com/property/hub2448515/images/89393bfa-52be-4c67-8bbf-aee9cf35b19d-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/hub2448515/images/3d3d3b2e-cabe-4a33-8e96-511294b670a0-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/hub2448515/images/f65e77cb-e69d-42cb-acf1-4117fcec2e7f-0.jpg?cio=true&w=1200',
+      'https://content.knightfrank.com/property/hub2448515/images/07cd69ed-196a-4fbb-9b33-1249a5e5a07b-0.jpg?cio=true&w=1200'
+    ],
+    description: `Prime investment opportunity within the Nairobi CBD along Kumasi Road off Kirinyaga Road. This four storey building comprises of circa 18,988 square feet of gross lettable area and sits on approximately 0.17 acres. The property is currently 100% occupied and leased to multiple tenants generating exceptional annual rental returns.`,
+    features: [
+      'Prime Nairobi CBD location',
+      '18,988 sq.ft gross lettable area',
+      'Four storey commercial building',
+      '100% current occupancy rate',
+      'Multiple tenant configuration',
+      'Exceptional rental returns',
+      'High foot traffic exposure',
+      'Strategic Kumasi Road location'
+    ],
+    amenities: [
+      'Central CBD location',
+      'High foot traffic area',
+      'Multiple access points',
+      'Flexible commercial spaces',
+      'Proximity to major business districts',
+      'Public transport accessibility',
+      'Banking and retail proximity',
+      'Government offices nearby'
+    ],
+    agent: {
+      name: 'James Kinuthia',
+      title: 'CBD Investment Specialist',
+      phone: '0740000000', 
+      email: 'james.kinuthia@vineyardproperties.co.ke',
+      image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400'
+    },
+    featured: false,
+    virtualTour: false,
+    downloadUrl: '/brochures/heritage-villas-ngong-brochure.pdf'
+  },
   'kitengela-plots-near-new-life-academy': {
     id: 'kitengela-plots-near-new-life-academy',
     title: 'Plots for Sale Near New Life Academy, Kitengela',
